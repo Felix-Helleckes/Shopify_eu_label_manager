@@ -1,0 +1,231 @@
+{% comment %}
+Theme App Extension: EU Electronic Withdrawal Button
+{% endcomment %}
+
+{%- style -%}
+  .eu-withdrawal-button {
+    background-color: #0062ff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 16px 0;
+    display: inline-block;
+  }
+  .eu-withdrawal-button:hover {
+    background-color: #004ee5;
+  }
+  .eu-withdrawal-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+  }
+  .eu-withdrawal-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .eu-withdrawal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  .eu-withdrawal-close:hover,
+  .eu-withdrawal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .eu-withdrawal-form-group {
+    margin-bottom: 16px;
+  }
+  .eu-withdrawal-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .eu-withdrawal-form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  .eu-withdrawal-submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .eu-withdrawal-submit-button:hover {
+    background-color: #218838;
+  }
+  .eu-withdrawal-success-message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 4px;
+  }
+{%- endstyle -%}
+
+{%- javascript -%}
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById("euWithdrawalModal");
+    var btn = document.getElementById("euWithdrawalButton");
+    var span = document.getElementsByClassName("eu-withdrawal-close")[0];
+    var form = document.getElementById("euWithdrawalForm");
+    var successMessage = document.getElementById("euWithdrawalSuccess");
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+      resetForm();
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        resetForm();
+      }
+    }
+
+    form.onsubmit = function(event) {
+      event.preventDefault();
+      submitForm();
+    };
+
+    function submitForm() {
+      var customerName = document.getElementById("euWithdrawalName").value.trim();
+      var orderNumber = document.getElementById("euWithdrawalOrder").value.trim();
+      var email = document.getElementById("euWithdrawalEmail").value.trim();
+      var shopDomain = "{{ shop.permanent_domain }}";
+
+      // Basic validation
+      if (customerName === "" || orderNumber === "" || email === "") {
+        alert("Bitte füllen Sie alle Felder aus.");
+        return;
+      }
+
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+        return;
+      }
+
+      // Disable submit button and show loading
+      var submitBtn = document.getElementById("euWithdrawalSubmit");
+      submitBtn.disabled = true;
+      submitBtn.value = "Sende...";
+
+      // Prepare data
+      var data = {
+        shopDomain: shopDomain,
+        customerName: customerName,
+        orderNumber: orderNumber,
+        email: email
+      };
+
+      // Fetch to our app's API endpoint via app proxy
+      fetch('/apps/eu-compliance-suite-2026/api/withdrawal-submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Show success message
+          successMessage.style.display = "block";
+          form.reset();
+          // Hide form and show only success message
+          form.style.display = "none";
+          // Optionally, close modal after a few seconds
+          setTimeout(function() {
+            modal.style.display = "none";
+            resetForm();
+          }, 3000);
+        } else {
+          alert("Fehler: " + (data.error || "Unbekannter Fehler"));
+          submitBtn.disabled = false;
+          submitBtn.value = "Widerruf bestätigen";
+        }
+      })
+      .catch(error => {
+        alert("Netzwerkfehler. Bitte versuchen Sie es später erneut.");
+        console.error('Error:', error);
+        submitBtn.disabled = false;
+        submitBtn.value = "Widerruf bestätigen";
+      });
+    }
+
+    function resetForm() {
+      var form = document.getElementById("euWithdrawalForm");
+      var successMessage = document.getElementById("euWithdrawalSuccess");
+      var submitBtn = document.getElementById("euWithdrawalSubmit");
+      form.reset();
+      form.style.display = "block";
+      successMessage.style.display = "none";
+      submitBtn.disabled = false;
+      submitBtn.value = "Widerruf bestätigen";
+    }
+  });
+{%- endjavascript -%}
+
+<button id="euWithdrawalButton" class="eu-withdrawal-button">Widerruf einleiten</button>
+
+<div id="euWithdrawalModal" class="eu-withdrawal-modal">
+  <div class="eu-withdrawal-modal-content">
+    <span class="eu-withdrawal-close">&times;</span>
+    <h2>Widerrufserklärung</h2>
+    <p>Bitte füllen Sie das folgende Formular aus, um vom Vertrag zurückzutreten.</p>
+    <form id="euWithdrawalForm">
+      <div class="eu-withdrawal-form-group">
+        <label for="euWithdrawalName">Ihr Name:</label>
+        <input type="text" id="euWithdrawalName" name="customerName" required>
+      </div>
+      <div class="eu-withdrawal-form-group">
+        <label for="euWithdrawalOrder">Bestellnummer:</label>
+        <input type="text" id="euWithdrawalOrder" name="orderNumber" required>
+      </div>
+      <div class="eu-withdrawal-form-group">
+        <label for="euWithdrawalEmail">E-Mail-Adresse:</label>
+        <input type="email" id="euWithdrawalEmail" name="email" required>
+      </div>
+      <button type="submit" id="euWithdrawalSubmit" class="eu-withdrawal-submit-button">Widerruf bestätigen</button>
+    </form>
+    <div id="euWithdrawalSuccess" class="eu-withdrawal-success-message">
+      Ihre Widerrufserklärung wurde gesendet. Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.
+    </div>
+  </div>
+</div>

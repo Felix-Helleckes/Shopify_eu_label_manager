@@ -1,0 +1,98 @@
+{% comment %}
+Theme App Extension: EU Warranty Label
+{% endcomment %}
+
+{%- style -%}
+  .eu-warranty-label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 20px 0;
+    align-items: flex-start;
+  }
+  .eu-warranty-statutory,
+  .eu-warranty-commercial {
+    border: 2px solid #000;
+    padding: 12px;
+    border-radius: 4px;
+    flex: 1 1 200px;
+    min-width: 200px;
+    box-sizing: border-box;
+  }
+  .eu-warranty-statutory {
+    background-color: #fff8e1;
+    border-color: #ffb300;
+  }
+  .eu-warranty-commercial {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+  }
+  .eu-warranty-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eu-warranty-title::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .eu-warranty-statutory .eu-warranty-title::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="%23ffb300" d="M8 0l3.5 5h3L8 4 4.5 9h3L8 0z"/></svg>');
+  }
+  .eu-warranty-commercial .eu-warranty-title::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="%234caf50" d="M8 0l3.5 5h3L8 4 4.5 9h3L8 0z"/></svg>');
+  }
+  .eu-warranty-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+  .eu-warranty-text strong {
+    font-weight: 600;
+  }
+  /* Ensure visibility: cannot be hidden by theme accordion or tabs */
+  .eu-warranty-label,
+  .eu-warranty-statutory,
+  .eu-warranty-commercial {
+    !important: display: block !important;
+  }
+  /* Override any theme styles that might hide it */
+  .eu-warranty-label * {
+    visibility: visible !important;
+    display: revert !important;
+  }
+{%- endstyle -%}
+
+<div class="eu-warranty-label">
+  <!-- Statutory Warranty (2 years) -->
+  <div class="eu-warranty-statutory">
+    <div class="eu-warranty-title">
+      Gesetzliche Gewährleistung
+    </div>
+    <div class="eu-warranty-text">
+      Für dieses Produkt gilt die gesetzliche Gewährleistung von <strong>2 Jahren</strong> gemäß den Bestimmungen der EU-Verbraucherrechterichtlinie.
+    </div>
+  </div>
+
+  {%- comment -%}
+  Check if the product has a commercial guarantee metafield
+  {%- endcomment -%}
+  {%- assign commercial_guarantee = product.metafields.eu_compliance.commercial_guarantee -%}
+  {%- if commercial_guarantee != blank -%}
+  <div class="eu-warranty-commercial">
+    <div class="eu-warranty-title">
+      Zusätzliche Handelsgarantie
+    </div>
+    <div class="eu-warranty-text">
+      {{ commercial_guarantee }}
+    </div>
+  </div>
+  {%- endif -%}
+</div>
