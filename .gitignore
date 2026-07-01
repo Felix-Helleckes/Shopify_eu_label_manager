@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml
+
+# Production builds
+build/
+.vercel/
+output/
+
+# Environment variables
+.env
+.env.*
+
+# Miscellaneous
+.DS_Thumbs
+Thumbs.db
+
+# Prisma
+dev.db
+prisma/*.sql
+prisma/migrations/
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by jest
+coverage/
+*.lcov
+
+# Build system outputs
+.cache/
+.temp/
+.temp-*/
+
+# Misc
+*.backup
+*.back
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

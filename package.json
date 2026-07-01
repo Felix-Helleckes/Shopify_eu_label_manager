@@ -1,0 +1,37 @@
+{
+  "name": "shopify_eu_label_manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "remix dev",
+    "build": "remix build",
+    "start": "remix-serve build",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felix-Helleckes/Shopify_eu_label_manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Felix-Helleckes/Shopify_eu_label_manager/issues"
+  },
+  "homepage": "https://github.com/Felix-Helleckes/Shopify_eu_label_manager#readme",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "@shopify/polaris": "^13.9.5",
+    "@shopify/shopify-app-remix": "^4.2.0",
+    "nodemailer": "^9.0.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "prisma": "^7.8.0"
+  }
+}
