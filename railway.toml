@@ -1,0 +1,14 @@
+# Railway Configuration for EU Compliance Suite 2026
+[build]
+builder = "nixpacks"
+buildCommand = "npm ci --legacy-peer-deps && npx prisma generate && npm run build"
+
+[deploy]
+startCommand = "npx prisma migrate deploy && node build/index.js"
+healthcheckPath = "/healthcheck"
+healthcheckTimeout = 100
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[env]
+NODE_ENV = "production"
