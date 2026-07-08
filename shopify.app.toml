@@ -1,44 +1,41 @@
-name = "EU Compliance Suite 2026"
-uuid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" # You would generate a unique UUID
-api_version = "2023-10"
-auth_destination = "embed"
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-[[scopes]]
-  handle = "read_products"
-[[scopes]]
-  handle = "write_products"
-[[scopes]]
-  handle = "read_orders"
-[[scopes]]
-  handle = "write_metafields"
+name = "EU LABEL"
+api_version = "2025-01"
+client_id = "6860ad69a983c0549dc759de3b0a5cb0"
+application_url = "https://shopify.dev/apps/default-app-home"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,write_products,read_orders"
 
 [webhooks]
+api_version = "2025-01"
+
   [webhooks.customers_data_request]
-    address = "/webhooks/customers_data_request"
-    format = "json"
+  topic = "CUSTOMERS_DATA_REQUEST"
+  address = "/webhooks/customers_data_request"
+  format = "json"
+
   [webhooks.customers_redact]
-    address = "/webhooks/customers_redact"
-    format = "json"
+  topic = "CUSTOMERS_REDACT"
+  address = "/webhooks/customers_redact"
+  format = "json"
+
   [webhooks.shop_redact]
-    address = "/webhooks/shop_redact"
-    format = "json"
+  topic = "SHOP_REDACT"
+  address = "/webhooks/shop_redact"
+  format = "json"
 
-[proxy]
-  prefix = "/apps/eu-compliance-suite-2026"
-  destination = "/app"
-  # This will proxy requests from the shop's domain at /apps/eu-compliance-suite-2026 to our app's /app directory
-  # So our API endpoint at /app/routes/api.withdrawal-submit.jsx becomes accessible at /apps/eu-compliance-suite-2026/api/withdrawal-submit
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
 
-[[embed]]
-  # Embedded app settings
-  type = "embedded_app"
-  url = "/app"
+[extensions.app_proxy]
+url = "/apps/eu-compliance-suite-2026"
+subpath = "eu-compliance-suite-2026"
+prefix = "apps"
 
-[batch]
-  size = 50
-
-[api_client]
-  # API client credentials are stored in environment variables or .env file
-  # These are set during app deployment
-  # api_key = "..."
-  # secret = "..."
+[auth]
+redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]

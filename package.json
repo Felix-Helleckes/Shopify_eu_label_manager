@@ -25,13 +25,18 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^7.8.0",
+    "@remix-run/node": "^2.16.0",
+    "@remix-run/react": "^2.16.0",
+    "@remix-run/serve": "^2.16.0",
     "@shopify/polaris": "^13.9.5",
     "@shopify/shopify-app-remix": "^4.2.0",
+    "@shopify/shopify-app-session-storage": "^2.0.0",
     "nodemailer": "^9.0.1",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@remix-run/dev": "^2.16.0",
     "prisma": "^7.8.0"
   }
 }

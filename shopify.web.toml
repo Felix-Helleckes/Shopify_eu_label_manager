@@ -1,0 +1,5 @@
+[commands]
+  dev = "npm run dev"
+
+[theme]
+  name = "eu-compliance-suite"

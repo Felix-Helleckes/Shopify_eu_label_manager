@@ -27,14 +27,16 @@ model Session {
 }
 
 model WithdrawalLog {
-  id            String   @id @default(cuid())
-  shop          String   // Shop domain (myshopify.com)
-  customerName  String
-  orderNumber   String
-  email         String
-  timestamp     DateTime @default(now())
-  verificationHash String   // SHA-256 hash of submitted data for legal audit
-  formContent   Json     // Stores the submitted form data for verification
+  id                String   @id @default(cuid())
+  shop              String   // Shop domain (myshopify.com)
+  customerName      String
+  orderNumber       String
+  email             String
+  timestamp         DateTime @default(now())
+  verificationHash  String   // SHA-256 hash of submitted data for legal audit
+  formContent       Json     // Stores the submitted form data for verification
+  emailSent         Boolean  @default(false)
+
   @@index([shop, timestamp])
 }
 

@@ -2,19 +2,11 @@ import { json } from "@remix-run/node";
 import { authenticate } from "~/utils/shopify.server"; // Adjust the path as per your project
 import { prisma } from "~/utils/db.server";
 import {
-  Tabs,
-  TabList,
-  TabPanel,
   Card,
-  Section,
   FormLayout,
   TextField,
-  ChoiceList,
   Button,
   DataTable,
-  TextContainer,
-  Stack,
-  Heading,
   Checkbox,
 } from "@shopify/polaris";
 import { useLoaderData, useState } from "react";
@@ -69,6 +61,7 @@ export async function loader({ request }) {
 export default function AppIndex() {
   const { withdrawalLogs, appSettings, shopDomain } = useLoaderData();
   const [isExporting, setIsExporting] = useState(false);
+  const [activeTab, setActiveTab] = useState("withdrawals");
 
   // Function to handle export to CSV (simulated)
   const handleExport = () => {
@@ -86,16 +79,17 @@ export default function AppIndex() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const warrantyLabelActive = formData.get("warrantyLabelActive") === "on";
-    // Parse the JSON strings from the form fields
-    let commercialGuaranteeRules;
-    let customEmailTemplate;
-    try {
-      commercialGuaranteeRules = JSON.parse(formData.get("commercialGuaranteeRules"));
-      customEmailTemplate = JSON.parse(formData.get("customEmailTemplate"));
-    } catch (e) {
-      alert("Fehler beim Parsen der Einstellungen. Bitte überprüfen Sie die Eingaben.");
-      return;
-    }
+
+    const commercialGuaranteeRules = {
+      globalText: String(formData.get("globalGuaranteeText") || ""),
+      metafieldNamespace: String(formData.get("metafieldNamespace") || "eu_compliance"),
+      metafieldKey: String(formData.get("metafieldKey") || "commercial_guarantee"),
+    };
+
+    const customEmailTemplate = {
+      subject: String(formData.get("emailSubject") || "Bestätigung Ihres Widerrufs"),
+      body: String(formData.get("emailBody") || ""),
+    };
 
     await prisma.appSettings.update({
       where: { shop: shopDomain },
@@ -110,154 +104,103 @@ export default function AppIndex() {
   };
 
   return (
-    <>
-      <Tabs>
-        <TabList>
-          <Tab label="Widerrufe (Withdrawals)" />
-          <Tab label="EU Gewährleistung (Warranty Label)" />
-        </TabList>
+    <div style={{ padding: "24px", fontFamily: "sans-serif" }}>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "24px" }}>
+        <button
+          type="button"
+          onClick={() => setActiveTab("withdrawals")}
+          style={{ padding: "8px 12px", borderRadius: "6px", border: activeTab === "withdrawals" ? "2px solid #0062ff" : "1px solid #ddd", background: activeTab === "withdrawals" ? "#f0f6ff" : "white" }}
+        >
+          Widerrufe
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("warranty")}
+          style={{ padding: "8px 12px", borderRadius: "6px", border: activeTab === "warranty" ? "2px solid #0062ff" : "1px solid #ddd", background: activeTab === "warranty" ? "#f0f6ff" : "white" }}
+        >
+          EU Gewährleistung
+        </button>
+      </div>
 
-        <TabPanel>
-          <Card sectioned>
-            <Heading size="2">Widerruflog</Heading>
-            <Stack>
-              <Button
-                onClick={handleExport}
-                disabled={isExporting}
-                variant="primary"
-              >
-                {isExporting ? "Exportiert..." : "Exportieren als CSV/PDF"}
-              </Button>
-            </Stack>
-            <Section>
-              <DataTable>
-                <DataTable.Header>
-                  <DataTable.Content>
-                    <DataTable.Row>
-                      <DataTable.Heading>ID</DataTable.Heading>
-                      <DataTable.Heading>Kundenname</DataTable.Heading>
-                      <DataTable.Heading>Bestellnummer</DataTable.Heading>
-                      <DataTable.Heading>E-Mail</DataTable.Heading>
-                      <DataTable.Heading>Timestamp</DataTable.Heading>
-                      <DataTable.Heading>Verifikationshash</DataTable.Heading>
-                      <DataTable.Heading>E-Mail gesendet</DataTable.Heading>
-                    </DataTable.Row>
-                  </DataTable.Content>
-                </DataTable.Header>
-                <DataTable.Body>
-                  {withdrawalLogs.map((log) => (
-                    <DataTable.Row key={log.id}>
-                      <DataTable.Content>{log.id}</DataTable.Content>
-                      <DataTable.Content>{log.customerName}</DataTable.Content>
-                      <DataTable.Content>{log.orderNumber}</DataTable.Content>
-                      <DataTable.Content>{log.email}</DataTable.Content>
-                      <DataTable.Content>
-                        {log.timestamp.toLocaleString()}
-                      </DataTable.Content>
-                      <DataTable.Content>{log.verificationHash}</DataTable.Content>
-                      <DataTable.Content>
-                        {log.emailSent ? "Ja" : "Nein"}
-                      </DataTable.Content>
-                    </DataTable.Row>
-                  ))}
-                </DataTable.Body>
-              </DataTable>
-            </Section>
-          </Card>
-        </TabPanel>
-
-        <TabPanel>
-          <Card sectioned>
-            <Heading size="2">EU Gewährleistungskonfiguration</Heading>
-            <FormLayout onSubmit={handleSaveSettings}>
-              <FormLayout.Field
+      {activeTab === "withdrawals" ? (
+        <Card sectioned>
+          <h2 style={{ marginTop: 0 }}>Widerruflog</h2>
+          <div style={{ marginBottom: "16px" }}>
+            <Button onClick={handleExport} disabled={isExporting} variant="primary">
+              {isExporting ? "Exportiert..." : "Exportieren als CSV/PDF"}
+            </Button>
+          </div>
+          <DataTable
+            columnContentTypes={["text", "text", "text", "text", "text", "text", "text"]}
+            headings={["ID", "Kundenname", "Bestellnummer", "E-Mail", "Timestamp", "Verifikationshash", "E-Mail gesendet"]}
+            rows={withdrawalLogs.map((log) => [
+              log.id,
+              log.customerName,
+              log.orderNumber,
+              log.email,
+              log.timestamp ? new Date(log.timestamp).toLocaleString() : "",
+              log.verificationHash,
+              log.emailSent ? "Ja" : "Nein",
+            ])}
+          />
+        </Card>
+      ) : (
+        <Card sectioned>
+          <h2 style={{ marginTop: 0 }}>EU Gewährleistungskonfiguration</h2>
+          <FormLayout onSubmit={handleSaveSettings}>
+            <FormLayout.Group>
+              <Checkbox
+                id="warrantyLabelActive"
+                name="warrantyLabelActive"
                 label="EU Gewährleistungslabel aktivieren"
                 helpText="Aktivieren Sie dies, um das EU-Gewährleistungslabel auf Produktseiten anzuzeigen."
-              >
-                <Checkbox
-                  id="warrantyLabelActive"
-                  name="warrantyLabelActive"
-                  checked={appSettings?.warrantyLabelActive ?? false}
-                />
-              </FormLayout.Field>
+                checked={appSettings?.warrantyLabelActive ?? false}
+              />
+            </FormLayout.Group>
 
-              <FormLayout.Field
-                label="Globale Handelsgarantie-Text"
-                helpText="Standardtext für zusätzliche freiwillige Handelsgarantie, falls kein Metafield gesetzt ist."
-              >
-                <TextField
-                  id="globalGuaranteeText"
-                  name="commercialGuaranteeRules"
-                  value={JSON.stringify(
-                    appSettings?.commercialGuaranteeRules?.globalText ?? ""
-                  )}
-                />
-              </FormLayout.Field>
+            <TextField
+              label="Globale Handelsgarantie-Text"
+              helpText="Standardtext für zusätzliche freiwillige Handelsgarantie, falls kein Metafield gesetzt ist."
+              id="globalGuaranteeText"
+              name="globalGuaranteeText"
+              value={appSettings?.commercialGuaranteeRules?.globalText ?? ""}
+            />
 
-              <FormLayout.Field
-                label="Metafield-Konfiguration für Handelsgarantie"
-                helpText="Definieren Sie den Namespace und Schlüssel des Produkt-Metafields, aus dem die Handelsgarantie gelesen werden soll."
-              >
-                <Stack>
-                  <TextField
-                    label="Namespace"
-                    id="metafieldNamespace"
-                    name="commercialGuaranteeRules"
-                    value={JSON.stringify(
-                      appSettings?.commercialGuaranteeRules?.metafieldNamespace ??
-                        "eu_compliance"
-                    )}
-                  />
-                  <TextField
-                    label="Schlüssel"
-                    id="metafieldKey"
-                    name="commercialGuaranteeRules"
-                    value={JSON.stringify(
-                      appSettings?.commercialGuaranteeRules?.metafieldKey ??
-                        "commercial_guarantee"
-                    )}
-                  />
-                </Stack>
-              </FormLayout.Field>
+            <TextField
+              label="Namespace"
+              id="metafieldNamespace"
+              name="metafieldNamespace"
+              value={appSettings?.commercialGuaranteeRules?.metafieldNamespace ?? "eu_compliance"}
+            />
 
-              <FormLayout.Field
-                label="E-Mail-Vorlage für Widerrufsbestätigung"
-                helpText="Passen Sie die Betreffzeile und den Inhalt der automatischen Widerrufsbestätigung-E-Mail an."
-              >
-                <Stack>
-                  <TextField
-                    label="Betreff"
-                    id="emailSubject"
-                    name="customEmailTemplate"
-                    value={JSON.stringify(
-                      appSettings?.customEmailTemplate?.subject ??
-                        "Bestätigung Ihres Widerrufs"
-                    )}
-                  />
-                  <TextField
-                    label="E-Mail-Body"
-                    id="emailBody"
-                    name="customEmailTemplate"
-                    value={JSON.stringify(
-                      appSettings?.customEmailTemplate?.body ??
-                        "Sehr geehrte/r {customerName},\n\nwir haben Ihren Widerruf vom {timestamp} erhalten.\n\nIhre Widerrufsdetails:\n- Bestellnummer: {orderNumber}\n- Name: {customerName}\n- E-Mail: {email}\n\nWir werden Ihre Rücksendung umgehend bearbeiten.\n\nMit freundlichen Grüßen\n{shopName}"
-                    )}
-                  />
-                </Stack>
-              </FormLayout.Field>
+            <TextField
+              label="Schlüssel"
+              id="metafieldKey"
+              name="metafieldKey"
+              value={appSettings?.commercialGuaranteeRules?.metafieldKey ?? "commercial_guarantee"}
+            />
 
-              <Stack>
-                <Button
-                  type="submit"
-                  variant="primary"
-                >
-                  Einstellungen speichern
-                </Button>
-              </Stack>
-            </FormLayout>
-          </Card>
-        </TabPanel>
-      </Tabs>
-    </>
+            <TextField
+              label="Betreff"
+              id="emailSubject"
+              name="emailSubject"
+              value={appSettings?.customEmailTemplate?.subject ?? "Bestätigung Ihres Widerrufs"}
+            />
+
+            <TextField
+              label="E-Mail-Body"
+              id="emailBody"
+              name="emailBody"
+              value={appSettings?.customEmailTemplate?.body ?? "Sehr geehrte/r {customerName},\n\nwir haben Ihren Widerruf vom {timestamp} erhalten.\n\nIhre Widerrufsdetails:\n- Bestellnummer: {orderNumber}\n- Name: {customerName}\n- E-Mail: {email}\n\nWir werden Ihre Rücksendung umgehend bearbeiten.\n\nMit freundlichen Grüßen\n{shopName}"}
+              multiline={4}
+            />
+
+            <Button type="submit" variant="primary">
+              Einstellungen speichern
+            </Button>
+          </FormLayout>
+        </Card>
+      )}
+    </div>
   );
 }
