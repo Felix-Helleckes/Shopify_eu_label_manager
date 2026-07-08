@@ -1,0 +1,24 @@
+[extensions]
+type = "theme_app_extension"
+name = "EU Compliance Blocks"
+handle = "eu-compliance-blocks"
+
+[extensions.build]
+entry_point = "blocks/**/*.liquid"
+
+[extensions.settings]
+[[extensions.settings.fields]]
+type = "header"
+content = "EU Compliance Settings"
+
+[[extensions.settings.fields]]
+key = "withdrawal_button_enabled"
+type = "checkbox"
+name = "Widerrufs-Button aktivieren"
+default = true
+
+[[extensions.settings.fields]]
+key = "warranty_label_enabled"
+type = "checkbox"
+name = "Gewährleistungslabel aktivieren"
+default = true
