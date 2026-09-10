@@ -13,6 +13,10 @@ export type MailResult = { ok: true; messageId?: string } | { ok: false; error: 
 
 let cachedTransport: nodemailer.Transporter | null = null;
 
+export function isMailDryRun() {
+  return isDryRun();
+}
+
 function isDryRun() {
   return process.env.MAIL_DRY_RUN === "true" || (!process.env.SMTP_HOST && process.env.NODE_ENV !== "production");
 }

@@ -22,12 +22,32 @@
    npx netlify-cli env:set SMTP_USER "<login>"
    npx netlify-cli env:set SMTP_PASS "<passwort>"
    npx netlify-cli env:set MAIL_FROM "EU Compliance Suite <noreply@deine-domain.de>"
-   npx netlify-cli deploy --build --prod
+   npx netlify-cli deploy --alias smtp        # bis 23.09.2026, danach --build --prod
    ```
 2. **Impressum-Anschrift**: `npx netlify-cli env:set APP_OPERATOR_ADDRESS "Straße 1, 50667 Köln, Deutschland"` und Redeploy.
 3. **Storefront-Passwort des Dev-Stores** entfernen (Onlineshop → Einstellungen → Passwortschutz), damit der Widerrufs-Dialog im Storefront getestet werden kann. Danach: Startseite öffnen, unten links „Vertrag widerrufen“, Formular ausfüllen, „Widerruf bestätigen“ – der Eintrag erscheint in der App unter „Widerrufe“.
 4. **Supabase-Datenbankpasswort rotieren** (Dashboard → Project Settings → Database → Reset password), anschließend `DATABASE_URL`/`DIRECT_URL` in Netlify aktualisieren. Das Passwort ist während der Einrichtung in Terminal-Ausgaben aufgetaucht.
 5. **App-Store-Listing** unter https://partners.shopify.com/1971036/apps/391922778113/distribution → „Manage submission“: Texte aus `docs/LISTING.md`, Icon 1200×1200, sechs Screenshots 1600×900, Datenschutz-URL `https://eu-compliance-suite.netlify.app/privacy`, Support-Mail, Test-Anleitung für das Review-Team (Dev-Store + Passwort).
+
+
+## Aktueller Sonderfall: Netlify-Credits aufgebraucht (bis 23.09.2026)
+
+Das kostenlose Netlify-Team hat sein Monatskontingent verbraucht (alle Sites zusammen). Produktions-Deploys sind
+bis zum Reset am 23.09.2026 pausiert, die veröffentlichte Version bleibt online. Ausweg: Alias-Deploys sind erlaubt
+und haben eine stabile URL. Die App läuft deshalb vorübergehend unter
+`https://smtp--eu-compliance-suite.netlify.app` (Shopify-Konfiguration und `SHOPIFY_APP_URL` zeigen darauf).
+
+Bis zum Reset deshalb **immer mit Alias deployen**:
+
+```bash
+npx netlify-cli deploy --alias smtp
+```
+
+Nach dem Reset (oder nach einem Upgrade des Netlify-Teams): `SHOPIFY_APP_URL` und `shopify.app.toml` wieder auf
+`https://eu-compliance-suite.netlify.app` stellen, `npx netlify-cli deploy --build --prod`, `npx shopify app deploy --allow-updates`.
+
+Wichtig: Nie `MAIL_DRY_RUN=true` in `.env` lassen, wenn mit der CLI deployt wird – die CLI injiziert `.env` in den
+Build, und der Versand läuft dann in Produktion nur zum Schein. Der Healthcheck zeigt den Zustand unter `mail`.
 
 ## Laufender Betrieb
 
