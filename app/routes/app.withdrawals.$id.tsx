@@ -107,7 +107,7 @@ export default function WithdrawalDetail() {
                     im Shopify-Admin öffnen
                   </s-link>
                 )}
-                {w.orderEmailMatched === false && " – E-Mail-Adresse weicht von der Bestellung ab, bitte prüfen"}
+                
                 {w.orderTaggedAt ? " – getaggt" : ""}
               </>
             ) : (

@@ -233,9 +233,7 @@ const FIND_ORDER = `#graphql
         id
         name
         createdAt
-        email
         cancelledAt
-        customer { email }
       }
     }
   }
@@ -245,7 +243,7 @@ export type MatchedOrder = {
   id: string;
   name: string;
   createdAt: Date;
-  emailMatched: boolean;
+  emailMatched: boolean | null;
 };
 
 export async function findMatchingOrder(
@@ -264,25 +262,23 @@ export async function findMatchingOrder(
             id: string;
             name: string;
             createdAt: string;
-            email: string | null;
             cancelledAt: string | null;
-            customer: { email: string | null } | null;
           }[];
         };
       };
     };
     const nodes = json.data?.orders.nodes ?? [];
     if (!nodes.length) return null;
-    const wanted = contactEmail.toLowerCase();
-    const byEmail = nodes.find(
-      (n) => (n.email ?? "").toLowerCase() === wanted || (n.customer?.email ?? "").toLowerCase() === wanted,
-    );
-    const pick = byEmail ?? nodes[0];
+    // Data minimisation: we deliberately do not read customer e-mail/name from the order
+    // (protected customer data). Matching is by order name only; the consumer's own
+    // statement carries the contact address.
+    void contactEmail;
+    const pick = nodes[0];
     return {
       id: pick.id,
       name: pick.name,
       createdAt: new Date(pick.createdAt),
-      emailMatched: Boolean(byEmail),
+      emailMatched: null,
     };
   } catch (error) {
     console.error("[withdrawal] order lookup failed", error);
