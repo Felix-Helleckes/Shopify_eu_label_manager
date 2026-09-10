@@ -25,7 +25,8 @@ export function storeHandle(domain: string) {
 export function themeEditorLinks(domain: string) {
   const store = storeHandle(domain);
   const base = `https://admin.shopify.com/store/${store}/themes/current/editor`;
-  const uid = process.env.THEME_EXTENSION_UID;
+  // Theme editor deep links use the app's API key (client_id), see Shopify docs "Deep linking".
+  const uid = process.env.SHOPIFY_API_KEY || process.env.THEME_EXTENSION_UID;
   return {
     apps: `${base}?context=apps`,
     activateWithdrawalEmbed: uid ? `${base}?context=apps&activateAppId=${uid}/withdrawal-embed` : `${base}?context=apps`,

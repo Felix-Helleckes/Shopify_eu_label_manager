@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { authenticate } from "../shopify.server";
-import { getOrCreateShop } from "../lib/shop.server";
+import { getOrCreateShop, syncShopFromAdmin } from "../lib/shop.server";
 import { hashIp, isRateLimited, processWithdrawal, validateInput } from "../lib/withdrawal.server";
 
 /**
@@ -51,7 +51,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const validation = validateInput(raw);
   if (!validation.ok) return json({ ok: false, error: "validation", fields: validation.errors }, 422);
 
-  const shop = await getOrCreateShop(session.shop);
+  let shop = await getOrCreateShop(session.shop);
+  if (!shop.email && admin) {
+    try {
+      shop = await syncShopFromAdmin(admin, session.shop);
+    } catch (error) {
+      console.error("[proxy] shop sync failed", error);
+    }
+  }
   const result = await processWithdrawal({
     admin,
     shop,
