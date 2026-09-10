@@ -1,14 +1,15 @@
 // Prisma schema – EU Compliance Suite
-// SQLite in development and on a single Fly.io machine with a volume.
-// Switch the provider to "postgresql" if you ever need multi-instance hosting.
+// PostgreSQL (Supabase). DATABASE_URL = transaction pooler (runtime), DIRECT_URL = session pooler (migrations).
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 /// Shopify OAuth sessions (shape required by @shopify/shopify-app-session-storage-prisma).

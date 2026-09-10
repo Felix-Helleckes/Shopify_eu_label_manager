@@ -1,87 +1,50 @@
-# Go-live-Checkliste (für Felix)
+# Betrieb und Go-live (Stand 10.09.2026)
 
-Alles, was Code ist, liegt im Repo. Die folgenden Schritte brauchen deine Accounts (Shopify Partner, Fly.io,
-E-Mail-Provider) und lassen sich nicht aus dem Repo heraus erledigen.
+## Was bereits läuft
 
-## 1. Lokal starten
+| Baustein | Stand |
+| --- | --- |
+| Hosting | Netlify Functions, Site `eu-compliance-suite`, URL https://eu-compliance-suite.netlify.app (Frankfurt-nahe Edge, Function-Region default) |
+| Datenbank | Supabase Postgres, Projekt `eu-compliance-suite` (Ref `rhpyvxjiiqdwmzdaflut`, Region eu-central-1), Migration `20260910150000_init` eingespielt |
+| Shopify-App | Partner-Org „EU Eco-Label Manager“, App „EU Compliance Suite“ (Handle `eu-label-1`, Client-ID `6860ad69…`), Version `eu-compliance-suite-2` aktiv, App-URL/Proxy/Webhooks auf Netlify, öffentliche Distribution gesetzt |
+| Theme-Extension | `eu-compliance-blocks`, UID `91b93329-2249-9841-8269-a81778732344a4f243bf`, veröffentlicht |
+| Dev-Store | `teststore-10010101001010928.myshopify.com`: App installiert, Pro-Testabo genehmigt, App-Einbettung „Widerrufsbutton (alle Seiten)“ im Live-Theme aktiviert |
+| Env auf Netlify | SHOPIFY_API_KEY/SECRET, SCOPES, SHOPIFY_APP_URL, SHOPIFY_APP_HANDLE, DATABASE_URL, DIRECT_URL, IP_HASH_SECRET, THEME_EXTENSION_UID, APP_OPERATOR_*, APP_SUPPORT_EMAIL, NODE_VERSION |
 
-```bash
-cd ~/Documents/GitHub/Shopify_eu_label_manager
-npm install
-npx prisma migrate deploy
-npm run dev
-```
+## Was noch fehlt (nur mit deinen Konten möglich)
 
-`npm run dev` ruft `shopify app dev` auf. Beim ersten Mal: im Browser beim Partner-Account anmelden, die
-vorhandene App **„EU LABEL“** (client_id steht in `shopify.app.toml`) auswählen oder eine neue anlegen, den
-Dev-Store wählen und die Frage „Update URLs?“ mit **Ja** beantworten. Die CLI schreibt dann `application_url`,
-`redirect_urls` und `app_proxy.url` in die toml und installiert die App im Dev-Store.
+1. **SMTP-Zugang** – ohne ihn werden Widerrufe gespeichert, aber keine Eingangsbestätigungen versendet (rotes Banner in der App).
+   Konto bei Brevo, Resend, Postmark oder Mailgun anlegen, Absenderdomain verifizieren, dann:
+   ```bash
+   cd ~/Documents/GitHub/Shopify_eu_label_manager
+   npx netlify-cli env:set SMTP_HOST smtp-relay.brevo.com
+   npx netlify-cli env:set SMTP_PORT 587
+   npx netlify-cli env:set SMTP_USER "<login>"
+   npx netlify-cli env:set SMTP_PASS "<passwort>"
+   npx netlify-cli env:set MAIL_FROM "EU Compliance Suite <noreply@deine-domain.de>"
+   npx netlify-cli deploy --build --prod
+   ```
+2. **Impressum-Anschrift**: `npx netlify-cli env:set APP_OPERATOR_ADDRESS "Straße 1, 50667 Köln, Deutschland"` und Redeploy.
+3. **Storefront-Passwort des Dev-Stores** entfernen (Onlineshop → Einstellungen → Passwortschutz), damit der Widerrufs-Dialog im Storefront getestet werden kann. Danach: Startseite öffnen, unten links „Vertrag widerrufen“, Formular ausfüllen, „Widerruf bestätigen“ – der Eintrag erscheint in der App unter „Widerrufe“.
+4. **Supabase-Datenbankpasswort rotieren** (Dashboard → Project Settings → Database → Reset password), anschließend `DATABASE_URL`/`DIRECT_URL` in Netlify aktualisieren. Das Passwort ist während der Einrichtung in Terminal-Ausgaben aufgetaucht.
+5. **App-Store-Listing** unter https://partners.shopify.com/1971036/apps/391922778113/distribution → „Manage submission“: Texte aus `docs/LISTING.md`, Icon 1200×1200, sechs Screenshots 1600×900, Datenschutz-URL `https://eu-compliance-suite.netlify.app/privacy`, Support-Mail, Test-Anleitung für das Review-Team (Dev-Store + Passwort).
 
-Prüfen im Dev-Store:
-
-1. App öffnet sich eingebettet, Tarifseite erscheint (Test-Charge, kostet nichts).
-2. Theme-Editor → Apps → App-Einbettung „EU-Widerrufsbutton (alle Seiten)“ aktivieren, speichern.
-3. Im Shop unten links „Vertrag widerrufen“ klicken, Formular ausfüllen, „Widerruf bestätigen“.
-4. Im Terminal erscheint die Eingangsbestätigung (`MAIL_DRY_RUN=true`), in der App unter „Widerrufe“ der Eintrag,
-   in Shopify die Bestellung mit Tag `EU-Widerruf` (wenn die Bestellnummer existiert).
-5. Produktseite: Block „GARAN-Kennzeichnung“ hinzufügen, in der App unter „Gewährleistung“ die
-   Metafeld-Definitionen anlegen, bei einem Produkt `guarantee_years = 5` setzen → Kennzeichnung erscheint.
-
-## 2. E-Mail-Versand
-
-Ein SMTP-Konto bei Postmark, Brevo, Resend oder Mailgun anlegen (Transaktionsmail, eigene Absenderdomain
-verifizieren, z. B. `noreply@deine-domain.de`). Werte für `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`,
-`MAIL_FROM` notieren. Ohne SMTP werden Widerrufe gespeichert, aber keine Eingangsbestätigungen versendet – die
-App zeigt dann einen roten Hinweis.
-
-## 3. Hosting auf Fly.io (Frankfurt)
+## Laufender Betrieb
 
 ```bash
-brew install flyctl && fly auth login
-fly launch --copy-config --no-deploy          # App-Name aus fly.toml übernehmen oder anpassen
-fly volumes create app_data -r fra -n 1 -s 1
-fly secrets set SHOPIFY_API_KEY=... SHOPIFY_API_SECRET=... SHOPIFY_APP_URL=https://<app>.fly.dev \
-  SCOPES=read_orders,write_orders,write_products \
-  SMTP_HOST=... SMTP_PORT=587 SMTP_USER=... SMTP_PASS=... MAIL_FROM="EU Compliance Suite <noreply@...>" \
-  APP_SUPPORT_EMAIL=... APP_OPERATOR_NAME="..." APP_OPERATOR_ADDRESS="..." IP_HASH_SECRET=$(openssl rand -hex 16)
-fly deploy
-curl https://<app>.fly.dev/healthcheck
+npm run typecheck && npm test && npm run build     # vor jedem Deploy
+npx netlify-cli deploy --build --prod              # App deployen (Build lokal, Env von Netlify)
+npx shopify app deploy --allow-updates --message "…"   # Konfiguration + Theme-Extension nach Shopify
+npx netlify-cli logs --source functions --function react-router-server --since 30m
+npx prisma migrate deploy                          # bei Schema-Änderungen (nutzt DIRECT_URL aus .env)
 ```
 
-API-Key und Secret stehen im Partner Dashboard unter der App → „Client credentials“.
+Lokale Entwicklung: `.env` zeigt auf dieselbe Supabase-Datenbank; `npm run dev` startet `shopify app dev` mit Tunnel und
+schaltet den Dev-Store auf die lokale Version um. Danach `npx shopify app dev clean --store <store>` ausführen, sonst
+lädt der Admin weiter die Dev-Vorschau statt der veröffentlichten Version.
 
-## 4. Produktions-URLs in Shopify eintragen
+## Hinweise für Tests im Shopify-Admin
 
-In `shopify.app.toml` `application_url`, die drei `redirect_urls` und `app_proxy.url` auf
-`https://<app>.fly.dev` umstellen (Proxy-URL: `https://<app>.fly.dev/proxy`), dann:
-
-```bash
-npm run deploy      # = shopify app deploy: lädt Konfiguration + Theme-Extension hoch
-```
-
-Nach dem Deploy die UID der Theme-Extension aus der Ausgabe (oder `.shopify/project.json`) kopieren und als
-`THEME_EXTENSION_UID` in den Fly-Secrets setzen – damit funktionieren die Deep-Links in den Theme-Editor.
-
-## 5. Tarife
-
-Die Pläne „Basic“ (6,99 USD) und „Pro“ (12,99 USD) mit 14 Tagen Test sind im Code definiert
-(`app/lib/plans.ts`, Shopify Billing API, Test-Charges außerhalb von Production). Alternativ „Managed Pricing“
-im Partner Dashboard aktivieren; dann müssen die Plan-Namen identisch sein, damit `billing.check` sie erkennt.
-Preise in EUR gehen über Managed Pricing; die Billing-API rechnet in USD ab.
-
-## 6. App-Store-Listing
-
-Texte in `docs/LISTING.md`. Pflichtangaben: Datenschutz-URL `https://<app>.fly.dev/privacy`, Support-E-Mail,
-Screenshots (Dashboard, Widerrufe-Liste, Dialog im Storefront, GARAN-Kennzeichnung, Gewährleistungshinweis),
-Icon (1200×1200), Demo-Store-Zugang für das Review-Team. Compliance-Webhooks sind in der toml eingetragen und
-werden beim Deploy registriert. Ziel: Einreichung **vor dem 27.09.2026**, weil der Gewährleistungshinweis dann
-Pflicht wird und die Nachfrage steigt.
-
-## 7. Vor der Einreichung prüfen
-
-- [ ] `npm run typecheck && npm test && npm run build` grün
-- [ ] Widerruf im Dev-Store komplett durchgespielt, E-Mail wirklich angekommen (nicht Dry-Run)
-- [ ] `customers/redact` und `shop/redact` mit `shopify app webhook trigger` getestet
-- [ ] Impressum-/Betreiberdaten in den Env-Variablen gesetzt (Name, Anschrift, Support-Mail)
-- [ ] Rechtstexte (`/privacy`, `/terms`) und die Beschriftungen von einer Anwältin/einem Anwalt gegenlesen lassen
-- [ ] Preise final festlegen (Wettbewerb: Revoq 9/25 USD, Dotcase 5,99 USD)
+- Der Klick auf einen Tarif ruft die Billing-API auf; Testgebühren fallen auf Dev-Stores nicht an.
+- Bei Shops ohne aktiven Plan leiten alle App-Seiten auf „Tarif“ um.
+- Compliance-Webhooks lassen sich mit `npx shopify app webhook trigger --topic customers/redact --address https://eu-compliance-suite.netlify.app/webhooks/customers/redact --api-version 2026-07 --client-secret <secret>` testen.

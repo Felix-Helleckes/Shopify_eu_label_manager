@@ -20,11 +20,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
   if (q) {
     where.OR = [
-      { consumerName: { contains: q } },
-      { contactEmail: { contains: q } },
-      { contractRef: { contains: q } },
-      { orderName: { contains: q } },
-      { receiptNo: { contains: q } },
+      { consumerName: { contains: q, mode: "insensitive" } },
+      { contactEmail: { contains: q, mode: "insensitive" } },
+      { contractRef: { contains: q, mode: "insensitive" } },
+      { orderName: { contains: q, mode: "insensitive" } },
+      { receiptNo: { contains: q, mode: "insensitive" } },
     ];
   }
 

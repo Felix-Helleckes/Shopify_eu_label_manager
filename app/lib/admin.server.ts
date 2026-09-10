@@ -1,11 +1,19 @@
 import { authenticate } from "../shopify.server";
-import { getOrCreateShop } from "./shop.server";
+import { getOrCreateShop, syncShopFromAdmin } from "./shop.server";
 import { requireActivePlan } from "./billing.server";
 
 /** Authenticates an embedded admin request, loads the Shop row and (optionally) enforces billing. */
 export async function requireShop(request: Request, options: { billing?: boolean } = {}) {
   const ctx = await authenticate.admin(request);
-  const shop = await getOrCreateShop(ctx.session.shop);
+  let shop = await getOrCreateShop(ctx.session.shop);
+  // afterAuth may have failed (e.g. API hiccup); complete the master data lazily.
+  if (!shop.email && !shop.timezone) {
+    try {
+      shop = await syncShopFromAdmin(ctx.admin, ctx.session.shop);
+    } catch (error) {
+      console.error("[requireShop] shop sync failed", error);
+    }
+  }
   const plan = options.billing === false ? null : await requireActivePlan(ctx.billing, request);
   return { ...ctx, shop, plan };
 }

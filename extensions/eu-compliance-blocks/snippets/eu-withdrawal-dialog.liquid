@@ -2,9 +2,6 @@
   Shared markup of the withdrawal function (Art. 11a Directive 2011/83/EU, § 356a BGB).
   Parameters: uid (unique id), label_override, confirm_override, proxy_path
 {%- endcomment -%}
-{%- assign locale_root = request.locale.iso_code | split: '-' | first -%}
-{%- assign withdraw_label = 'withdrawal.button' | t -%}
-{%- if label_override != blank -%}{%- assign withdraw_label = label_override -%}{%- endif -%}
 {%- assign confirm_label = 'withdrawal.confirm_button' | t -%}
 {%- if confirm_override != blank -%}{%- assign confirm_label = confirm_override -%}{%- endif -%}
 {%- assign endpoint = proxy_path | default: '/apps/eu-compliance' | append: '/withdrawal' -%}

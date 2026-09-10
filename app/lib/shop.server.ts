@@ -15,11 +15,6 @@ const SHOP_QUERY = `#graphql
       ianaTimezone
       primaryDomain { host url }
     }
-    shopLocales {
-      locale
-      primary
-      published
-    }
   }
 `;
 
@@ -47,20 +42,20 @@ export async function fetchShopInfo(admin: GraphqlClient): Promise<ShopInfo> {
         ianaTimezone: string | null;
         primaryDomain: { host: string; url: string } | null;
       };
-      shopLocales: { locale: string; primary: boolean; published: boolean }[];
     };
+    errors?: { message: string }[];
   };
+  if (json.errors?.length) throw new Error(json.errors.map((e) => e.message).join("; "));
   const shop = json.data?.shop;
-  const locales = json.data?.shopLocales ?? [];
-  const primary = locales.find((l) => l.primary)?.locale ?? null;
   return {
     name: shop?.name ?? "",
     email: shop?.contactEmail ?? shop?.email ?? null,
     primaryDomain: shop?.primaryDomain?.url ?? null,
     currency: shop?.currencyCode ?? null,
     timezone: shop?.ianaTimezone ?? null,
-    shopLocale: primary,
-    publishedLocales: locales.filter((l) => l.published).map((l) => l.locale),
+    // Shop locale needs the read_locales scope; we derive the merchant language from the admin request instead.
+    shopLocale: null,
+    publishedLocales: [],
   };
 }
 
@@ -85,7 +80,6 @@ export async function syncShopFromAdmin(admin: GraphqlClient, domain: string) {
       primaryDomain: info.primaryDomain,
       currency: info.currency,
       timezone: info.timezone,
-      shopLocale: info.shopLocale,
       uninstalledAt: null,
     },
   });

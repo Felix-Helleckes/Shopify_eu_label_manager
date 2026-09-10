@@ -1,5 +1,5 @@
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
-import { Form, useLoaderData, useNavigation } from "react-router";
+import { Form, useLoaderData, useNavigation, useSubmit } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { authenticate } from "../shopify.server";
 import { activePlan, isTestBilling } from "../lib/billing.server";
@@ -34,6 +34,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export default function Billing() {
   const { current, plans, trialDays, isTest } = useLoaderData<typeof loader>();
   const nav = useNavigation();
+  const submit = useSubmit();
 
   return (
     <s-page heading="Tarif">
@@ -62,7 +63,15 @@ export default function Billing() {
               {current === p.name ? (
                 <s-badge tone="success">Aktueller Tarif</s-badge>
               ) : (
-                <s-button type="submit" variant="primary" {...(nav.state !== "idle" ? { loading: true } : {})}>
+                <s-button
+                  type="submit"
+                  variant="primary"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    submit({ plan: p.name }, { method: "post" });
+                  }}
+                  {...(nav.state !== "idle" ? { loading: true } : {})}
+                >
                   {current ? `Zu ${p.name} wechseln` : `${p.name} starten`}
                 </s-button>
               )}

@@ -3,4 +3,5 @@ api_version = "2026-07"
 [[extensions]]
 name = "EU Compliance Blocks"
 handle = "eu-compliance-blocks"
+uid = "91b93329-2249-9841-8269-a81778732344a4f243bf"
 type = "theme"

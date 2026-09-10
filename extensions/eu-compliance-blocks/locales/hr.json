@@ -1,6 +1,42 @@
 {
   "withdrawal": {
     "button": "Odustati od ugovora",
-    "confirm_button": "Potvrditi odustajanje"
+    "confirm_button": "Potvrditi odustajanje",
+    "dialog_title": "Withdraw from contract",
+    "intro": "Use this form to withdraw from a contract concluded in this shop. After you confirm, you will receive an acknowledgement of receipt by e-mail.",
+    "name": "Your name",
+    "contract": "Order number or other identification of the contract",
+    "contract_help": "For example the order number from your order confirmation.",
+    "email": "E-mail address for the acknowledgement of receipt",
+    "order_date": "Order or delivery date (optional)",
+    "details": "Goods or services concerned (optional)",
+    "next": "Continue",
+    "back": "Back",
+    "review_title": "Check your withdrawal statement",
+    "review_intro": "Please check your details. By clicking “{{ confirm }}” you submit your withdrawal statement to the trader.",
+    "submitting": "Submitting…",
+    "success_title": "Withdrawal statement received",
+    "success_text": "Your withdrawal statement was received on {date}. Reference number: {receipt}. An acknowledgement of receipt has been sent to {email}.",
+    "success_no_mail": "Your withdrawal statement was received on {date}. Reference number: {receipt}. The acknowledgement e-mail could not be sent – please save or print this page as proof.",
+    "receipt_no": "Reference number",
+    "submitted_at": "Received on",
+    "error_required": "Please fill in this field.",
+    "error_email": "Please enter a valid e-mail address.",
+    "error_generic": "Your statement could not be submitted. Please try again or contact the shop by e-mail.",
+    "error_rate": "Too many requests. Please try again in a few minutes.",
+    "close": "Close",
+    "print": "Print",
+    "privacy": "Your data will be used only to process the withdrawal."
+  },
+  "guarantee": {
+    "notice_alt": "Legal guarantee – harmonised notice on the legal guarantee of conformity (minimum two years)",
+    "notice_toggle": "Information on the legal guarantee",
+    "label_alt": "GARAN – producer guarantee of durability: {{ years }} years, in addition to the legal guarantee",
+    "label_expand": "Show the full guarantee label",
+    "terms_link": "Guarantee conditions",
+    "editor_placeholder": "GARAN label: shown only for products whose metafield “guarantee_years” is greater than 2."
+  },
+  "repair": {
+    "default_text": "Right to repair: if goods are defective within the legal guarantee period, you may choose between repair and replacement. If you choose repair, the legal guarantee period is extended once by twelve months (Directive (EU) 2024/1799; applies to contracts concluded from 31 July 2026)."
   }
 }

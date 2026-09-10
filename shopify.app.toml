@@ -4,12 +4,11 @@
 
 client_id = "6860ad69a983c0549dc759de3b0a5cb0"
 name = "EU Compliance Suite"
-application_url = "https://shopify.dev/apps/default-app-home"
+application_url = "https://eu-compliance-suite.netlify.app"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-include_config_on_deploy = true
 
 [access_scopes]
 # read/write_orders: match withdrawals to orders and tag them.
@@ -18,9 +17,9 @@ scopes = "read_orders,write_orders,write_products"
 
 [auth]
 redirect_urls = [
-  "https://shopify.dev/apps/default-app-home/auth/callback",
-  "https://shopify.dev/apps/default-app-home/auth/shopify/callback",
-  "https://shopify.dev/apps/default-app-home/api/auth/callback"
+  "https://eu-compliance-suite.netlify.app/auth/callback",
+  "https://eu-compliance-suite.netlify.app/auth/shopify/callback",
+  "https://eu-compliance-suite.netlify.app/api/auth/callback"
 ]
 
 [webhooks]
@@ -49,7 +48,7 @@ api_version = "2026-07"
 
 # Storefront -> app:  https://<shop>/apps/eu-compliance/<path>  =>  <application_url>/proxy/<path>
 [app_proxy]
-url = "https://shopify.dev/apps/default-app-home/proxy"
+url = "https://eu-compliance-suite.netlify.app/proxy"
 subpath = "eu-compliance"
 prefix = "apps"
 

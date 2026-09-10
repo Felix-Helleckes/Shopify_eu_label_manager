@@ -1,11 +1,14 @@
+-- CreateSchema
+CREATE SCHEMA IF NOT EXISTS "public";
+
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "shop" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "isOnline" BOOLEAN NOT NULL DEFAULT false,
     "scope" TEXT,
-    "expires" DATETIME,
+    "expires" TIMESTAMP(3),
     "accessToken" TEXT NOT NULL,
     "userId" BIGINT,
     "firstName" TEXT,
@@ -16,20 +19,23 @@ CREATE TABLE "Session" (
     "collaborator" BOOLEAN DEFAULT false,
     "emailVerified" BOOLEAN DEFAULT false,
     "refreshToken" TEXT,
-    "refreshTokenExpires" DATETIME
+    "refreshTokenExpires" TIMESTAMP(3),
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Shop" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "domain" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT,
     "primaryDomain" TEXT,
     "currency" TEXT,
     "shopLocale" TEXT,
-    "installedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "uninstalledAt" DATETIME,
+    "timezone" TEXT,
+    "installedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "uninstalledAt" TIMESTAMP(3),
     "plan" TEXT,
     "notifyMerchant" BOOLEAN NOT NULL DEFAULT true,
     "merchantEmail" TEXT,
@@ -42,13 +48,15 @@ CREATE TABLE "Shop" (
     "durabilityLabelEnabled" BOOLEAN NOT NULL DEFAULT true,
     "repairInfoEnabled" BOOLEAN NOT NULL DEFAULT false,
     "repairInfoText" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Shop_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Withdrawal" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "receiptNo" TEXT NOT NULL,
     "shop" TEXT NOT NULL,
     "locale" TEXT NOT NULL DEFAULT 'de',
@@ -61,27 +69,31 @@ CREATE TABLE "Withdrawal" (
     "orderName" TEXT,
     "orderMatched" BOOLEAN NOT NULL DEFAULT false,
     "orderEmailMatched" BOOLEAN,
-    "orderCreatedAt" DATETIME,
-    "submittedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "orderCreatedAt" TIMESTAMP(3),
+    "submittedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "contentHash" TEXT NOT NULL,
-    "ackSentAt" DATETIME,
+    "ackSentAt" TIMESTAMP(3),
     "ackError" TEXT,
-    "merchantNotifiedAt" DATETIME,
-    "orderTaggedAt" DATETIME,
+    "merchantNotifiedAt" TIMESTAMP(3),
+    "orderTaggedAt" TIMESTAMP(3),
     "status" TEXT NOT NULL DEFAULT 'received',
     "merchantNote" TEXT,
-    "anonymizedAt" DATETIME,
+    "anonymizedAt" TIMESTAMP(3),
     "userAgent" TEXT,
-    "ipHash" TEXT
+    "ipHash" TEXT,
+
+    CONSTRAINT "Withdrawal_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "AuditEvent" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "shop" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "payload" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AuditEvent_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -104,3 +116,4 @@ CREATE INDEX "Withdrawal_shop_status_idx" ON "Withdrawal"("shop", "status");
 
 -- CreateIndex
 CREATE INDEX "AuditEvent_shop_createdAt_idx" ON "AuditEvent"("shop", "createdAt");
+
