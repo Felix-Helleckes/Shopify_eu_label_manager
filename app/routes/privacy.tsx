@@ -61,6 +61,15 @@ export default function PrivacyPage() {
         übermittelt, soweit dies nicht durch Shopify selbst erfolgt (siehe Datenschutzerklärung von Shopify).
       </p>
 
+      <h2 style={s.h2}>5a. Technische und organisatorische Maßnahmen</h2>
+      <ul>
+        <li>Alle Verbindungen (Shop, Shopify-API, E-Mail-Versand) sind mit TLS verschlüsselt.</li>
+        <li>Die Datenbank ist im Ruhezustand verschlüsselt (AES-256) und nur über ein Passwort-geschütztes Datenbankkonto erreichbar.</li>
+        <li>IP-Adressen werden nicht im Klartext gespeichert, sondern nur als gesalzener SHA-256-Hash zur Missbrauchsabwehr.</li>
+        <li>Zugriffs-Token von Shopify werden serverseitig gespeichert und nie an den Browser ausgeliefert; Webhooks werden per HMAC-Signatur verifiziert.</li>
+        <li>Zugriff auf Produktionsdaten hat ausschließlich der Anbieter; es werden keine Daten an Dritte verkauft oder für Werbung genutzt.</li>
+      </ul>
+
       <h2 style={s.h2}>6. Speicherdauer und Löschung</h2>
       <ul>
         <li>Widerrufserklärungen bleiben gespeichert, solange die App im Shop installiert ist; sie dienen dem Shop-Betreiber als Nachweis (gesetzliche Aufbewahrungsfristen von bis zu 10 Jahren können bestehen).</li>
