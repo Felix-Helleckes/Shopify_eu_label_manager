@@ -1,0 +1,60 @@
+{
+  "blocks": {
+    "withdrawal_button": {
+      "name": "EU withdrawal button",
+      "info": "Statutory withdrawal function (Art. 11a Consumer Rights Directive, since 19 June 2026). The label uses the official wording of the storefront language. The button must be prominently displayed and available throughout the withdrawal period."
+    },
+    "withdrawal_embed": {
+      "name": "EU withdrawal button (all pages)",
+      "info": "Shows the statutory withdrawal button on every page of the storefront, as required by Art. 11a of the Consumer Rights Directive (continuously available, prominently displayed, easily accessible)."
+    },
+    "guarantee_notice": {
+      "name": "EU legal guarantee notice",
+      "info": "Harmonised notice on the legal guarantee of conformity (Implementing Regulation (EU) 2025/1960), mandatory from 27 September 2026. The official artwork is shown unchanged and in colour in the storefront language."
+    },
+    "durability_label": {
+      "name": "GARAN durability guarantee label",
+      "info": "Harmonised label for a producer's commercial guarantee of durability of more than two years (Implementing Regulation (EU) 2025/1960). Reads the product metafields eu_compliance.guarantee_years, guarantee_producer and guarantee_model; create them in the app under “Guarantee”."
+    },
+    "repair_info": {
+      "name": "EU right to repair notice",
+      "info": "Information on the choice between repair and replacement and the 12-month extension after repair (Directive (EU) 2024/1799, contracts from 31 July 2026)."
+    }
+  },
+  "settings": {
+    "heading": "Heading",
+    "text": "Text",
+    "style": "Button style",
+    "style_primary": "Primary",
+    "style_secondary": "Secondary",
+    "style_link": "Text link",
+    "alignment": "Alignment",
+    "align_left": "Left",
+    "align_center": "Centered",
+    "label_override": "Custom button label (not recommended)",
+    "label_override_info": "Leave empty to use the official wording, e.g. “Vertrag widerrufen” / “Withdraw from contract here”. A different wording must be equally unambiguous.",
+    "confirm_override": "Custom confirmation label (not recommended)",
+    "confirm_override_info": "Leave empty to use the official wording “Widerruf bestätigen” / “Confirm withdrawal”. The law allows ONLY these words or an equally unambiguous wording.",
+    "proxy_path": "App proxy path",
+    "proxy_path_info": "Only change if you changed the app proxy subpath in the Shopify admin.",
+    "position": "Position",
+    "position_bottom_left": "Bottom left",
+    "position_bottom_right": "Bottom right",
+    "position_bottom_bar": "Bar at the bottom",
+    "offset": "Distance from edge",
+    "background": "Button colour",
+    "color": "Text colour",
+    "display": "Display",
+    "display_full": "Always visible (recommended)",
+    "display_collapsible": "Collapsible",
+    "display_info": "The notice must be displayed prominently. Use the collapsible variant only where the notice is otherwise shown in full, e.g. in the cart.",
+    "max_width": "Maximum width",
+    "language": "Language",
+    "language_auto": "Automatic (storefront language)",
+    "label_display": "Label display",
+    "label_display_nested": "Nested: strip, full label on click/hover (allowed online)",
+    "label_display_full": "Full label",
+    "width": "Width",
+    "repair_text_info": "Leave empty to use the default text in the storefront language."
+  }
+}

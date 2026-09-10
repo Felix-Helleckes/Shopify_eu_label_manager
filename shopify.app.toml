@@ -1,41 +1,57 @@
-# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+# Shopify app configuration – EU Compliance Suite
+# Docs: https://shopify.dev/docs/apps/tools/cli/configuration
+# `shopify app dev` rewrites application_url / redirect_urls / app_proxy.url for the tunnel.
 
-name = "EU LABEL"
-api_version = "2025-01"
 client_id = "6860ad69a983c0549dc759de3b0a5cb0"
+name = "EU Compliance Suite"
 application_url = "https://shopify.dev/apps/default-app-home"
 embedded = true
 
-[access_scopes]
-# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_products,write_products,read_orders"
-
-[webhooks]
-api_version = "2025-01"
-
-  [webhooks.customers_data_request]
-  topic = "CUSTOMERS_DATA_REQUEST"
-  address = "/webhooks/customers_data_request"
-  format = "json"
-
-  [webhooks.customers_redact]
-  topic = "CUSTOMERS_REDACT"
-  address = "/webhooks/customers_redact"
-  format = "json"
-
-  [webhooks.shop_redact]
-  topic = "SHOP_REDACT"
-  address = "/webhooks/shop_redact"
-  format = "json"
-
 [build]
-include_config_on_deploy = true
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true
 
-[extensions.app_proxy]
-url = "/apps/eu-compliance-suite-2026"
-subpath = "eu-compliance-suite-2026"
-prefix = "apps"
+[access_scopes]
+# read/write_orders: match withdrawals to orders and tag them.
+# write_products: create the product metafield definitions for the durability label.
+scopes = "read_orders,write_orders,write_products"
 
 [auth]
-redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+redirect_urls = [
+  "https://shopify.dev/apps/default-app-home/auth/callback",
+  "https://shopify.dev/apps/default-app-home/auth/shopify/callback",
+  "https://shopify.dev/apps/default-app-home/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2026-07"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks/app/scopes_update"
+
+  # Mandatory compliance topics for public apps
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/data_request"]
+  uri = "/webhooks/customers/data_request"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/redact"]
+  uri = "/webhooks/customers/redact"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["shop/redact"]
+  uri = "/webhooks/shop/redact"
+
+# Storefront -> app:  https://<shop>/apps/eu-compliance/<path>  =>  <application_url>/proxy/<path>
+[app_proxy]
+url = "https://shopify.dev/apps/default-app-home/proxy"
+subpath = "eu-compliance"
+prefix = "apps"
+
+[pos]
+embedded = false

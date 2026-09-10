@@ -1,0 +1,94 @@
+{%- comment -%}
+  Shared markup of the withdrawal function (Art. 11a Directive 2011/83/EU, § 356a BGB).
+  Parameters: uid (unique id), label_override, confirm_override, proxy_path
+{%- endcomment -%}
+{%- assign locale_root = request.locale.iso_code | split: '-' | first -%}
+{%- assign withdraw_label = 'withdrawal.button' | t -%}
+{%- if label_override != blank -%}{%- assign withdraw_label = label_override -%}{%- endif -%}
+{%- assign confirm_label = 'withdrawal.confirm_button' | t -%}
+{%- if confirm_override != blank -%}{%- assign confirm_label = confirm_override -%}{%- endif -%}
+{%- assign endpoint = proxy_path | default: '/apps/eu-compliance' | append: '/withdrawal' -%}
+<div class="eu-wd" id="eu-wd-{{ uid }}"
+  data-eu-withdrawal
+  data-endpoint="{{ endpoint }}"
+  data-locale="{{ request.locale.iso_code }}"
+  data-t-required="{{ 'withdrawal.error_required' | t | escape }}"
+  data-t-email="{{ 'withdrawal.error_email' | t | escape }}"
+  data-t-generic="{{ 'withdrawal.error_generic' | t | escape }}"
+  data-t-rate="{{ 'withdrawal.error_rate' | t | escape }}"
+  data-t-success="{{ 'withdrawal.success_text' | t | escape }}"
+  data-t-success-nomail="{{ 'withdrawal.success_no_mail' | t | escape }}"
+  data-t-submitting="{{ 'withdrawal.submitting' | t | escape }}">
+  <dialog class="eu-wd__dialog" aria-labelledby="eu-wd-title-{{ uid }}">
+    <form method="dialog" class="eu-wd__close-form">
+      <button type="submit" class="eu-wd__close" aria-label="{{ 'withdrawal.close' | t | escape }}">&times;</button>
+    </form>
+
+    <div class="eu-wd__step" data-step="form">
+      <h2 class="eu-wd__title" id="eu-wd-title-{{ uid }}">{{ 'withdrawal.dialog_title' | t }}</h2>
+      <p class="eu-wd__intro">{{ 'withdrawal.intro' | t }}</p>
+      <form class="eu-wd__form" novalidate>
+        <label class="eu-wd__field">
+          <span class="eu-wd__label">{{ 'withdrawal.name' | t }} *</span>
+          <input type="text" name="consumerName" autocomplete="name" required maxlength="200" value="{{ customer.name | escape }}">
+          <span class="eu-wd__error" data-error-for="consumerName"></span>
+        </label>
+        <label class="eu-wd__field">
+          <span class="eu-wd__label">{{ 'withdrawal.contract' | t }} *</span>
+          <input type="text" name="contractRef" required maxlength="120" inputmode="text">
+          <span class="eu-wd__help">{{ 'withdrawal.contract_help' | t }}</span>
+          <span class="eu-wd__error" data-error-for="contractRef"></span>
+        </label>
+        <label class="eu-wd__field">
+          <span class="eu-wd__label">{{ 'withdrawal.email' | t }} *</span>
+          <input type="email" name="contactEmail" autocomplete="email" required maxlength="254" value="{{ customer.email | escape }}">
+          <span class="eu-wd__error" data-error-for="contactEmail"></span>
+        </label>
+        <label class="eu-wd__field">
+          <span class="eu-wd__label">{{ 'withdrawal.order_date' | t }}</span>
+          <input type="text" name="orderDate" maxlength="60" autocomplete="off">
+        </label>
+        <label class="eu-wd__field">
+          <span class="eu-wd__label">{{ 'withdrawal.details' | t }}</span>
+          <textarea name="details" rows="3" maxlength="2000"></textarea>
+        </label>
+        <label class="eu-wd__hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="eu-wd__privacy">{{ 'withdrawal.privacy' | t }}</p>
+        <div class="eu-wd__actions">
+          <button type="submit" class="eu-wd__btn eu-wd__btn--primary">{{ 'withdrawal.next' | t }}</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="eu-wd__step" data-step="review" hidden>
+      <h2 class="eu-wd__title">{{ 'withdrawal.review_title' | t }}</h2>
+      <p class="eu-wd__intro">{{ 'withdrawal.review_intro' | t: confirm: confirm_label }}</p>
+      <dl class="eu-wd__summary">
+        <dt>{{ 'withdrawal.name' | t }}</dt><dd data-summary="consumerName"></dd>
+        <dt>{{ 'withdrawal.contract' | t }}</dt><dd data-summary="contractRef"></dd>
+        <dt>{{ 'withdrawal.email' | t }}</dt><dd data-summary="contactEmail"></dd>
+        <dt data-optional="orderDate">{{ 'withdrawal.order_date' | t }}</dt><dd data-summary="orderDate"></dd>
+        <dt data-optional="details">{{ 'withdrawal.details' | t }}</dt><dd data-summary="details"></dd>
+      </dl>
+      <p class="eu-wd__error eu-wd__error--global" data-error-for="global"></p>
+      <div class="eu-wd__actions">
+        <button type="button" class="eu-wd__btn eu-wd__btn--secondary" data-action="back">{{ 'withdrawal.back' | t }}</button>
+        {%- comment -%} Confirmation function: labelled ONLY with the official words (Art. 11a(3)). {%- endcomment -%}
+        <button type="button" class="eu-wd__btn eu-wd__btn--confirm" data-action="confirm">{{ confirm_label }}</button>
+      </div>
+    </div>
+
+    <div class="eu-wd__step" data-step="success" hidden>
+      <h2 class="eu-wd__title">{{ 'withdrawal.success_title' | t }}</h2>
+      <p class="eu-wd__success" data-success-text></p>
+      <dl class="eu-wd__summary eu-wd__summary--receipt">
+        <dt>{{ 'withdrawal.receipt_no' | t }}</dt><dd data-receipt></dd>
+        <dt>{{ 'withdrawal.submitted_at' | t }}</dt><dd data-submitted-at></dd>
+      </dl>
+      <div class="eu-wd__actions">
+        <button type="button" class="eu-wd__btn eu-wd__btn--secondary" data-action="print">{{ 'withdrawal.print' | t }}</button>
+        <button type="button" class="eu-wd__btn eu-wd__btn--primary" data-action="close">{{ 'withdrawal.close' | t }}</button>
+      </div>
+    </div>
+  </dialog>
+</div>

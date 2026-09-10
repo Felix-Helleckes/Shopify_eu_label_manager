@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Desistir del contrato aquí",
+    "confirm_button": "Confirmar desistimiento",
+    "dialog_title": "Desistir del contrato",
+    "intro": "Utilice este formulario para desistir de un contrato celebrado en esta tienda. Tras confirmar, recibirá un acuse de recibo por correo electrónico.",
+    "name": "Su nombre",
+    "contract": "Número de pedido u otra identificación del contrato",
+    "contract_help": "Por ejemplo, el número de pedido de su confirmación de pedido.",
+    "email": "Dirección de correo electrónico para el acuse de recibo",
+    "order_date": "Fecha de pedido o de entrega (opcional)",
+    "details": "Bienes o servicios afectados (opcional)",
+    "next": "Continuar",
+    "back": "Atrás",
+    "review_title": "Compruebe su declaración de desistimiento",
+    "review_intro": "Compruebe sus datos. Al pulsar «{{ confirm }}» envía su declaración de desistimiento al comerciante.",
+    "submitting": "Enviando…",
+    "success_title": "Declaración de desistimiento recibida",
+    "success_text": "Su declaración de desistimiento se recibió el {date}. Número de referencia: {receipt}. Se ha enviado un acuse de recibo a {email}.",
+    "success_no_mail": "Su declaración de desistimiento se recibió el {date}. Número de referencia: {receipt}. No se pudo enviar el correo de acuse de recibo; guarde o imprima esta página como justificante.",
+    "receipt_no": "Número de referencia",
+    "submitted_at": "Recibida el",
+    "error_required": "Rellene este campo.",
+    "error_email": "Introduzca una dirección de correo electrónico válida.",
+    "error_generic": "No se pudo enviar su declaración. Inténtelo de nuevo o contacte con la tienda por correo electrónico.",
+    "error_rate": "Demasiadas solicitudes. Inténtelo de nuevo en unos minutos.",
+    "close": "Cerrar",
+    "print": "Imprimir",
+    "privacy": "Sus datos se utilizarán únicamente para tramitar el desistimiento."
+  },
+  "guarantee": {
+    "notice_alt": "Garantía legal – aviso armonizado sobre la garantía legal de conformidad (mínimo dos años)",
+    "notice_toggle": "Información sobre la garantía legal",
+    "label_alt": "GARAN – garantía comercial de durabilidad del productor: {{ years }} años, además de la garantía legal",
+    "label_expand": "Mostrar la etiqueta de garantía completa",
+    "terms_link": "Condiciones de la garantía",
+    "editor_placeholder": "Etiqueta GARAN: solo se muestra en productos cuyo metacampo «guarantee_years» sea mayor que 2."
+  },
+  "repair": {
+    "default_text": "Derecho a reparación: en caso de falta de conformidad durante la garantía legal, puede elegir entre reparación y sustitución. Si elige la reparación, la garantía legal se amplía una vez por doce meses (Directiva (UE) 2024/1799; contratos celebrados a partir del 31 de julio de 2026)."
+  }
+}

@@ -1,0 +1,44 @@
+{%- comment -%}
+  App block: withdrawal function button for sections/pages (Art. 11a CRD / § 356a BGB).
+{%- endcomment -%}
+{%- assign uid = block.id | remove: '-' | slice: 0, 12 -%}
+{%- assign withdraw_label = 'withdrawal.button' | t -%}
+{%- if block.settings.label_override != blank -%}{%- assign withdraw_label = block.settings.label_override -%}{%- endif -%}
+<div class="eu-wd-block eu-wd-block--{{ block.settings.alignment }}" {{ block.shopify_attributes }}>
+  {%- if block.settings.heading != blank -%}<h2 class="eu-wd-block__heading">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+  {%- if block.settings.text != blank -%}<div class="eu-wd-block__text">{{ block.settings.text }}</div>{%- endif -%}
+  <button type="button" class="eu-wd-trigger eu-wd-trigger--{{ block.settings.style }}" data-eu-withdrawal-open="eu-wd-{{ uid }}">{{ withdraw_label }}</button>
+  {%- render 'eu-withdrawal-dialog', uid: uid, label_override: block.settings.label_override, confirm_override: block.settings.confirm_override, proxy_path: block.settings.proxy_path -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:blocks.withdrawal_button.name",
+  "target": "section",
+  "javascript": "withdrawal.js",
+  "stylesheet": "withdrawal.css",
+  "settings": [
+    { "type": "paragraph", "content": "t:blocks.withdrawal_button.info" },
+    { "type": "text", "id": "heading", "label": "t:settings.heading" },
+    { "type": "richtext", "id": "text", "label": "t:settings.text" },
+    {
+      "type": "select", "id": "style", "label": "t:settings.style", "default": "primary",
+      "options": [
+        { "value": "primary", "label": "t:settings.style_primary" },
+        { "value": "secondary", "label": "t:settings.style_secondary" },
+        { "value": "link", "label": "t:settings.style_link" }
+      ]
+    },
+    {
+      "type": "select", "id": "alignment", "label": "t:settings.alignment", "default": "left",
+      "options": [
+        { "value": "left", "label": "t:settings.align_left" },
+        { "value": "center", "label": "t:settings.align_center" }
+      ]
+    },
+    { "type": "text", "id": "label_override", "label": "t:settings.label_override", "info": "t:settings.label_override_info" },
+    { "type": "text", "id": "confirm_override", "label": "t:settings.confirm_override", "info": "t:settings.confirm_override_info" },
+    { "type": "text", "id": "proxy_path", "label": "t:settings.proxy_path", "default": "/apps/eu-compliance", "info": "t:settings.proxy_path_info" }
+  ]
+}
+{% endschema %}

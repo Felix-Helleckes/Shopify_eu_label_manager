@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Fortryd aftale",
+    "confirm_button": "Bekræft fortrydelse",
+    "dialog_title": "Fortryd aftale",
+    "intro": "Brug denne formular til at fortryde en aftale indgået i denne butik. Efter din bekræftelse modtager du en kvittering for modtagelse pr. e-mail.",
+    "name": "Dit navn",
+    "contract": "Ordrenummer eller anden betegnelse for aftalen",
+    "contract_help": "For eksempel ordrenummeret fra din ordrebekræftelse.",
+    "email": "E-mailadresse til kvitteringen for modtagelse",
+    "order_date": "Ordre- eller leveringsdato (valgfrit)",
+    "details": "Berørte varer eller tjenesteydelser (valgfrit)",
+    "next": "Fortsæt",
+    "back": "Tilbage",
+    "review_title": "Kontrollér din fortrydelseserklæring",
+    "review_intro": "Kontrollér dine oplysninger. Ved at klikke på »{{ confirm }}« sender du din fortrydelseserklæring til den erhvervsdrivende.",
+    "submitting": "Sender…",
+    "success_title": "Fortrydelseserklæring modtaget",
+    "success_text": "Din fortrydelseserklæring er modtaget den {date}. Referencenummer: {receipt}. En kvittering for modtagelse er sendt til {email}.",
+    "success_no_mail": "Din fortrydelseserklæring er modtaget den {date}. Referencenummer: {receipt}. Kvitteringsmailen kunne ikke sendes – gem eller udskriv denne side som dokumentation.",
+    "receipt_no": "Referencenummer",
+    "submitted_at": "Modtaget den",
+    "error_required": "Udfyld venligst dette felt.",
+    "error_email": "Angiv venligst en gyldig e-mailadresse.",
+    "error_generic": "Din erklæring kunne ikke sendes. Prøv igen, eller kontakt butikken pr. e-mail.",
+    "error_rate": "For mange anmodninger. Prøv igen om et par minutter.",
+    "close": "Luk",
+    "print": "Udskriv",
+    "privacy": "Dine oplysninger bruges udelukkende til behandling af fortrydelsen."
+  },
+  "guarantee": {
+    "notice_alt": "Lovbestemt garanti – harmoniseret meddelelse om den lovbestemte garanti for overensstemmelse (mindst to år)",
+    "notice_toggle": "Oplysninger om den lovbestemte garanti",
+    "label_alt": "GARAN – producentens handelsmæssige holdbarhedsgaranti: {{ years }} år, ud over den lovbestemte garanti",
+    "label_expand": "Vis hele garantimærket",
+    "terms_link": "Garantibetingelser",
+    "editor_placeholder": "GARAN-mærke: vises kun for produkter, hvis metafelt »guarantee_years« er større end 2."
+  },
+  "repair": {
+    "default_text": "Ret til reparation: ved mangler inden for den lovbestemte garantiperiode kan du vælge mellem reparation og ombytning. Vælger du reparation, forlænges garantiperioden én gang med tolv måneder (direktiv (EU) 2024/1799; aftaler indgået fra den 31. juli 2026)."
+  }
+}

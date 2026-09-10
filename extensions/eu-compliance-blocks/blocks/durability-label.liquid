@@ -1,0 +1,55 @@
+{%- comment -%}
+  App block: harmonised label for the commercial guarantee of durability ("GARAN"),
+  Annex II of Implementing Regulation (EU) 2025/1960. Shown only when the producer offers a
+  guarantee of MORE than two years (Art. 6(1)(la) CRD). Fixed elements come from the official
+  artwork; the editable fields (years, producer, model) are read from product metafields.
+{%- endcomment -%}
+{%- assign mf = product.metafields.eu_compliance -%}
+{%- assign years = mf.guarantee_years.value | default: mf.guarantee_years | plus: 0 -%}
+{%- assign producer = mf.guarantee_producer.value | default: mf.guarantee_producer | default: product.vendor -%}
+{%- assign model = mf.guarantee_model.value | default: mf.guarantee_model | default: product.selected_or_first_available_variant.sku -%}
+{%- assign terms = mf.guarantee_terms_url.value | default: mf.guarantee_terms_url -%}
+{%- if years > 2 -%}
+  <link rel="stylesheet" href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css">
+  <div class="eu-garan eu-garan--{{ block.settings.display }}" style="--eu-garan-width: {{ block.settings.width }}px;" {{ block.shopify_attributes }}>
+    {%- if block.settings.display == 'nested' -%}
+      <button type="button" class="eu-garan__strip" data-eu-garan-toggle aria-expanded="false" aria-label="{{ 'guarantee.label_expand' | t | escape }}">
+        <img src="{{ 'garan-label-nested.jpg' | asset_url }}" alt="" width="1030" height="162">
+        <span class="eu-garan__strip-years">{{ years }}</span>
+      </button>
+    {%- endif -%}
+    <div class="eu-garan__full" {% if block.settings.display == 'nested' %}hidden{% endif %} role="img" aria-label="{{ 'guarantee.label_alt' | t: years: years | escape }}">
+      <img class="eu-garan__bg" src="{{ 'garan-label.jpg' | asset_url }}" alt="" width="741" height="780">
+      <span class="eu-garan__producer">{{ producer | escape }}</span>
+      <span class="eu-garan__model">{{ model | escape }}</span>
+      <span class="eu-garan__years">{{ years }}</span>
+      <a class="eu-garan__qr" href="https://europa.eu/youreurope/commercial-guarantee-durability/index.htm" target="_blank" rel="noopener" aria-label="Your Europe"></a>
+    </div>
+    {%- if terms != blank -%}
+      <a class="eu-garan__terms" href="{{ terms }}" target="_blank" rel="noopener">{{ 'guarantee.terms_link' | t }}</a>
+    {%- endif -%}
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="eu-garan__placeholder" {{ block.shopify_attributes }}>{{ 'guarantee.editor_placeholder' | t }}</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.durability_label.name",
+  "target": "section",
+  "javascript": "guarantee.js",
+  "stylesheet": "guarantee.css",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "paragraph", "content": "t:blocks.durability_label.info" },
+    {
+      "type": "select", "id": "display", "label": "t:settings.label_display", "default": "nested",
+      "options": [
+        { "value": "nested", "label": "t:settings.label_display_nested" },
+        { "value": "full", "label": "t:settings.label_display_full" }
+      ]
+    },
+    { "type": "range", "id": "width", "label": "t:settings.width", "min": 240, "max": 600, "step": 20, "unit": "px", "default": 360 }
+  ]
+}
+{% endschema %}

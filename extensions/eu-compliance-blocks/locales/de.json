@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Vertrag widerrufen",
+    "confirm_button": "Widerruf bestätigen",
+    "dialog_title": "Vertrag widerrufen",
+    "intro": "Mit diesem Formular können Sie einen in diesem Shop geschlossenen Vertrag widerrufen. Nach Ihrer Bestätigung erhalten Sie eine Eingangsbestätigung per E-Mail.",
+    "name": "Ihr Name",
+    "contract": "Bestellnummer oder andere Bezeichnung des Vertrags",
+    "contract_help": "Zum Beispiel die Bestellnummer aus Ihrer Bestellbestätigung.",
+    "email": "E-Mail-Adresse für die Eingangsbestätigung",
+    "order_date": "Bestell- oder Lieferdatum (optional)",
+    "details": "Betroffene Waren oder Leistungen (optional)",
+    "next": "Weiter",
+    "back": "Zurück",
+    "review_title": "Widerrufserklärung prüfen",
+    "review_intro": "Bitte prüfen Sie Ihre Angaben. Mit Klick auf „{{ confirm }}“ übermitteln Sie Ihre Widerrufserklärung an den Unternehmer.",
+    "submitting": "Wird übermittelt…",
+    "success_title": "Widerrufserklärung eingegangen",
+    "success_text": "Ihre Widerrufserklärung ist am {date} eingegangen. Vorgangsnummer: {receipt}. Eine Eingangsbestätigung wurde an {email} gesendet.",
+    "success_no_mail": "Ihre Widerrufserklärung ist am {date} eingegangen. Vorgangsnummer: {receipt}. Die Bestätigungs-E-Mail konnte nicht versendet werden – bitte speichern oder drucken Sie diese Seite als Nachweis.",
+    "receipt_no": "Vorgangsnummer",
+    "submitted_at": "Eingegangen am",
+    "error_required": "Bitte füllen Sie dieses Feld aus.",
+    "error_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "error_generic": "Ihre Erklärung konnte nicht übermittelt werden. Bitte versuchen Sie es erneut oder kontaktieren Sie den Shop per E-Mail.",
+    "error_rate": "Zu viele Anfragen. Bitte versuchen Sie es in einigen Minuten erneut.",
+    "close": "Schließen",
+    "print": "Drucken",
+    "privacy": "Ihre Daten werden ausschließlich zur Bearbeitung des Widerrufs verwendet."
+  },
+  "guarantee": {
+    "notice_alt": "Gesetzliche Gewährleistung – harmonisierte Mitteilung über das gesetzliche Gewährleistungsrecht (mindestens zwei Jahre)",
+    "notice_toggle": "Informationen zur gesetzlichen Gewährleistung",
+    "label_alt": "GARAN – Haltbarkeitsgarantie des Herstellers: {{ years }} Jahre, zusätzlich zur gesetzlichen Gewährleistung",
+    "label_expand": "Vollständige Garantie-Kennzeichnung anzeigen",
+    "terms_link": "Garantiebedingungen",
+    "editor_placeholder": "GARAN-Kennzeichnung: wird nur bei Produkten angezeigt, deren Metafeld „guarantee_years“ größer als 2 ist."
+  },
+  "repair": {
+    "default_text": "Recht auf Reparatur: Bei einem Mangel innerhalb der gesetzlichen Gewährleistungsfrist können Sie zwischen Nachbesserung (Reparatur) und Ersatzlieferung wählen. Entscheiden Sie sich für die Reparatur, verlängert sich die Gewährleistungsfrist einmalig um zwölf Monate (Richtlinie (EU) 2024/1799; gilt für Kaufverträge ab dem 31. Juli 2026)."
+  }
+}

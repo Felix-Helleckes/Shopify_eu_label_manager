@@ -1,0 +1,60 @@
+{
+  "blocks": {
+    "withdrawal_button": {
+      "name": "EU-Widerrufsbutton",
+      "info": "Gesetzliche Widerrufsfunktion (Art. 11a Verbraucherrechte-Richtlinie, § 356a BGB, seit 19.06.2026). Die Beschriftung folgt der amtlichen Formulierung in der Shop-Sprache. Der Button muss hervorgehoben platziert und während der gesamten Widerrufsfrist erreichbar sein."
+    },
+    "withdrawal_embed": {
+      "name": "EU-Widerrufsbutton (alle Seiten)",
+      "info": "Zeigt den gesetzlichen Widerrufsbutton auf jeder Seite des Shops, wie von Art. 11a VRRL / § 356a BGB verlangt (ständig verfügbar, hervorgehoben, leicht zugänglich)."
+    },
+    "guarantee_notice": {
+      "name": "EU-Gewährleistungshinweis",
+      "info": "Harmonisierte Mitteilung über das gesetzliche Gewährleistungsrecht (Durchführungsverordnung (EU) 2025/1960), Pflicht ab 27.09.2026. Die amtliche Grafik wird unverändert und farbig in der Shop-Sprache angezeigt."
+    },
+    "durability_label": {
+      "name": "GARAN-Kennzeichnung Haltbarkeitsgarantie",
+      "info": "Harmonisierte Kennzeichnung für eine gewerbliche Haltbarkeitsgarantie des Herstellers von mehr als zwei Jahren (Durchführungsverordnung (EU) 2025/1960). Liest die Produkt-Metafelder eu_compliance.guarantee_years, guarantee_producer und guarantee_model; legen Sie diese in der App unter „Gewährleistung“ an."
+    },
+    "repair_info": {
+      "name": "EU-Hinweis Recht auf Reparatur",
+      "info": "Information über die Wahl zwischen Reparatur und Ersatz sowie die Verlängerung um 12 Monate nach Reparatur (Richtlinie (EU) 2024/1799, Verträge ab 31.07.2026)."
+    }
+  },
+  "settings": {
+    "heading": "Überschrift",
+    "text": "Text",
+    "style": "Button-Stil",
+    "style_primary": "Primär",
+    "style_secondary": "Sekundär",
+    "style_link": "Textlink",
+    "alignment": "Ausrichtung",
+    "align_left": "Links",
+    "align_center": "Zentriert",
+    "label_override": "Eigene Button-Beschriftung (nicht empfohlen)",
+    "label_override_info": "Leer lassen, um die amtliche Formulierung zu verwenden, z. B. „Vertrag widerrufen“. Eine abweichende Formulierung muss ebenso eindeutig sein.",
+    "confirm_override": "Eigene Beschriftung der Bestätigung (nicht empfohlen)",
+    "confirm_override_info": "Leer lassen, um die amtliche Formulierung „Widerruf bestätigen“ zu verwenden. Das Gesetz erlaubt AUSSCHLIESSLICH diese Worte oder eine entsprechend eindeutige Formulierung.",
+    "proxy_path": "App-Proxy-Pfad",
+    "proxy_path_info": "Nur ändern, wenn Sie den App-Proxy-Unterpfad im Shopify-Admin geändert haben.",
+    "position": "Position",
+    "position_bottom_left": "Unten links",
+    "position_bottom_right": "Unten rechts",
+    "position_bottom_bar": "Leiste am unteren Rand",
+    "offset": "Abstand zum Rand",
+    "background": "Button-Farbe",
+    "color": "Textfarbe",
+    "display": "Darstellung",
+    "display_full": "Immer sichtbar (empfohlen)",
+    "display_collapsible": "Aufklappbar",
+    "display_info": "Die Mitteilung muss hervorgehoben angezeigt werden. Die aufklappbare Variante nur dort nutzen, wo die Mitteilung an anderer Stelle vollständig gezeigt wird, z. B. im Warenkorb.",
+    "max_width": "Maximale Breite",
+    "language": "Sprache",
+    "language_auto": "Automatisch (Shop-Sprache)",
+    "label_display": "Darstellung der Kennzeichnung",
+    "label_display_nested": "Geschachtelt: Leiste, vollständige Kennzeichnung bei Klick/Hover (online zulässig)",
+    "label_display_full": "Vollständige Kennzeichnung",
+    "width": "Breite",
+    "repair_text_info": "Leer lassen, um den Standardtext in der Shop-Sprache zu verwenden."
+  }
+}

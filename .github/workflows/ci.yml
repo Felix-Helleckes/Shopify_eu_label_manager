@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main, rework-react-router]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: file:ci.sqlite
+      MAIL_DRY_RUN: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - run: npm rebuild @prisma/client prisma @prisma/engines esbuild
+      - run: npx prisma generate
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build

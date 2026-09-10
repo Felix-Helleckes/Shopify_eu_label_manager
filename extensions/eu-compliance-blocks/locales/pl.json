@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Odstąp od umowy tutaj",
+    "confirm_button": "Potwierdź odstąpienie od umowy",
+    "dialog_title": "Odstąpienie od umowy",
+    "intro": "Za pomocą tego formularza mogą Państwo odstąpić od umowy zawartej w tym sklepie. Po potwierdzeniu otrzymają Państwo potwierdzenie odbioru e-mailem.",
+    "name": "Imię i nazwisko",
+    "contract": "Numer zamówienia lub inne oznaczenie umowy",
+    "contract_help": "Na przykład numer zamówienia z potwierdzenia zamówienia.",
+    "email": "Adres e-mail do potwierdzenia odbioru",
+    "order_date": "Data zamówienia lub dostawy (opcjonalnie)",
+    "details": "Towary lub usługi, których dotyczy odstąpienie (opcjonalnie)",
+    "next": "Dalej",
+    "back": "Wstecz",
+    "review_title": "Sprawdź oświadczenie o odstąpieniu",
+    "review_intro": "Prosimy sprawdzić dane. Kliknięcie „{{ confirm }}” przesyła oświadczenie o odstąpieniu od umowy do przedsiębiorcy.",
+    "submitting": "Wysyłanie…",
+    "success_title": "Oświadczenie o odstąpieniu otrzymane",
+    "success_text": "Państwa oświadczenie o odstąpieniu od umowy wpłynęło dnia {date}. Numer referencyjny: {receipt}. Potwierdzenie odbioru wysłano na adres {email}.",
+    "success_no_mail": "Państwa oświadczenie o odstąpieniu od umowy wpłynęło dnia {date}. Numer referencyjny: {receipt}. Nie udało się wysłać e-maila z potwierdzeniem – prosimy zapisać lub wydrukować tę stronę jako dowód.",
+    "receipt_no": "Numer referencyjny",
+    "submitted_at": "Otrzymano dnia",
+    "error_required": "Prosimy wypełnić to pole.",
+    "error_email": "Prosimy podać prawidłowy adres e-mail.",
+    "error_generic": "Nie udało się przesłać oświadczenia. Prosimy spróbować ponownie lub skontaktować się ze sklepem e-mailem.",
+    "error_rate": "Zbyt wiele żądań. Prosimy spróbować ponownie za kilka minut.",
+    "close": "Zamknij",
+    "print": "Drukuj",
+    "privacy": "Dane zostaną wykorzystane wyłącznie do obsługi odstąpienia od umowy."
+  },
+  "guarantee": {
+    "notice_alt": "Gwarancja prawna – zharmonizowana informacja o ustawowej gwarancji zgodności (co najmniej dwa lata)",
+    "notice_toggle": "Informacje o gwarancji ustawowej",
+    "label_alt": "GARAN – handlowa gwarancja trwałości producenta: {{ years }} lat, niezależnie od gwarancji ustawowej",
+    "label_expand": "Pokaż pełną etykietę gwarancji",
+    "terms_link": "Warunki gwarancji",
+    "editor_placeholder": "Etykieta GARAN: wyświetlana tylko dla produktów, których metapole „guarantee_years” jest większe niż 2."
+  },
+  "repair": {
+    "default_text": "Prawo do naprawy: w przypadku braku zgodności w okresie gwarancji ustawowej mogą Państwo wybrać między naprawą a wymianą. W razie wyboru naprawy okres gwarancji ustawowej ulega jednorazowemu przedłużeniu o dwanaście miesięcy (dyrektywa (UE) 2024/1799; umowy zawarte od 31 lipca 2026 r.)."
+  }
+}

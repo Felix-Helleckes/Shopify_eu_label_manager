@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Retrate-se do contrato aqui",
+    "confirm_button": "Confirmar retratação",
+    "dialog_title": "Retratação do contrato",
+    "intro": "Utilize este formulário para se retratar de um contrato celebrado nesta loja. Após a confirmação, receberá um aviso de receção por correio eletrónico.",
+    "name": "O seu nome",
+    "contract": "Número da encomenda ou outra identificação do contrato",
+    "contract_help": "Por exemplo, o número da encomenda indicado na confirmação da encomenda.",
+    "email": "Endereço de correio eletrónico para o aviso de receção",
+    "order_date": "Data da encomenda ou da entrega (opcional)",
+    "details": "Bens ou serviços em causa (opcional)",
+    "next": "Continuar",
+    "back": "Voltar",
+    "review_title": "Verifique a sua declaração de retratação",
+    "review_intro": "Verifique os seus dados. Ao clicar em «{{ confirm }}», envia a sua declaração de retratação ao profissional.",
+    "submitting": "A enviar…",
+    "success_title": "Declaração de retratação recebida",
+    "success_text": "A sua declaração de retratação foi recebida em {date}. Número de referência: {receipt}. Foi enviado um aviso de receção para {email}.",
+    "success_no_mail": "A sua declaração de retratação foi recebida em {date}. Número de referência: {receipt}. Não foi possível enviar o aviso de receção por correio eletrónico – guarde ou imprima esta página como comprovativo.",
+    "receipt_no": "Número de referência",
+    "submitted_at": "Recebida em",
+    "error_required": "Preencha este campo.",
+    "error_email": "Introduza um endereço de correio eletrónico válido.",
+    "error_generic": "Não foi possível enviar a sua declaração. Tente novamente ou contacte a loja por correio eletrónico.",
+    "error_rate": "Demasiados pedidos. Tente novamente dentro de alguns minutos.",
+    "close": "Fechar",
+    "print": "Imprimir",
+    "privacy": "Os seus dados serão utilizados exclusivamente para tratar a retratação."
+  },
+  "guarantee": {
+    "notice_alt": "Garantia legal – aviso harmonizado sobre a garantia legal de conformidade (mínimo de dois anos)",
+    "notice_toggle": "Informações sobre a garantia legal",
+    "label_alt": "GARAN – garantia comercial de durabilidade do produtor: {{ years }} anos, para além da garantia legal",
+    "label_expand": "Mostrar o rótulo de garantia completo",
+    "terms_link": "Condições da garantia",
+    "editor_placeholder": "Rótulo GARAN: apresentado apenas em produtos cujo metacampo «guarantee_years» seja superior a 2."
+  },
+  "repair": {
+    "default_text": "Direito à reparação: em caso de falta de conformidade durante a garantia legal, pode escolher entre a reparação e a substituição. Se optar pela reparação, a garantia legal é prorrogada uma vez por doze meses (Diretiva (UE) 2024/1799; contratos celebrados a partir de 31 de julho de 2026)."
+  }
+}

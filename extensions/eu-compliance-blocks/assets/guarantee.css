@@ -1,0 +1,27 @@
+/* Harmonised notice (Annex I Reg. (EU) 2025/1960) */
+.eu-guarantee-notice { margin: 1.5rem 0; max-width: var(--eu-notice-max, 560px); }
+.eu-guarantee-notice__img { display: block; width: 100%; height: auto; border: 1px solid #ddd; }
+.eu-guarantee-notice__link { display: block; }
+.eu-guarantee-notice__summary { cursor: pointer; font-weight: 600; padding: .6rem .8rem; border: 1px solid #003399; border-radius: 6px; color: #003399; }
+.eu-guarantee-notice__details[open] .eu-guarantee-notice__summary { margin-bottom: .75rem; }
+
+/* GARAN label (Annex II) – official artwork with the editable fields overlaid in Inter */
+.eu-garan { margin: 1.5rem 0; width: min(100%, var(--eu-garan-width, 360px)); font-family: Inter, "Helvetica Neue", Arial, sans-serif; container-type: inline-size; }
+.eu-garan__full { position: relative; width: 100%; line-height: 1; color: #000; }
+.eu-garan__bg { display: block; width: 100%; height: auto; }
+.eu-garan__producer, .eu-garan__model, .eu-garan__years { position: absolute; background: #fff; display: flex; align-items: center; overflow: hidden; }
+.eu-garan__producer { left: 1.6%; top: 22.6%; width: 46%; height: 5.4%; font-size: 3.6cqw; font-weight: 400; justify-content: flex-start; padding-left: .4cqw; white-space: nowrap; }
+.eu-garan__model { left: 52%; top: 22.6%; width: 46.5%; height: 5.4%; font-size: 3.6cqw; font-weight: 400; justify-content: flex-end; padding-right: .4cqw; white-space: nowrap; }
+.eu-garan__years { left: 3%; top: 29.6%; width: 42%; height: 26%; font-size: 34cqw; font-weight: 800; justify-content: center; letter-spacing: -.02em; }
+.eu-garan__qr { position: absolute; left: 72%; top: 28%; width: 26%; height: 27%; }
+.eu-garan__strip { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; line-height: 0; }
+.eu-garan__strip img { display: block; width: 100%; height: auto; }
+.eu-garan__strip-years { position: absolute; left: 2.6%; top: 12%; width: 17%; height: 74%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 10.5cqw; font-weight: 800; color: #000; line-height: 1; }
+.eu-garan--nested .eu-garan__full { margin-top: .6rem; }
+.eu-garan__terms { display: inline-block; margin-top: .5rem; font-size: .9em; }
+.eu-garan__placeholder { padding: .8rem; border: 1px dashed #003399; color: #003399; font-size: .9em; }
+
+/* Right to repair */
+.eu-repair { margin: 1.5rem 0; padding: 1rem 1.2rem; border-left: 4px solid #003399; background: #f4f6fb; }
+.eu-repair__heading { margin: 0 0 .5rem; font-size: 1.05rem; }
+.eu-repair__text p { margin: 0; }

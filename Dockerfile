@@ -1,24 +1,17 @@
-# Dockerfile for EU Compliance Suite 2026
-FROM node:20-alpine
+FROM node:22-alpine
+RUN apk add --no-cache openssl
 
+EXPOSE 3000
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm ci --legacy-peer-deps
+ENV NODE_ENV=production
+# SQLite lives on the mounted volume (see fly.toml [mounts]).
+ENV DATABASE_URL=file:/data/prod.sqlite
 
-# Copy Prisma schema and generate client
-COPY prisma ./prisma/
-RUN npx prisma generate
+COPY package.json package-lock.json* ./
+RUN npm ci --omit=dev --ignore-scripts && npm rebuild @prisma/client prisma @prisma/engines esbuild && npm cache clean --force
 
-# Copy source code
 COPY . .
+RUN npx prisma generate && npm run build
 
-# Build the app
-RUN npm run build
-
-# Expose port
-EXPOSE 3000
-
-# Run database migrations and start
-CMD ["sh", "-c", "npx prisma migrate deploy && node build/index.js"]
+CMD ["npm", "run", "docker-start"]

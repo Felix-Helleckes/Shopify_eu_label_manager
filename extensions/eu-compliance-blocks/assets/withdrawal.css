@@ -1,0 +1,51 @@
+/* Withdrawal function – triggers */
+.eu-wd-block { margin: 1.5rem 0; }
+.eu-wd-block--center { text-align: center; }
+.eu-wd-block__heading { margin: 0 0 .5rem; font-size: 1.25rem; }
+.eu-wd-block__text { margin: 0 0 1rem; }
+.eu-wd-trigger { font: inherit; font-weight: 600; cursor: pointer; border-radius: 6px; padding: .8em 1.4em; line-height: 1.2; }
+.eu-wd-trigger--primary { background: #003399; color: #fff; border: 2px solid #003399; }
+.eu-wd-trigger--primary:hover { background: #002377; }
+.eu-wd-trigger--secondary { background: #fff; color: #003399; border: 2px solid #003399; }
+.eu-wd-trigger--link { background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; font-weight: 500; }
+.eu-wd-trigger:focus-visible { outline: 3px solid #ffed00; outline-offset: 2px; }
+
+/* App embed positions */
+.eu-wd-embed { position: fixed; z-index: 2147483000; bottom: var(--eu-wd-offset, 16px); }
+.eu-wd-embed--bottom-left { left: var(--eu-wd-offset, 16px); }
+.eu-wd-embed--bottom-right { right: var(--eu-wd-offset, 16px); }
+.eu-wd-embed--bottom-bar { left: 0; right: 0; bottom: 0; text-align: center; background: var(--eu-wd-bg, #003399); padding: .35rem; }
+.eu-wd-trigger--embed { background: var(--eu-wd-bg, #003399); color: var(--eu-wd-color, #fff); border: 2px solid var(--eu-wd-bg, #003399); box-shadow: 0 2px 8px rgba(0,0,0,.25); display: inline-flex; align-items: center; gap: .4em; font-size: .95rem; }
+.eu-wd-embed--bottom-bar .eu-wd-trigger--embed { box-shadow: none; border-color: transparent; }
+.eu-wd-trigger__icon { font-size: 1.1em; }
+@media print { .eu-wd-embed { display: none; } }
+
+/* Dialog */
+.eu-wd__dialog { max-width: 560px; width: calc(100% - 2rem); border: 0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 12px 40px rgba(0,0,0,.3); font-family: inherit; color: #111; background: #fff; }
+.eu-wd__dialog::backdrop { background: rgba(0,0,0,.45); }
+.eu-wd__close-form { position: absolute; top: .5rem; right: .5rem; margin: 0; }
+.eu-wd__close { background: none; border: 0; font-size: 1.75rem; line-height: 1; cursor: pointer; color: #555; padding: .25rem .5rem; }
+.eu-wd__title { font-size: 1.35rem; margin: 0 1.5rem .75rem 0; }
+.eu-wd__title:focus { outline: none; }
+.eu-wd__intro { margin: 0 0 1rem; }
+.eu-wd__field { display: block; margin: 0 0 .9rem; }
+.eu-wd__label { display: block; font-weight: 600; margin-bottom: .3rem; }
+.eu-wd__field input, .eu-wd__field textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .6rem .7rem; border: 1px solid #8a8a8a; border-radius: 6px; background: #fff; color: #111; }
+.eu-wd__field input:focus, .eu-wd__field textarea:focus { outline: 2px solid #003399; outline-offset: 1px; }
+.eu-wd__help { display: block; font-size: .85em; color: #555; margin-top: .25rem; }
+.eu-wd__error { display: block; color: #b00020; font-size: .9em; min-height: 1.2em; margin-top: .2rem; }
+.eu-wd__error--global { margin: .5rem 0; }
+.eu-wd__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.eu-wd__privacy { font-size: .85em; color: #555; margin: .5rem 0 1rem; }
+.eu-wd__actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: flex-end; margin-top: 1rem; }
+.eu-wd__btn { font: inherit; font-weight: 600; cursor: pointer; border-radius: 6px; padding: .75em 1.3em; border: 2px solid #003399; }
+.eu-wd__btn--primary { background: #003399; color: #fff; }
+.eu-wd__btn--secondary { background: #fff; color: #003399; }
+.eu-wd__btn--confirm { background: #003399; color: #fff; font-size: 1.05em; }
+.eu-wd__btn:disabled { opacity: .6; cursor: wait; }
+.eu-wd__summary { display: grid; grid-template-columns: minmax(120px, 40%) 1fr; gap: .4rem .8rem; margin: 0 0 1rem; padding: .9rem; background: #f4f6fb; border-radius: 8px; }
+.eu-wd__summary dt { font-weight: 600; margin: 0; }
+.eu-wd__summary dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.eu-wd__success { margin: 0 0 1rem; }
+@media (max-width: 480px) { .eu-wd__summary { grid-template-columns: 1fr; } .eu-wd__dialog { padding: 1.1rem; } }
+@media print { .eu-wd__dialog { box-shadow: none; max-width: none; width: auto; } .eu-wd__actions, .eu-wd__close-form { display: none; } }

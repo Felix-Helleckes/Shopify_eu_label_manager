@@ -1,5 +1,7 @@
-[commands]
-  dev = "npm run dev"
+name = "EU Compliance Suite"
+roles = ["frontend", "backend"]
+webhooks_path = "/webhooks/app/uninstalled"
 
-[theme]
-  name = "eu-compliance-suite"
+[commands]
+predev = "npx prisma generate"
+dev = "npx prisma migrate deploy && npx react-router dev"

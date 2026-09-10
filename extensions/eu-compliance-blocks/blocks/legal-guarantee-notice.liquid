@@ -1,0 +1,59 @@
+{%- comment -%}
+  App block: harmonised notice on the legal guarantee of conformity
+  (Art. 22a Directive 2011/83/EU, Annex I of Implementing Regulation (EU) 2025/1960).
+  The official artwork is displayed unchanged, in colour, in the storefront language.
+{%- endcomment -%}
+{%- assign supported = 'bg cs da de el en es et fi fr ga hr hu it lt lv mt nl pl pt ro sk sl sv' | split: ' ' -%}
+{%- assign lang = request.locale.iso_code | split: '-' | first | downcase -%}
+{%- if block.settings.language != 'auto' -%}{%- assign lang = block.settings.language -%}{%- endif -%}
+{%- unless supported contains lang -%}{%- assign lang = 'en' -%}{%- endunless -%}
+{%- assign file = 'legal-guarantee-notice-' | append: lang | append: '.jpg' -%}
+{%- assign portal = 'https://europa.eu/youreurope/guarantees' -%}
+<div class="eu-guarantee-notice" style="--eu-notice-max: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
+  {%- if block.settings.display == 'collapsible' -%}
+    <details class="eu-guarantee-notice__details" {% if request.design_mode %}open{% endif %}>
+      <summary class="eu-guarantee-notice__summary">{{ 'guarantee.notice_toggle' | t }}</summary>
+      <a href="{{ portal }}" target="_blank" rel="noopener" class="eu-guarantee-notice__link">
+        <img class="eu-guarantee-notice__img" src="{{ file | asset_url }}" alt="{{ 'guarantee.notice_alt' | t | escape }}" loading="lazy" width="1100" height="1500">
+      </a>
+    </details>
+  {%- else -%}
+    <a href="{{ portal }}" target="_blank" rel="noopener" class="eu-guarantee-notice__link">
+      <img class="eu-guarantee-notice__img" src="{{ file | asset_url }}" alt="{{ 'guarantee.notice_alt' | t | escape }}" loading="lazy" width="1100" height="1500">
+    </a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:blocks.guarantee_notice.name",
+  "target": "section",
+  "stylesheet": "guarantee.css",
+  "settings": [
+    { "type": "paragraph", "content": "t:blocks.guarantee_notice.info" },
+    {
+      "type": "select", "id": "display", "label": "t:settings.display", "default": "full",
+      "options": [
+        { "value": "full", "label": "t:settings.display_full" },
+        { "value": "collapsible", "label": "t:settings.display_collapsible" }
+      ],
+      "info": "t:settings.display_info"
+    },
+    { "type": "range", "id": "max_width", "label": "t:settings.max_width", "min": 300, "max": 1000, "step": 20, "unit": "px", "default": 560 },
+    {
+      "type": "select", "id": "language", "label": "t:settings.language", "default": "auto",
+      "options": [
+        { "value": "auto", "label": "t:settings.language_auto" },
+        { "value": "bg", "label": "Български" }, { "value": "cs", "label": "Čeština" }, { "value": "da", "label": "Dansk" },
+        { "value": "de", "label": "Deutsch" }, { "value": "el", "label": "Ελληνικά" }, { "value": "en", "label": "English" },
+        { "value": "es", "label": "Español" }, { "value": "et", "label": "Eesti" }, { "value": "fi", "label": "Suomi" },
+        { "value": "fr", "label": "Français" }, { "value": "ga", "label": "Gaeilge" }, { "value": "hr", "label": "Hrvatski" },
+        { "value": "hu", "label": "Magyar" }, { "value": "it", "label": "Italiano" }, { "value": "lt", "label": "Lietuvių" },
+        { "value": "lv", "label": "Latviešu" }, { "value": "mt", "label": "Malti" }, { "value": "nl", "label": "Nederlands" },
+        { "value": "pl", "label": "Polski" }, { "value": "pt", "label": "Português" }, { "value": "ro", "label": "Română" },
+        { "value": "sk", "label": "Slovenčina" }, { "value": "sl", "label": "Slovenščina" }, { "value": "sv", "label": "Svenska" }
+      ]
+    }
+  ]
+}
+{% endschema %}

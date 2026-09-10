@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Ångra avtalet här",
+    "confirm_button": "Bekräfta frånträde",
+    "dialog_title": "Ångra avtalet",
+    "intro": "Använd detta formulär för att frånträda ett avtal som ingåtts i den här butiken. Efter din bekräftelse får du en mottagningsbekräftelse via e-post.",
+    "name": "Ditt namn",
+    "contract": "Ordernummer eller annan beteckning på avtalet",
+    "contract_help": "Till exempel ordernumret i din orderbekräftelse.",
+    "email": "E-postadress för mottagningsbekräftelsen",
+    "order_date": "Beställnings- eller leveransdatum (valfritt)",
+    "details": "Berörda varor eller tjänster (valfritt)",
+    "next": "Fortsätt",
+    "back": "Tillbaka",
+    "review_title": "Kontrollera din ångerförklaring",
+    "review_intro": "Kontrollera dina uppgifter. Genom att klicka på ”{{ confirm }}” skickar du din ångerförklaring till näringsidkaren.",
+    "submitting": "Skickar…",
+    "success_title": "Ångerförklaring mottagen",
+    "success_text": "Din ångerförklaring togs emot den {date}. Referensnummer: {receipt}. En mottagningsbekräftelse har skickats till {email}.",
+    "success_no_mail": "Din ångerförklaring togs emot den {date}. Referensnummer: {receipt}. Bekräftelsemejlet kunde inte skickas – spara eller skriv ut den här sidan som bevis.",
+    "receipt_no": "Referensnummer",
+    "submitted_at": "Mottagen den",
+    "error_required": "Fyll i det här fältet.",
+    "error_email": "Ange en giltig e-postadress.",
+    "error_generic": "Din förklaring kunde inte skickas. Försök igen eller kontakta butiken via e-post.",
+    "error_rate": "För många förfrågningar. Försök igen om några minuter.",
+    "close": "Stäng",
+    "print": "Skriv ut",
+    "privacy": "Dina uppgifter används endast för att hantera ångerärendet."
+  },
+  "guarantee": {
+    "notice_alt": "Rättslig garanti – harmoniserat meddelande om den rättsliga garantin om avtalsenlighet (minst två år)",
+    "notice_toggle": "Information om den rättsliga garantin",
+    "label_alt": "GARAN – tillverkarens kommersiella hållbarhetsgaranti: {{ years }} år, utöver den rättsliga garantin",
+    "label_expand": "Visa hela garantimärkningen",
+    "terms_link": "Garantivillkor",
+    "editor_placeholder": "GARAN-märkning: visas endast för produkter vars metafält ”guarantee_years” är större än 2."
+  },
+  "repair": {
+    "default_text": "Rätt till reparation: vid fel inom den rättsliga garantitiden kan du välja mellan reparation och utbyte. Väljer du reparation förlängs garantitiden en gång med tolv månader (direktiv (EU) 2024/1799; avtal som ingås från och med den 31 juli 2026)."
+  }
+}

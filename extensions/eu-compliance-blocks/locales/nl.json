@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Hier de overeenkomst herroepen",
+    "confirm_button": "Herroeping bevestigen",
+    "dialog_title": "Overeenkomst herroepen",
+    "intro": "Gebruik dit formulier om een in deze winkel gesloten overeenkomst te herroepen. Na uw bevestiging ontvangt u een ontvangstbevestiging per e-mail.",
+    "name": "Uw naam",
+    "contract": "Bestelnummer of andere aanduiding van de overeenkomst",
+    "contract_help": "Bijvoorbeeld het bestelnummer uit uw orderbevestiging.",
+    "email": "E-mailadres voor de ontvangstbevestiging",
+    "order_date": "Bestel- of leverdatum (optioneel)",
+    "details": "Betrokken goederen of diensten (optioneel)",
+    "next": "Verder",
+    "back": "Terug",
+    "review_title": "Controleer uw herroepingsverklaring",
+    "review_intro": "Controleer uw gegevens. Door op „{{ confirm }}” te klikken verzendt u uw herroepingsverklaring naar de handelaar.",
+    "submitting": "Wordt verzonden…",
+    "success_title": "Herroepingsverklaring ontvangen",
+    "success_text": "Uw herroepingsverklaring is ontvangen op {date}. Referentienummer: {receipt}. Een ontvangstbevestiging is verzonden naar {email}.",
+    "success_no_mail": "Uw herroepingsverklaring is ontvangen op {date}. Referentienummer: {receipt}. De bevestigingsmail kon niet worden verzonden – bewaar of print deze pagina als bewijs.",
+    "receipt_no": "Referentienummer",
+    "submitted_at": "Ontvangen op",
+    "error_required": "Vul dit veld in.",
+    "error_email": "Voer een geldig e-mailadres in.",
+    "error_generic": "Uw verklaring kon niet worden verzonden. Probeer het opnieuw of neem per e-mail contact op met de winkel.",
+    "error_rate": "Te veel verzoeken. Probeer het over enkele minuten opnieuw.",
+    "close": "Sluiten",
+    "print": "Afdrukken",
+    "privacy": "Uw gegevens worden uitsluitend gebruikt voor de afhandeling van de herroeping."
+  },
+  "guarantee": {
+    "notice_alt": "Wettelijke garantie – geharmoniseerde kennisgeving over de wettelijke conformiteitsgarantie (minimaal twee jaar)",
+    "notice_toggle": "Informatie over de wettelijke garantie",
+    "label_alt": "GARAN – commerciële duurzaamheidsgarantie van de producent: {{ years }} jaar, naast de wettelijke garantie",
+    "label_expand": "Volledig garantielabel tonen",
+    "terms_link": "Garantievoorwaarden",
+    "editor_placeholder": "GARAN-label: wordt alleen getoond bij producten waarvan het metaveld “guarantee_years” groter is dan 2."
+  },
+  "repair": {
+    "default_text": "Recht op reparatie: bij een gebrek binnen de wettelijke garantietermijn kunt u kiezen tussen reparatie en vervanging. Kiest u voor reparatie, dan wordt de wettelijke garantietermijn eenmalig met twaalf maanden verlengd (Richtlijn (EU) 2024/1799; overeenkomsten gesloten vanaf 31 juli 2026)."
+  }
+}

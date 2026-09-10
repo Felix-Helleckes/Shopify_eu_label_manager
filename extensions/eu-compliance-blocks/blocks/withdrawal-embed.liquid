@@ -1,0 +1,39 @@
+{%- comment -%}
+  App embed: withdrawal function available on every storefront page (continuously available,
+  prominently displayed, easily accessible – Art. 11a(1) CRD / § 356a Abs. 1 BGB).
+{%- endcomment -%}
+{%- assign uid = 'embed' -%}
+{%- assign withdraw_label = 'withdrawal.button' | t -%}
+{%- if block.settings.label_override != blank -%}{%- assign withdraw_label = block.settings.label_override -%}{%- endif -%}
+<div class="eu-wd-embed eu-wd-embed--{{ block.settings.position }}" style="--eu-wd-offset: {{ block.settings.offset }}px; --eu-wd-color: {{ block.settings.color }}; --eu-wd-bg: {{ block.settings.background }};" {{ block.shopify_attributes }}>
+  <button type="button" class="eu-wd-trigger eu-wd-trigger--embed" data-eu-withdrawal-open="eu-wd-{{ uid }}">
+    <span class="eu-wd-trigger__icon" aria-hidden="true">&#8630;</span>{{ withdraw_label }}
+  </button>
+  {%- render 'eu-withdrawal-dialog', uid: uid, label_override: block.settings.label_override, confirm_override: block.settings.confirm_override, proxy_path: block.settings.proxy_path -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:blocks.withdrawal_embed.name",
+  "target": "body",
+  "javascript": "withdrawal.js",
+  "stylesheet": "withdrawal.css",
+  "settings": [
+    { "type": "paragraph", "content": "t:blocks.withdrawal_embed.info" },
+    {
+      "type": "select", "id": "position", "label": "t:settings.position", "default": "bottom-left",
+      "options": [
+        { "value": "bottom-left", "label": "t:settings.position_bottom_left" },
+        { "value": "bottom-right", "label": "t:settings.position_bottom_right" },
+        { "value": "bottom-bar", "label": "t:settings.position_bottom_bar" }
+      ]
+    },
+    { "type": "range", "id": "offset", "label": "t:settings.offset", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 16 },
+    { "type": "color", "id": "background", "label": "t:settings.background", "default": "#003399" },
+    { "type": "color", "id": "color", "label": "t:settings.color", "default": "#ffffff" },
+    { "type": "text", "id": "label_override", "label": "t:settings.label_override", "info": "t:settings.label_override_info" },
+    { "type": "text", "id": "confirm_override", "label": "t:settings.confirm_override", "info": "t:settings.confirm_override_info" },
+    { "type": "text", "id": "proxy_path", "label": "t:settings.proxy_path", "default": "/apps/eu-compliance", "info": "t:settings.proxy_path_info" }
+  ]
+}
+{% endschema %}

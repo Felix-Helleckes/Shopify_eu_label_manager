@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Recedi dal contratto qui",
+    "confirm_button": "Conferma recesso",
+    "dialog_title": "Recedere dal contratto",
+    "intro": "Utilizzi questo modulo per recedere da un contratto concluso in questo negozio. Dopo la conferma riceverà una conferma di ricezione via e-mail.",
+    "name": "Il suo nome",
+    "contract": "Numero d’ordine o altra identificazione del contratto",
+    "contract_help": "Ad esempio il numero d’ordine indicato nella conferma d’ordine.",
+    "email": "Indirizzo e-mail per la conferma di ricezione",
+    "order_date": "Data dell’ordine o della consegna (facoltativo)",
+    "details": "Beni o servizi interessati (facoltativo)",
+    "next": "Avanti",
+    "back": "Indietro",
+    "review_title": "Controlli la sua dichiarazione di recesso",
+    "review_intro": "Controlli i suoi dati. Cliccando su “{{ confirm }}” trasmette la dichiarazione di recesso al professionista.",
+    "submitting": "Invio in corso…",
+    "success_title": "Dichiarazione di recesso ricevuta",
+    "success_text": "La sua dichiarazione di recesso è stata ricevuta il {date}. Numero di riferimento: {receipt}. Una conferma di ricezione è stata inviata a {email}.",
+    "success_no_mail": "La sua dichiarazione di recesso è stata ricevuta il {date}. Numero di riferimento: {receipt}. Non è stato possibile inviare l’e-mail di conferma: salvi o stampi questa pagina come prova.",
+    "receipt_no": "Numero di riferimento",
+    "submitted_at": "Ricevuta il",
+    "error_required": "Compili questo campo.",
+    "error_email": "Inserisca un indirizzo e-mail valido.",
+    "error_generic": "Non è stato possibile trasmettere la dichiarazione. Riprovi o contatti il negozio via e-mail.",
+    "error_rate": "Troppe richieste. Riprovi tra qualche minuto.",
+    "close": "Chiudi",
+    "print": "Stampa",
+    "privacy": "I suoi dati saranno utilizzati esclusivamente per gestire il recesso."
+  },
+  "guarantee": {
+    "notice_alt": "Garanzia legale – avviso armonizzato sulla garanzia legale di conformità (minimo due anni)",
+    "notice_toggle": "Informazioni sulla garanzia legale",
+    "label_alt": "GARAN – garanzia commerciale di durabilità del produttore: {{ years }} anni, in aggiunta alla garanzia legale",
+    "label_expand": "Mostra l’etichetta di garanzia completa",
+    "terms_link": "Condizioni di garanzia",
+    "editor_placeholder": "Etichetta GARAN: mostrata solo per i prodotti il cui metacampo “guarantee_years” è maggiore di 2."
+  },
+  "repair": {
+    "default_text": "Diritto alla riparazione: in caso di difetto di conformità durante la garanzia legale può scegliere tra riparazione e sostituzione. Se sceglie la riparazione, la garanzia legale è prorogata una volta di dodici mesi (direttiva (UE) 2024/1799; contratti conclusi dal 31 luglio 2026)."
+  }
+}

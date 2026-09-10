@@ -1,54 +1,35 @@
-# Dependencies
-node_modules/
-/package-lock.json
-/yarn.lock
-/pnpm-lock.yaml
+node_modules
 
-# Production builds
-build/
-.vercel/
-output/
+# macOS
+.DS_Store
 
-# Environment variables
+/.cache
+/build
+/app/build
+/public/build/
+/public/_dev
+/app/public/build
+/prisma/dev.sqlite
+/prisma/dev.sqlite-journal
+/prisma/*.sqlite
+/prisma/*.sqlite-journal
+database.sqlite
+
 .env
 .env.*
+!.env.example
 
-# Miscellaneous
-.DS_Thumbs
-Thumbs.db
+yarn.lock
+pnpm-lock.yaml
 
-# Prisma
-dev.db
-prisma/*.sql
-prisma/migrations/
+/extensions/*/dist
 
-# Logs
-logs
-*.log
+# Shopify CLI state
+.shopify/*
+.shopify.lock
 
-# Runtime data
-pids
-*.pid
-*.seed
+# React Router generated types
+.react-router/
 
-# Coverage directory used by jest
+# Test/coverage
 coverage/
-*.lcov
-
-# Build system outputs
-.cache/
-.temp/
-.temp-*/
-
-# Misc
-*.backup
-*.back
-
-# IDE
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?

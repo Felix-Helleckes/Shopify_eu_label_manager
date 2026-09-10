@@ -1,0 +1,42 @@
+{
+  "withdrawal": {
+    "button": "Renoncer au contrat ici",
+    "confirm_button": "Confirmer la rétractation",
+    "dialog_title": "Se rétracter du contrat",
+    "intro": "Utilisez ce formulaire pour vous rétracter d’un contrat conclu dans cette boutique. Après confirmation, vous recevrez un accusé de réception par e-mail.",
+    "name": "Votre nom",
+    "contract": "Numéro de commande ou autre identification du contrat",
+    "contract_help": "Par exemple le numéro de commande figurant dans votre confirmation de commande.",
+    "email": "Adresse e-mail pour l’accusé de réception",
+    "order_date": "Date de commande ou de livraison (facultatif)",
+    "details": "Biens ou services concernés (facultatif)",
+    "next": "Continuer",
+    "back": "Retour",
+    "review_title": "Vérifiez votre déclaration de rétractation",
+    "review_intro": "Veuillez vérifier vos informations. En cliquant sur « {{ confirm }} », vous transmettez votre déclaration de rétractation au professionnel.",
+    "submitting": "Envoi en cours…",
+    "success_title": "Déclaration de rétractation reçue",
+    "success_text": "Votre déclaration de rétractation a été reçue le {date}. Numéro de référence : {receipt}. Un accusé de réception a été envoyé à {email}.",
+    "success_no_mail": "Votre déclaration de rétractation a été reçue le {date}. Numéro de référence : {receipt}. L’e-mail d’accusé de réception n’a pas pu être envoyé – veuillez enregistrer ou imprimer cette page comme justificatif.",
+    "receipt_no": "Numéro de référence",
+    "submitted_at": "Reçue le",
+    "error_required": "Veuillez remplir ce champ.",
+    "error_email": "Veuillez saisir une adresse e-mail valide.",
+    "error_generic": "Votre déclaration n’a pas pu être transmise. Veuillez réessayer ou contacter la boutique par e-mail.",
+    "error_rate": "Trop de demandes. Veuillez réessayer dans quelques minutes.",
+    "close": "Fermer",
+    "print": "Imprimer",
+    "privacy": "Vos données ne seront utilisées que pour le traitement de la rétractation."
+  },
+  "guarantee": {
+    "notice_alt": "Garantie légale – avis harmonisé sur la garantie légale de conformité (au moins deux ans)",
+    "notice_toggle": "Informations sur la garantie légale",
+    "label_alt": "GARAN – garantie commerciale de durabilité du producteur : {{ years }} ans, en plus de la garantie légale",
+    "label_expand": "Afficher l’étiquette de garantie complète",
+    "terms_link": "Conditions de garantie",
+    "editor_placeholder": "Étiquette GARAN : affichée uniquement pour les produits dont le métachamp « guarantee_years » est supérieur à 2."
+  },
+  "repair": {
+    "default_text": "Droit à la réparation : en cas de défaut de conformité pendant la garantie légale, vous pouvez choisir entre la réparation et le remplacement. Si vous choisissez la réparation, la garantie légale est prolongée une fois de douze mois (directive (UE) 2024/1799 ; contrats conclus à partir du 31 juillet 2026)."
+  }
+}
