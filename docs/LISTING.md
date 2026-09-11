@@ -60,3 +60,45 @@ one app, in all 24 official EU languages.
 
 Widerruf, Widerrufsbutton, Widerrufsfunktion, EU 2026, Gewährleistung, GARAN, Garantie, Recht auf Reparatur,
 withdrawal button, right of withdrawal, legal guarantee, EU compliance, Verbraucherrechte, Rechtstexte
+
+## Stand 11.09.2026 – eingereichtes Listing
+
+- Hauptsprache des Listings: **Deutsch** (Shopify erlaubt nach dem Anlegen kein Umschalten der Hauptsprache; das
+  deutsche Listing lässt sich nicht löschen, `edit_listing/en` liefert „Submission details not found“). Shopify übersetzt
+  das Listing automatisch in 8 Sprachen (inkl. Englisch). Nach der Veröffentlichung: englisches Listing mit den Texten
+  unten und den Screenshots aus `store/listing/en/` manuell anlegen (oder Partner-Support bitten, die Hauptsprache
+  auf Englisch zu setzen).
+- App-Oberfläche: Englisch als Standard, folgt der Admin-Sprache (en, de, fr, es, it, nl, pl, pt, sv, da).
+- Kategorie: Store management › Security › Legal; Tags Compliance: Geschäftsbedingungen, Compliance-Berichte,
+  Richtlinienverwaltung; Customization: Mehrere Sprachen, Popups, Farbe und Schriftart, Schaltflächen, Widget-Position.
+- Screencast: https://smtp--eu-compliance-suite.netlify.app/screencast (Shop-Ansicht EN + Admin EN, 1:27).
+- Testanleitung: siehe Feld „Testing instructions“ im Listing (englisch, UI-Bezeichnungen der englischen Oberfläche).
+
+### English listing texts (for the English translation after publication)
+
+**Introduction (≤100):** Withdrawal button, official legal-guarantee notice and GARAN label: the 2026 EU duties in one app.
+
+**App details (≤500):** From 19 June 2026 every EU online shop must offer a withdrawal function with the button
+"Withdraw from contract here"; from 27 September 2026 the harmonised legal-guarantee notice and the GARAN label for
+producer guarantees become mandatory. EU Compliance Suite covers all three duties with theme app blocks in 24 EU
+languages: two-step withdrawal button, time-stamped acknowledgement of receipt, log with order matching and CSV export,
+official artwork for notice and label. No theme changes, no cookies.
+
+**Features (≤80 each):**
+1. Button "Withdraw from contract here" with two-step confirmation (Art. 11a CRD)
+2. Automatic acknowledgement of receipt with date, time and reference number
+3. Withdrawal log with order matching, tagging, checksum and CSV export
+4. Official legal-guarantee notice and GARAN label in all 24 EU languages
+5. Theme app blocks without theme code, no cookies, hosted in Frankfurt
+
+**Subtitle (≤62):** Withdrawal button, legal-guarantee notice & GARAN label 2026
+
+**Search terms:** withdrawal button, legal guarantee, GARAN, right of withdrawal, EU consumer law
+
+**Screenshot alt texts:** Withdrawal button and dialog in the storefront · Withdrawal form · Review step "Confirm
+withdrawal" · Receipt with reference number and timestamp · GARAN label on the product page · Legal-guarantee notice
+in the cart
+
+**Plan features (≤40):** Basic: Withdrawal button in 24 EU languages · Time-stamped acknowledgement · Withdrawal log
+and CSV export · Matching to the order. Pro: Everything in Basic · Legal-guarantee notice · GARAN label per product ·
+Repair notice, tagging, support.
