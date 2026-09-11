@@ -66,7 +66,7 @@ export async function requireShop(request: Request, options: { billing?: boolean
   shop = resolved.shop;
   let plan: PlanName | null = null;
   if (options.billing !== false) {
-    plan = await activePlan(ctx.billing);
+    plan = await activePlan(ctx.admin);
     shop = await syncPlanToShop(ctx.admin, shop, plan);
   }
   return {

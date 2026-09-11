@@ -4,7 +4,7 @@
 
 client_id = "6860ad69a983c0549dc759de3b0a5cb0"
 name = "EU Compliance Suite"
-application_url = "https://smtp--eu-compliance-suite.netlify.app"
+application_url = "https://eu-compliance-suite.fly.dev"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_orders,write_orders,write_products"
 
 [auth]
 redirect_urls = [
-  "https://smtp--eu-compliance-suite.netlify.app/auth/callback",
-  "https://smtp--eu-compliance-suite.netlify.app/auth/shopify/callback",
-  "https://smtp--eu-compliance-suite.netlify.app/api/auth/callback"
+  "https://eu-compliance-suite.fly.dev/auth/callback",
+  "https://eu-compliance-suite.fly.dev/auth/shopify/callback",
+  "https://eu-compliance-suite.fly.dev/api/auth/callback"
 ]
 
 [webhooks]
@@ -48,7 +48,7 @@ api_version = "2026-07"
 
 # Storefront -> app:  https://<shop>/apps/eu-compliance/<path>  =>  <application_url>/proxy/<path>
 [app_proxy]
-url = "https://smtp--eu-compliance-suite.netlify.app/proxy"
+url = "https://eu-compliance-suite.fly.dev/proxy"
 subpath = "eu-compliance"
 prefix = "apps"
 

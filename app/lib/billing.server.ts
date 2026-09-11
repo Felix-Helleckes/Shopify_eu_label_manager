@@ -11,36 +11,65 @@ type GraphqlClient = {
 
 export { hasWithdrawal, hasPro };
 
-export function isTestBilling() {
-  return process.env.NODE_ENV !== "production" || process.env.BILLING_TEST === "true";
+const ACTIVE_SUBSCRIPTIONS = `#graphql
+  query EuComplianceSubscriptions {
+    currentAppInstallation {
+      activeSubscriptions { id name status test }
+    }
+  }
+`;
+
+const SHOP_PLAN = `#graphql
+  query EuComplianceShopPlan {
+    shop { plan { partnerDevelopment } }
+  }
+`;
+
+/**
+ * Whether a new charge has to be created as a test charge. Development stores can only carry test
+ * charges, so this is decided per shop instead of per environment – a reviewer on a dev store would
+ * otherwise be unable to subscribe. BILLING_TEST=true forces test mode everywhere.
+ */
+export async function isTestBilling(admin: GraphqlClient): Promise<boolean> {
+  if (process.env.BILLING_TEST === "true") return true;
+  try {
+    const res = await admin.graphql(SHOP_PLAN);
+    const json = (await res.json()) as { data?: { shop: { plan: { partnerDevelopment: boolean } } } };
+    return Boolean(json.data?.shop.plan.partnerDevelopment);
+  } catch (error) {
+    console.error("[billing] shop plan lookup failed", error);
+    return process.env.NODE_ENV !== "production";
+  }
 }
 
 export type BillingState = { plan: PlanName; subscriptionId: string | null };
 
-/** Reads the active Shopify subscription. Never throws; falls back to the free plan. */
-export async function billingState(billing: AdminContext["billing"]): Promise<BillingState> {
+/**
+ * Reads the active Shopify subscription straight from the app installation. This deliberately does
+ * not use billing.check(): that call filters by an isTest flag, so a test charge (which is what
+ * Shopify's reviewers and every development store use) would look like "no subscription".
+ * Never throws; falls back to the free plan.
+ */
+export async function billingState(admin: GraphqlClient): Promise<BillingState> {
   if (process.env.BILLING_DISABLED === "true") return { plan: PLAN_PRO, subscriptionId: null };
   try {
-    const { hasActivePayment, appSubscriptions } = await billing.check({
-      plans: [...PAID_PLANS],
-      isTest: isTestBilling(),
-    });
-    if (!hasActivePayment) return { plan: PLAN_FREE, subscriptionId: null };
-    const sub =
-      appSubscriptions.find((s) => s.name === PLAN_PRO) ??
-      appSubscriptions.find((s) => s.name === PLAN_BASIC) ??
-      appSubscriptions[0];
-    const name = sub?.name === PLAN_PRO || sub?.name === PLAN_BASIC ? (sub.name as PlanName) : PLAN_FREE;
-    return { plan: name, subscriptionId: sub?.id ?? null };
+    const res = await admin.graphql(ACTIVE_SUBSCRIPTIONS);
+    const json = (await res.json()) as {
+      data?: { currentAppInstallation: { activeSubscriptions: { id: string; name: string; status: string }[] } };
+    };
+    const subs = (json.data?.currentAppInstallation.activeSubscriptions ?? []).filter((s) => s.status === "ACTIVE");
+    const sub = subs.find((s) => s.name === PLAN_PRO) ?? subs.find((s) => s.name === PLAN_BASIC) ?? null;
+    if (!sub) return { plan: PLAN_FREE, subscriptionId: null };
+    return { plan: sub.name as PlanName, subscriptionId: sub.id };
   } catch (error) {
-    console.error("[billing] check failed", error);
+    console.error("[billing] subscription lookup failed", error);
     return { plan: PLAN_FREE, subscriptionId: null };
   }
 }
 
 /** Returns the active plan name ("Free" when there is no subscription). */
-export async function activePlan(billing: AdminContext["billing"]): Promise<PlanName> {
-  return (await billingState(billing)).plan;
+export async function activePlan(admin: GraphqlClient): Promise<PlanName> {
+  return (await billingState(admin)).plan;
 }
 
 /** Redirects to the plan picker unless the plan includes the withdrawal function. */

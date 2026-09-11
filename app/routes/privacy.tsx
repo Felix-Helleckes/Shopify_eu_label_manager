@@ -62,11 +62,10 @@ export default function PrivacyPage() {
           Datenbank in Frankfurt am Main, Deutschland (Supabase, Region eu-central-1), im Ruhezustand verschlüsselt.
         </li>
         <li>
-          <strong>Verarbeitung:</strong> Die Anwendung selbst läuft derzeit bei unserem Hosting-Dienstleister Netlify in
-          den Vereinigten Staaten (Region us-east-2). Für die Dauer eines Aufrufs werden die betroffenen Daten dort
-          verarbeitet. Grundlage dieser Übermittlung sind die Standardvertragsklauseln der EU-Kommission im Rahmen des
-          Auftragsverarbeitungsvertrags mit Netlify. Die aktuelle Region ist unter{" "}
-          <a href="/healthcheck">/healthcheck</a> im Feld <code>host.region</code> jederzeit nachprüfbar.
+          <strong>Verarbeitung:</strong> Die Anwendung läuft auf Servern in Frankfurt am Main, Deutschland (Fly.io,
+          Region fra). Die Daten werden damit ausschließlich innerhalb der Europäischen Union gespeichert und
+          verarbeitet. Die aktuelle Region ist unter <a href="/healthcheck">/healthcheck</a> im Feld{" "}
+          <code>host.region</code> jederzeit nachprüfbar.
         </li>
         <li>
           <strong>E-Mail-Versand:</strong> über Brevo (Sendinblue SAS, Frankreich).
@@ -109,8 +108,8 @@ export default function PrivacyPage() {
         shop master data and merchant settings. Purposes: providing the statutory withdrawal function and acknowledgement
         of receipt (Art. 11a Directive 2011/83/EU), evidence of timely withdrawal, abuse prevention. E-mails are sent
         through an SMTP provider (Brevo, France) under a data-processing agreement. All data is stored in a database in
-        Frankfurt, Germany (eu-central-1); the application itself currently runs on Netlify servers in the United States
-        (us-east-2) under the EU Standard Contractual Clauses – the live region is verifiable at{" "}
+        Frankfurt, Germany (eu-central-1), and the application runs on servers in Frankfurt as well (Fly.io, region
+        fra), so storage and processing both stay inside the EU – the live region is verifiable at{" "}
         <a href="/healthcheck">/healthcheck</a>. Customer redaction requests anonymise personal fields immediately; all
         shop data is deleted 48 hours after uninstall. No cookies or tracking are used. Data subjects can exercise their
         GDPR rights through the merchant.

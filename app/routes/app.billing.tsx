@@ -6,13 +6,13 @@ import { billingState, isTestBilling, syncPlanToShop } from "../lib/billing.serv
 import { ALL_PLANS, PAID_PLANS, PLAN_DETAILS, PLAN_FREE, PLAN_LABELS, planFeatures, TRIAL_DAYS, type PaidPlanName } from "../lib/plans";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { billing, admin, locale, t, shop: shopRow } = await requireShop(request, { billing: false });
-  const state = await billingState(billing);
+  const { admin, locale, t, shop: shopRow } = await requireShop(request, { billing: false });
+  const state = await billingState(admin);
   await syncPlanToShop(admin, shopRow, state.plan);
   const upgrade = new URL(request.url).searchParams.get("upgrade");
   return {
     current: state.plan,
-    isTest: isTestBilling(),
+    isTest: await isTestBilling(admin),
     hint: upgrade === "withdrawal" ? t("bil.upgradeWithdrawal") : upgrade === "export" ? t("bil.upgradeExport") : null,
     plans: ALL_PLANS.map((name) => ({
       name,
@@ -41,23 +41,24 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { billing, session, t } = await requireShop(request, { billing: false });
+  const { billing, admin, session, t } = await requireShop(request, { billing: false });
+  const isTest = await isTestBilling(admin);
   const form = await request.formData();
   const plan = String(form.get("plan") || "");
   const store = session.shop.replace(".myshopify.com", "");
   const handle = process.env.SHOPIFY_APP_HANDLE || "eu-compliance-suite";
 
   if (plan === PLAN_FREE) {
-    const state = await billingState(billing);
+    const state = await billingState(admin);
     if (state.subscriptionId) {
-      await billing.cancel({ subscriptionId: state.subscriptionId, isTest: isTestBilling(), prorate: true });
+      await billing.cancel({ subscriptionId: state.subscriptionId, isTest, prorate: true });
     }
     throw redirect("/app/billing");
   }
   if (!(PAID_PLANS as readonly string[]).includes(plan)) return { error: t("bil.unknown") };
   await billing.request({
     plan: plan as PaidPlanName,
-    isTest: isTestBilling(),
+    isTest,
     returnUrl: `https://admin.shopify.com/store/${store}/apps/${handle}/app`,
   });
   return null;
