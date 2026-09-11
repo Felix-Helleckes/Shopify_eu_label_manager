@@ -4,9 +4,10 @@ Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brau
 
 ## Heute (zusammen 30 Minuten)
 
-1. **Domain kaufen** (5 Min): `eu-compliance-suite.com` bei Porkbun (porkbun.com) oder INWX (inwx.de), ohne Zusatzpakete.
-   Danach mir Bescheid geben – ich richte Netlify (Landingpage unter der Domain), Brevo (Absender `noreply@`), und die
-   Weiterleitung `support@` → dein Gmail ein. Du trägst dann nur die 4–5 DNS-Einträge ein, die ich dir aufliste.
+1. **Fly.io einrichten** (5 Min): im Terminal `cd ~ && export PATH="$HOME/.fly/bin:$PATH" && fly auth login`,
+   im Browser Konto anlegen und unter Billing eine Zahlungsmethode hinterlegen (ca. 3,30 USD/Monat). Danach mir
+   Bescheid geben – ich deploye nach Frankfurt und stelle alle URLs um. Details: `docs/FLY-MIGRATION.md`.
+   Eine eigene Domain ist dafür **nicht** nötig, `eu-compliance-suite.fly.dev` ist inklusive.
 2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, wir weisen deiner Einreichung einen Prüfer
    zu“. Sichtbarkeit steht auf „in Suche und Empfehlungen“. Rückmeldungen von Shopify kommen per E-Mail an
    florian.helleckes@gmail.com — **bitte täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
