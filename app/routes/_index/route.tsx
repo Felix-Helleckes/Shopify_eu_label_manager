@@ -256,7 +256,6 @@ export default function Index() {
   const soon = t.soon.replace("{n}", String(Math.max(daysLeft, 0)));
 
   const shots: [string, string][] = [
-    ["screenshot-form", t.s2],
     ["screenshot-review", t.s3],
     ["screenshot-success", t.s4],
     ["screenshot-product", t.s5],
@@ -325,7 +324,7 @@ export default function Index() {
           </div>
           <p className="note">{t.heroNote}</p>
           <div className="hero-shot">
-            <img src={`/img/${lang}/screenshot-cover.png`} alt={t.heroAlt} width={1600} height={900} />
+            <img src={`/img/${lang}/screenshot-form.png`} alt={t.heroAlt} width={1600} height={900} />
           </div>
         </div>
 
