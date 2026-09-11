@@ -26,7 +26,8 @@
     "error_rate": "For mange anmodninger. Prøv igen om et par minutter.",
     "close": "Luk",
     "print": "Udskriv",
-    "privacy": "Dine oplysninger bruges udelukkende til behandling af fortrydelsen."
+    "privacy": "Dine oplysninger bruges udelukkende til behandling af fortrydelsen.",
+    "plan_required": "Fortrydelsesfunktionen er ikke aktiv: fortrydelsesknappen er inkluderet i Basic- og Pro-abonnementerne i EU Compliance Suite. Denne note vises kun i temaeditoren."
   },
   "guarantee": {
     "notice_alt": "Lovbestemt garanti – harmoniseret meddelelse om den lovbestemte garanti for overensstemmelse (mindst to år)",

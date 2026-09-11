@@ -26,7 +26,8 @@
     "error_rate": "Zu viele Anfragen. Bitte versuchen Sie es in einigen Minuten erneut.",
     "close": "Schließen",
     "print": "Drucken",
-    "privacy": "Ihre Daten werden ausschließlich zur Bearbeitung des Widerrufs verwendet."
+    "privacy": "Ihre Daten werden ausschließlich zur Bearbeitung des Widerrufs verwendet.",
+    "plan_required": "Widerrufsfunktion nicht aktiv: Der Widerrufsbutton ist im Basic- und Pro-Tarif der EU Compliance Suite enthalten. Dieser Hinweis erscheint nur im Theme-Editor."
   },
   "guarantee": {
     "notice_alt": "Gesetzliche Gewährleistung – harmonisierte Mitteilung über das gesetzliche Gewährleistungsrecht (mindestens zwei Jahre)",

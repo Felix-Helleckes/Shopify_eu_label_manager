@@ -1,160 +1,75 @@
-/** Plan identifiers – must match the keys of the `billing` config in shopify.server.ts. */
+/**
+ * Plans. "Free" (display name "Label") needs no Shopify subscription and unlocks the guarantee/label blocks;
+ * "Basic" and "Pro" are Shopify Billing plans – their keys must match the `billing` config in shopify.server.ts.
+ */
+export const PLAN_FREE = "Free";
 export const PLAN_BASIC = "Basic";
 export const PLAN_PRO = "Pro";
-export const ALL_PLANS = [PLAN_BASIC, PLAN_PRO] as const;
+export const PAID_PLANS = [PLAN_BASIC, PLAN_PRO] as const;
+export const ALL_PLANS = [PLAN_FREE, PLAN_BASIC, PLAN_PRO] as const;
+export type PaidPlanName = (typeof PAID_PLANS)[number];
 export type PlanName = (typeof ALL_PLANS)[number];
 
 export const TRIAL_DAYS = 14;
 
+/** Display names shown to merchants. */
+export const PLAN_LABELS: Record<PlanName, string> = { Free: "Label", Basic: "Basic", Pro: "Pro" };
+
+export function isPaidPlan(plan: string | null | undefined): plan is PaidPlanName {
+  return plan === PLAN_BASIC || plan === PLAN_PRO;
+}
+/** Withdrawal function (button, acknowledgements, log) – Basic and Pro. */
+export function hasWithdrawal(plan: string | null | undefined): boolean {
+  return isPaidPlan(plan);
+}
+/** Order tagging, CSV export, priority support – Pro only. */
+export function hasPro(plan: string | null | undefined): boolean {
+  return plan === PLAN_PRO;
+}
+
 type Features = Record<string, string[]>;
 
+const FREE_FEATURES: Features = {
+  en: ["Harmonised legal-guarantee notice block (24 EU languages)", "GARAN label per product from metafields", "Right-to-repair notice block", "No subscription, no time limit"],
+  de: ["Block „Gesetzlicher Gewährleistungshinweis“ (24 EU-Sprachen)", "GARAN-Kennzeichnung pro Produkt aus Metafeldern", "Block „Hinweis zum Recht auf Reparatur“", "Kein Abo, keine zeitliche Begrenzung"],
+  fr: ["Bloc « Avis harmonisé de garantie légale » (24 langues de l’UE)", "Label GARAN par produit depuis les métachamps", "Bloc « Avis sur le droit à la réparation »", "Sans abonnement, sans limite de durée"],
+  es: ["Bloque «Aviso armonizado de garantía legal» (24 idiomas de la UE)", "Etiqueta GARAN por producto desde metacampos", "Bloque «Aviso sobre el derecho a reparación»", "Sin suscripción, sin límite de tiempo"],
+  it: ["Blocco «Avviso armonizzato sulla garanzia legale» (24 lingue UE)", "Etichetta GARAN per prodotto dai metacampi", "Blocco «Avviso sul diritto alla riparazione»", "Nessun abbonamento, nessun limite di tempo"],
+  nl: ["Blok “Geharmoniseerde kennisgeving wettelijke garantie” (24 EU-talen)", "GARAN-label per product uit metavelden", "Blok “Kennisgeving recht op reparatie”", "Geen abonnement, geen tijdslimiet"],
+  pl: ["Blok „Zharmonizowana informacja o gwarancji prawnej” (24 języki UE)", "Etykieta GARAN na produkt z metapól", "Blok „Informacja o prawie do naprawy”", "Bez abonamentu, bez limitu czasu"],
+  pt: ["Bloco «Aviso harmonizado de garantia legal» (24 línguas da UE)", "Rótulo GARAN por produto a partir de metacampos", "Bloco «Aviso sobre o direito à reparação»", "Sem subscrição, sem limite de tempo"],
+  sv: ["Block ”Harmoniserat meddelande om rättslig garanti” (24 EU-språk)", "GARAN-märkning per produkt från metafält", "Block ”Information om rätten till reparation”", "Ingen prenumeration, ingen tidsgräns"],
+  da: ["Blok ”Harmoniseret meddelelse om lovbestemt garanti” (24 EU-sprog)", "GARAN-mærke pr. produkt fra metafelter", "Blok ”Oplysning om retten til reparation”", "Intet abonnement, ingen tidsgrænse"],
+};
+
 const BASIC_FEATURES: Features = {
-  en: [
-    "Compliant withdrawal function (Art. 11a CRD) in 24 EU languages",
-    "Automatic time-stamped acknowledgement of receipt to the consumer",
-    "Withdrawal log with checksum and CSV export",
-    "Matching to the Shopify order",
-  ],
-  de: [
-    "Gesetzeskonforme Widerrufsfunktion (Art. 11a VRRL / § 356a BGB) in 24 EU-Sprachen",
-    "Automatische Eingangsbestätigung mit Zeitstempel an den Kunden",
-    "Widerrufsprotokoll mit Prüfsumme und CSV-Export",
-    "Zuordnung zur Shopify-Bestellung",
-  ],
-  fr: [
-    "Fonction de rétractation conforme (art. 11 bis DDC) en 24 langues de l’UE",
-    "Accusé de réception horodaté envoyé automatiquement au consommateur",
-    "Journal des rétractations avec somme de contrôle et export CSV",
-    "Association à la commande Shopify",
-  ],
-  es: [
-    "Función de desistimiento conforme (art. 11 bis DDC) en 24 idiomas de la UE",
-    "Acuse de recibo automático con fecha y hora para el consumidor",
-    "Registro de desistimientos con suma de comprobación y exportación CSV",
-    "Asignación al pedido de Shopify",
-  ],
-  it: [
-    "Funzione di recesso conforme (art. 11 bis DDC) in 24 lingue UE",
-    "Conferma di ricezione automatica con data e ora al consumatore",
-    "Registro dei recessi con checksum ed esportazione CSV",
-    "Abbinamento all’ordine Shopify",
-  ],
-  nl: [
-    "Conforme herroepingsfunctie (art. 11 bis RCR) in 24 EU-talen",
-    "Automatische ontvangstbevestiging met tijdstempel aan de consument",
-    "Herroepingslogboek met controlesom en CSV-export",
-    "Koppeling aan de Shopify-bestelling",
-  ],
-  pl: [
-    "Zgodna z prawem funkcja odstąpienia (art. 11a dyrektywy) w 24 językach UE",
-    "Automatyczne potwierdzenie odbioru ze znacznikiem czasu dla konsumenta",
-    "Rejestr odstąpień z sumą kontrolną i eksportem CSV",
-    "Przypisanie do zamówienia Shopify",
-  ],
-  pt: [
-    "Função de retratação conforme (art. 11.º-A DDC) em 24 línguas da UE",
-    "Acuse de receção automático com data e hora para o consumidor",
-    "Registo de retratações com soma de verificação e exportação CSV",
-    "Associação à encomenda Shopify",
-  ],
-  sv: [
-    "Regelenlig ångerfunktion (art. 11a KRD) på 24 EU-språk",
-    "Automatisk tidsstämplad mottagningsbekräftelse till konsumenten",
-    "Ångerlogg med kontrollsumma och CSV-export",
-    "Matchning mot Shopify-ordern",
-  ],
-  da: [
-    "Lovlig fortrydelsesfunktion (art. 11a FRD) på 24 EU-sprog",
-    "Automatisk tidsstemplet kvittering til forbrugeren",
-    "Fortrydelseslog med kontrolsum og CSV-eksport",
-    "Matchning med Shopify-ordren",
-  ],
+  en: ["Everything in Label", "Withdrawal button with the official wording in 24 EU languages", "Two-step confirmation and time-stamped acknowledgement of receipt", "Withdrawal log with checksum and order matching", "E-mail notification to you for every withdrawal"],
+  de: ["Alles aus Label", "Widerrufsbutton mit amtlicher Beschriftung in 24 EU-Sprachen", "Zweistufige Bestätigung und Eingangsbestätigung mit Zeitstempel", "Widerrufsprotokoll mit Prüfsumme und Bestellzuordnung", "E-Mail-Benachrichtigung an Sie bei jedem Widerruf"],
+  fr: ["Tout le contenu de Label", "Bouton de rétractation avec le libellé officiel en 24 langues de l’UE", "Confirmation en deux étapes et accusé de réception horodaté", "Journal des rétractations avec somme de contrôle et association aux commandes", "Notification par e-mail à chaque rétractation"],
+  es: ["Todo lo de Label", "Botón de desistimiento con el texto oficial en 24 idiomas de la UE", "Confirmación en dos pasos y acuse de recibo con fecha y hora", "Registro de desistimientos con suma de comprobación y asignación de pedidos", "Notificación por correo en cada desistimiento"],
+  it: ["Tutto quello di Label", "Pulsante di recesso con la dicitura ufficiale in 24 lingue UE", "Conferma in due passaggi e conferma di ricezione con data e ora", "Registro dei recessi con checksum e abbinamento ordini", "Notifica e-mail per ogni recesso"],
+  nl: ["Alles uit Label", "Herroepingsknop met de officiële tekst in 24 EU-talen", "Bevestiging in twee stappen en ontvangstbevestiging met tijdstempel", "Herroepingslogboek met controlesom en koppeling aan bestellingen", "E-mailmelding bij elke herroeping"],
+  pl: ["Wszystko z planu Label", "Przycisk odstąpienia z oficjalnym brzmieniem w 24 językach UE", "Dwustopniowe potwierdzenie i potwierdzenie odbioru ze znacznikiem czasu", "Rejestr odstąpień z sumą kontrolną i przypisaniem zamówień", "Powiadomienie e-mail o każdym odstąpieniu"],
+  pt: ["Tudo o que está no Label", "Botão de retratação com a redação oficial em 24 línguas da UE", "Confirmação em dois passos e acuse de receção com data e hora", "Registo de retratações com soma de verificação e associação de encomendas", "Notificação por e-mail em cada retratação"],
+  sv: ["Allt i Label", "Ångerknapp med den officiella lydelsen på 24 EU-språk", "Bekräftelse i två steg och tidsstämplad mottagningsbekräftelse", "Ångerlogg med kontrollsumma och ordermatchning", "E-postavisering vid varje ångerärende"],
+  da: ["Alt i Label", "Fortrydelsesknap med den officielle ordlyd på 24 EU-sprog", "Totrinsbekræftelse og tidsstemplet kvittering", "Fortrydelseslog med kontrolsum og ordrematchning", "E-mailbesked ved hver fortrydelse"],
 };
 
 const PRO_FEATURES: Features = {
-  en: [
-    "Everything in Basic",
-    "Harmonised legal-guarantee notice (Reg. (EU) 2025/1960) from 27 Sept 2026",
-    "Harmonised GARAN label for durability guarantees per product",
-    "Right-to-repair notice",
-    "Automatic order tagging + merchant notification",
-    "Priority support",
-  ],
-  de: [
-    "Alles aus Basic",
-    "Harmonisierter Gewährleistungshinweis (VO (EU) 2025/1960) ab 27.09.2026",
-    "Harmonisierte GARAN-Kennzeichnung für Haltbarkeitsgarantien pro Produkt",
-    "Hinweis zum Recht auf Reparatur",
-    "Bestellung automatisch taggen + Händlerbenachrichtigung",
-    "Prioritäts-Support",
-  ],
-  fr: [
-    "Tout le contenu de Basic",
-    "Avis harmonisé de garantie légale (règl. (UE) 2025/1960) dès le 27/09/2026",
-    "Label GARAN harmonisé pour les garanties de durabilité par produit",
-    "Avis sur le droit à la réparation",
-    "Balisage automatique des commandes + notification au marchand",
-    "Assistance prioritaire",
-  ],
-  es: [
-    "Todo lo de Basic",
-    "Aviso armonizado de garantía legal (Regl. (UE) 2025/1960) desde el 27/09/2026",
-    "Etiqueta GARAN armonizada para garantías de durabilidad por producto",
-    "Aviso sobre el derecho a reparación",
-    "Etiquetado automático de pedidos + notificación al comerciante",
-    "Soporte prioritario",
-  ],
-  it: [
-    "Tutto quello di Basic",
-    "Avviso armonizzato sulla garanzia legale (reg. (UE) 2025/1960) dal 27/09/2026",
-    "Etichetta GARAN armonizzata per garanzie di durabilità per prodotto",
-    "Avviso sul diritto alla riparazione",
-    "Tag automatico degli ordini + notifica al commerciante",
-    "Supporto prioritario",
-  ],
-  nl: [
-    "Alles uit Basic",
-    "Geharmoniseerde kennisgeving wettelijke garantie (Vo. (EU) 2025/1960) vanaf 27-09-2026",
-    "Geharmoniseerd GARAN-label voor duurzaamheidsgaranties per product",
-    "Kennisgeving recht op reparatie",
-    "Automatisch taggen van bestellingen + melding aan de verkoper",
-    "Prioriteitsondersteuning",
-  ],
-  pl: [
-    "Wszystko z planu Basic",
-    "Zharmonizowana informacja o gwarancji prawnej (rozp. (UE) 2025/1960) od 27.09.2026",
-    "Zharmonizowana etykieta GARAN dla gwarancji trwałości na produkt",
-    "Informacja o prawie do naprawy",
-    "Automatyczne tagowanie zamówień + powiadomienie sprzedawcy",
-    "Priorytetowe wsparcie",
-  ],
-  pt: [
-    "Tudo o que está no Basic",
-    "Aviso harmonizado de garantia legal (Reg. (UE) 2025/1960) a partir de 27/09/2026",
-    "Rótulo GARAN harmonizado para garantias de durabilidade por produto",
-    "Aviso sobre o direito à reparação",
-    "Etiquetagem automática de encomendas + notificação ao comerciante",
-    "Suporte prioritário",
-  ],
-  sv: [
-    "Allt i Basic",
-    "Harmoniserat meddelande om rättslig garanti (förordning (EU) 2025/1960) från 27/9 2026",
-    "Harmoniserad GARAN-märkning för hållbarhetsgarantier per produkt",
-    "Information om rätten till reparation",
-    "Automatisk taggning av ordrar + avisering till handlaren",
-    "Prioriterad support",
-  ],
-  da: [
-    "Alt i Basic",
-    "Harmoniseret meddelelse om lovbestemt garanti (forordning (EU) 2025/1960) fra 27/9 2026",
-    "Harmoniseret GARAN-mærke for holdbarhedsgarantier pr. produkt",
-    "Oplysning om retten til reparation",
-    "Automatisk tagging af ordrer + meddelelse til forhandleren",
-    "Prioriteret support",
-  ],
+  en: ["Everything in Basic", "Automatic order tagging and withdrawal metafield", "CSV export of the withdrawal log", "Priority support"],
+  de: ["Alles aus Basic", "Bestellung automatisch taggen + Widerrufs-Metafeld", "CSV-Export des Widerrufsprotokolls", "Prioritäts-Support"],
+  fr: ["Tout le contenu de Basic", "Balisage automatique des commandes + métachamp de rétractation", "Export CSV du journal des rétractations", "Assistance prioritaire"],
+  es: ["Todo lo de Basic", "Etiquetado automático de pedidos + metacampo de desistimiento", "Exportación CSV del registro de desistimientos", "Soporte prioritario"],
+  it: ["Tutto quello di Basic", "Tag automatico degli ordini + metacampo del recesso", "Esportazione CSV del registro dei recessi", "Supporto prioritario"],
+  nl: ["Alles uit Basic", "Automatisch taggen van bestellingen + herroepingsmetaveld", "CSV-export van het herroepingslogboek", "Prioriteitsondersteuning"],
+  pl: ["Wszystko z planu Basic", "Automatyczne tagowanie zamówień + metapole odstąpienia", "Eksport CSV rejestru odstąpień", "Priorytetowe wsparcie"],
+  pt: ["Tudo o que está no Basic", "Etiquetagem automática de encomendas + metacampo de retratação", "Exportação CSV do registo de retratações", "Suporte prioritário"],
+  sv: ["Allt i Basic", "Automatisk taggning av ordrar + ångermetafält", "CSV-export av ångerloggen", "Prioriterad support"],
+  da: ["Alt i Basic", "Automatisk tagging af ordrer + fortrydelsesmetafelt", "CSV-eksport af fortrydelsesloggen", "Prioriteret support"],
 };
 
 export const PLAN_DETAILS: Record<PlanName, { price: number; currency: string; features: Features }> = {
+  [PLAN_FREE]: { price: 0, currency: "USD", features: FREE_FEATURES },
   [PLAN_BASIC]: { price: 6.99, currency: "USD", features: BASIC_FEATURES },
   [PLAN_PRO]: { price: 12.99, currency: "USD", features: PRO_FEATURES },
 };

@@ -26,7 +26,8 @@
     "error_rate": "Too many requests. Please try again in a few minutes.",
     "close": "Close",
     "print": "Print",
-    "privacy": "Your data will be used only to process the withdrawal."
+    "privacy": "Your data will be used only to process the withdrawal.",
+    "plan_required": "Withdrawal function not active: the withdrawal button is included in the Basic and Pro plans of EU Compliance Suite. This note is only shown in the theme editor."
   },
   "guarantee": {
     "notice_alt": "Legal guarantee – harmonised notice on the legal guarantee of conformity (minimum two years)",

@@ -26,7 +26,8 @@
     "error_rate": "Troppe richieste. Riprovi tra qualche minuto.",
     "close": "Chiudi",
     "print": "Stampa",
-    "privacy": "I suoi dati saranno utilizzati esclusivamente per gestire il recesso."
+    "privacy": "I suoi dati saranno utilizzati esclusivamente per gestire il recesso.",
+    "plan_required": "Funzione di recesso non attiva: il pulsante di recesso è incluso nei piani Basic e Pro di EU Compliance Suite. Questa nota è visibile solo nell’editor del tema."
   },
   "guarantee": {
     "notice_alt": "Garanzia legale – avviso armonizzato sulla garanzia legale di conformità (minimo due anni)",

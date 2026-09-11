@@ -5,10 +5,10 @@ import db from "../db.server";
 import { requireShop, themeEditorLinks } from "../lib/admin.server";
 import { isMailConfigured } from "../lib/email.server";
 import { OFFICIAL_LABELS } from "../lib/labels";
-import { PLAN_PRO } from "../lib/plans";
+import { PLAN_FREE, PLAN_LABELS, PLAN_PRO, type PlanName } from "../lib/plans";
 import { en, type AdminKey } from "../lib/admin-i18n";
 
-const KEYS = Object.keys(en).filter((k) => k.startsWith("dash.") || k.startsWith("nav.")) as AdminKey[];
+const KEYS = Object.keys(en).filter((k) => k.startsWith("dash.") || k.startsWith("nav.") || k.startsWith("common.")) as AdminKey[];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { shop, plan, t } = await requireShop(request);
@@ -27,6 +27,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     s,
     shopName: shop.name || shop.domain,
     plan,
+    planLabel: plan ? PLAN_LABELS[plan as PlanName] ?? plan : null,
+    isFree: plan === PLAN_FREE,
     isPro: plan === PLAN_PRO,
     mailConfigured: isMailConfigured(),
     merchantEmail: shop.merchantEmail || shop.email || "",
@@ -49,7 +51,14 @@ export default function Dashboard() {
 
   return (
     <s-page heading={s["dash.title"]}>
-      {!d.mailConfigured && (
+      {d.isFree && (
+        <s-banner heading={s["dash.free.title"]} tone="warning">
+          <s-paragraph>
+            {s["dash.free.body"]} <s-link href="/app/billing?upgrade=withdrawal">{s["dash.free.link"]}</s-link>
+          </s-paragraph>
+        </s-banner>
+      )}
+      {!d.mailConfigured && !d.isFree && (
         <s-banner heading={s["dash.mail.title"]} tone="critical">
           <s-paragraph>{s["dash.mail.body"]}</s-paragraph>
         </s-banner>
@@ -100,7 +109,6 @@ export default function Dashboard() {
           <s-list-item>
             <s-text type="strong">{s["dash.step4.title"]}</s-text> {fill(s["dash.step4.body"], { days })}{" "}
             <s-link href="/app/guarantee">{s["dash.step4.link"]}</s-link>
-            {!d.isPro && ` ${s["dash.proOnly"]}`}
           </s-list-item>
         </s-ordered-list>
       </s-section>
@@ -115,7 +123,7 @@ export default function Dashboard() {
 
       <s-section slot="aside" heading={s["dash.plan"]}>
         <s-paragraph>
-          {s["dash.currentPlan"]} <s-badge tone={d.isPro ? "success" : "info"}>{d.plan ?? s["dash.trial"]}</s-badge>
+          {s["dash.currentPlan"]} <s-badge tone={d.isPro ? "success" : "info"}>{d.planLabel ?? s["dash.trial"]}</s-badge>
         </s-paragraph>
         <s-paragraph>
           <s-link href="/app/billing">{s["dash.managePlan"]}</s-link>

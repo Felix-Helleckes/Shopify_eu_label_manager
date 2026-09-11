@@ -50,11 +50,13 @@ one app, in all 24 official EU languages.
 5. App: Widerrufe-Liste und Detailansicht
 6. Produktseite mit Gewährleistungshinweis und GARAN-Kennzeichnung
 
-## Preise
+## Preise (Stand 11.09.2026, Free-Tier eingeführt)
 
-- Basic – 6,99 USD/Monat: Widerrufsfunktion, Eingangsbestätigungen, Protokoll, CSV-Export
-- Pro – 12,99 USD/Monat: zusätzlich Gewährleistungshinweis, GARAN-Kennzeichnung, Reparaturhinweis, Tagging, Prioritäts-Support
-- 14 Tage kostenlose Testphase
+- Label – kostenlos (Handle `label`, kein Abo): Gewährleistungshinweis-Block, GARAN-Kennzeichnung pro Produkt, Reparaturhinweis
+- Basic – 6,99 USD/Monat (Handle `basic`): + Widerrufsbutton in 24 Sprachen, zweistufige Bestätigung, Eingangsbestätigung mit Zeitstempel, Protokoll mit Bestellzuordnung, Händler-Benachrichtigung
+- Pro – 12,99 USD/Monat (Handle `pro`): + Bestellung automatisch taggen + Metafeld, CSV-Export, Prioritäts-Support
+- 14 Tage kostenlose Testphase für Basic und Pro
+- Technik: ohne Abo ist `Shop.plan = "Free"`; der Wert wird in das App-Metafeld `$app:billing.plan` gespiegelt, die Widerrufs-Blöcke blenden sich bei `free` aus (im Theme-Editor mit Hinweis), der App-Proxy antwortet 402.
 
 ## Suchbegriffe
 

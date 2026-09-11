@@ -3,6 +3,7 @@ import type { Shop, Withdrawal } from "@prisma/client";
 import prisma from "../db.server";
 import { sendMail } from "./email.server";
 import { ackStrings, fill, merchantStrings, pickLocale } from "./i18n.server";
+import { hasPro } from "./plans";
 
 /* ------------------------------------------------------------------ */
 /* Types                                                               */
@@ -508,7 +509,7 @@ export async function processWithdrawal(params: {
     const order = await findMatchingOrder(admin, input.contractRef, input.contactEmail);
     if (order) {
       let orderTaggedAt: Date | null = null;
-      if (shop.tagOrders) {
+      if (shop.tagOrders && hasPro(shop.plan)) {
         const tagged = await tagOrder(admin, order.id, shop.orderTag || "EU-Widerruf", {
           receiptNo: record.receiptNo,
           submittedAt: submittedAt.toISOString(),

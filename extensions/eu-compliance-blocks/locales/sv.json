@@ -26,7 +26,8 @@
     "error_rate": "För många förfrågningar. Försök igen om några minuter.",
     "close": "Stäng",
     "print": "Skriv ut",
-    "privacy": "Dina uppgifter används endast för att hantera ångerärendet."
+    "privacy": "Dina uppgifter används endast för att hantera ångerärendet.",
+    "plan_required": "Ångerfunktionen är inte aktiv: ångerknappen ingår i planerna Basic och Pro i EU Compliance Suite. Denna notis visas bara i temaredigeraren."
   },
   "guarantee": {
     "notice_alt": "Rättslig garanti – harmoniserat meddelande om den rättsliga garantin om avtalsenlighet (minst två år)",

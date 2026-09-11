@@ -4,9 +4,11 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import db from "../db.server";
 import { requireShop } from "../lib/admin.server";
 import { statusLabels } from "../lib/admin-i18n";
+import { hasPro, requireWithdrawalPlan } from "../lib/billing.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { shop, t, localeTag } = await requireShop(request);
+  const { shop, t, localeTag, plan } = await requireShop(request);
+  requireWithdrawalPlan(plan, request);
   const url = new URL(request.url);
   const q = (url.searchParams.get("q") || "").trim();
   const status = url.searchParams.get("status") || "";
@@ -50,11 +52,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     q,
     status,
     localeTag,
+    canExport: hasPro(plan),
     timezone: shop.timezone || "Europe/Berlin",
     statuses: statusLabels(t),
     s: {
       title: t("wd.title"),
       export: t("wd.export"),
+      exportPro: t("wd.exportPro"),
       file: t("wd.file"),
       search: t("wd.search"),
       searchPlaceholder: t("wd.searchPlaceholder"),
@@ -78,7 +82,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export default function Withdrawals() {
-  const { rows, q, status, timezone, localeTag, statuses, s } = useLoaderData<typeof loader>();
+  const { rows, q, status, timezone, localeTag, statuses, s, canExport } = useLoaderData<typeof loader>();
   const [params] = useSearchParams();
   const fmt = new Intl.DateTimeFormat(localeTag, { dateStyle: "short", timeStyle: "short", timeZone: timezone });
 
@@ -98,9 +102,15 @@ export default function Withdrawals() {
 
   return (
     <s-page heading={s.title}>
-      <s-button slot="primary-action" onClick={exportCsv}>
-        {s.export}
-      </s-button>
+      {canExport ? (
+        <s-button slot="primary-action" onClick={exportCsv}>
+          {s.export}
+        </s-button>
+      ) : (
+        <s-button slot="primary-action" href="/app/billing?upgrade=export" variant="secondary">
+          {s.exportPro}
+        </s-button>
+      )}
 
       <s-section>
         <Form method="get">

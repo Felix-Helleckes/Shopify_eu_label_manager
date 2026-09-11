@@ -26,7 +26,8 @@
     "error_rate": "Demasiados pedidos. Tente novamente dentro de alguns minutos.",
     "close": "Fechar",
     "print": "Imprimir",
-    "privacy": "Os seus dados serão utilizados exclusivamente para tratar a retratação."
+    "privacy": "Os seus dados serão utilizados exclusivamente para tratar a retratação.",
+    "plan_required": "Função de retratação inativa: o botão de retratação está incluído nos planos Basic e Pro da EU Compliance Suite. Esta nota só aparece no editor de temas."
   },
   "guarantee": {
     "notice_alt": "Garantia legal – aviso harmonizado sobre a garantia legal de conformidade (mínimo de dois anos)",

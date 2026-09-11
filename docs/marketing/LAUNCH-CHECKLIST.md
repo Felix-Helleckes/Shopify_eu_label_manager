@@ -44,7 +44,7 @@ Alles, was nur mit deinen Accounts geht. Reihenfolge = Priorität. Texte liegen 
 13. Product Hunt Launch (Text in `posts.md`), zweiter LinkedIn-Post „jetzt im App Store“.
 14. Erste 5 Händler persönlich um eine Bewertung bitten (Bewertungen entscheiden das Ranking).
 
-## E. Entscheidung: kostenloser Einstiegstarif (Empfehlung: ja)
+## E. Kostenloser Einstiegstarif – umgesetzt (11.09.2026)
 
 Alle Wettbewerber haben einen Free-Tier. Vorschlag: „Label“-Tarif kostenlos (Gewährleistungshinweis + GARAN), Basic
 6,99 $ (Widerruf), Pro 12,99 $ (alles + Tagging/Benachrichtigung/Support). Umsetzung durch mich ~2 Stunden

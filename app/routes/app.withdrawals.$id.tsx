@@ -5,10 +5,12 @@ import db from "../db.server";
 import { requireShop } from "../lib/admin.server";
 import { statusLabels } from "../lib/admin-i18n";
 import { STATUS_KEYS } from "../lib/status";
+import { requireWithdrawalPlan } from "../lib/billing.server";
 import { formatTimestamp, resendAcknowledgement } from "../lib/withdrawal.server";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  const { shop, t, localeTag } = await requireShop(request);
+  const { shop, t, localeTag, plan } = await requireShop(request);
+  requireWithdrawalPlan(plan, request);
   const w = await db.withdrawal.findFirst({ where: { id: params.id, shop: shop.domain } });
   if (!w) throw new Response("Not found", { status: 404 });
   const store = shop.domain.replace(".myshopify.com", "");
@@ -66,7 +68,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 };
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
-  const { shop, t } = await requireShop(request);
+  const { shop, t, plan } = await requireShop(request);
+  requireWithdrawalPlan(plan, request);
   const form = await request.formData();
   const intent = String(form.get("intent") || "save");
   const existing = await db.withdrawal.findFirst({ where: { id: params.id, shop: shop.domain } });

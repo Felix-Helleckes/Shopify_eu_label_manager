@@ -2,6 +2,7 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { authenticate } from "../shopify.server";
 import { getOrCreateShop, syncShopFromAdmin } from "../lib/shop.server";
 import { hashIp, isRateLimited, processWithdrawal, validateInput } from "../lib/withdrawal.server";
+import { hasWithdrawal } from "../lib/plans";
 
 /**
  * Storefront endpoint of the withdrawal function.
@@ -59,6 +60,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       console.error("[proxy] shop sync failed", error);
     }
   }
+  // The withdrawal function is part of the Basic and Pro plans; the theme block hides the button on the free plan.
+  if (!hasWithdrawal(shop.plan)) return json({ ok: false, error: "plan_required" }, 402);
   const result = await processWithdrawal({
     admin,
     shop,

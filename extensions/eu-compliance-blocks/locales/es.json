@@ -26,7 +26,8 @@
     "error_rate": "Demasiadas solicitudes. Inténtelo de nuevo en unos minutos.",
     "close": "Cerrar",
     "print": "Imprimir",
-    "privacy": "Sus datos se utilizarán únicamente para tramitar el desistimiento."
+    "privacy": "Sus datos se utilizarán únicamente para tramitar el desistimiento.",
+    "plan_required": "Función de desistimiento no activa: el botón de desistimiento está incluido en los planes Basic y Pro de EU Compliance Suite. Este aviso solo se muestra en el editor de temas."
   },
   "guarantee": {
     "notice_alt": "Garantía legal – aviso armonizado sobre la garantía legal de conformidad (mínimo dos años)",

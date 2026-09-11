@@ -26,7 +26,8 @@
     "error_rate": "Te veel verzoeken. Probeer het over enkele minuten opnieuw.",
     "close": "Sluiten",
     "print": "Afdrukken",
-    "privacy": "Uw gegevens worden uitsluitend gebruikt voor de afhandeling van de herroeping."
+    "privacy": "Uw gegevens worden uitsluitend gebruikt voor de afhandeling van de herroeping.",
+    "plan_required": "Herroepingsfunctie niet actief: de herroepingsknop is inbegrepen in de Basic- en Pro-abonnementen van EU Compliance Suite. Deze melding verschijnt alleen in de thema-editor."
   },
   "guarantee": {
     "notice_alt": "Wettelijke garantie – geharmoniseerde kennisgeving over de wettelijke conformiteitsgarantie (minimaal twee jaar)",

@@ -49,3 +49,5 @@
 .eu-wd__success { margin: 0 0 1rem; }
 @media (max-width: 480px) { .eu-wd__summary { grid-template-columns: 1fr; } .eu-wd__dialog { padding: 1.1rem; } }
 @media print { .eu-wd__dialog { box-shadow: none; max-width: none; width: auto; } .eu-wd__actions, .eu-wd__close-form { display: none; } }
+
+.eu-wd-plan-note{margin:12px;padding:10px 14px;border:1px dashed #b45309;background:#fffbeb;color:#92400e;font:14px/1.4 sans-serif;border-radius:8px;max-width:420px}

@@ -168,6 +168,15 @@ const fr: AdminStrings = {
   "bil.switchTo": "Passer à {plan}",
   "bil.start": "Démarrer {plan}",
   "bil.unknown": "Forfait inconnu",
+  "dash.free.title": "Fonction de rétractation inactive",
+  "dash.free.body": "Vous utilisez le forfait gratuit Label : l’avis de garantie légale et le label GARAN fonctionnent. Le bouton de rétractation et les accusés de réception nécessitent le forfait Basic ou Pro (essai gratuit de 14 jours).",
+  "dash.free.link": "Choisir un forfait",
+  "wd.exportPro": "Export CSV (Pro)",
+  "bil.free": "gratuit",
+  "bil.switchFree": "Passer au forfait gratuit Label",
+  "bil.cancelNote": "Le passage à Label résilie l’abonnement payant ; le bouton de rétractation est alors masqué dans votre boutique.",
+  "bil.upgradeWithdrawal": "La fonction de rétractation nécessite le forfait Basic ou Pro. Les deux commencent par un essai gratuit de 14 jours.",
+  "bil.upgradeExport": "L’export CSV est inclus dans le forfait Pro.",
 };
 
 const es: AdminStrings = {
@@ -337,6 +346,15 @@ const es: AdminStrings = {
   "bil.switchTo": "Cambiar a {plan}",
   "bil.start": "Empezar {plan}",
   "bil.unknown": "Plan desconocido",
+  "dash.free.title": "Función de desistimiento no activa",
+  "dash.free.body": "Usa el plan gratuito Label: el aviso de garantía legal y la etiqueta GARAN funcionan. El botón de desistimiento y los acuses de recibo requieren el plan Basic o Pro (14 días de prueba gratuita).",
+  "dash.free.link": "Elegir plan",
+  "wd.exportPro": "Exportar CSV (Pro)",
+  "bil.free": "gratis",
+  "bil.switchFree": "Cambiar al plan gratuito Label",
+  "bil.cancelNote": "Cambiar a Label cancela la suscripción de pago; el botón de desistimiento se oculta entonces en su tienda.",
+  "bil.upgradeWithdrawal": "La función de desistimiento requiere el plan Basic o Pro. Ambos empiezan con 14 días de prueba gratuita.",
+  "bil.upgradeExport": "La exportación CSV está incluida en el plan Pro.",
 };
 
 const it: AdminStrings = {
@@ -506,6 +524,15 @@ const it: AdminStrings = {
   "bil.switchTo": "Passa a {plan}",
   "bil.start": "Avvia {plan}",
   "bil.unknown": "Piano sconosciuto",
+  "dash.free.title": "Funzione di recesso non attiva",
+  "dash.free.body": "Stai usando il piano gratuito Label: l’avviso sulla garanzia legale e l’etichetta GARAN funzionano. Il pulsante di recesso e le conferme di ricezione richiedono il piano Basic o Pro (14 giorni di prova gratuita).",
+  "dash.free.link": "Scegli un piano",
+  "wd.exportPro": "Esporta CSV (Pro)",
+  "bil.free": "gratuito",
+  "bil.switchFree": "Passa al piano gratuito Label",
+  "bil.cancelNote": "Il passaggio a Label annulla l’abbonamento a pagamento; il pulsante di recesso viene poi nascosto nel negozio.",
+  "bil.upgradeWithdrawal": "La funzione di recesso richiede il piano Basic o Pro. Entrambi iniziano con 14 giorni di prova gratuita.",
+  "bil.upgradeExport": "L’esportazione CSV è inclusa nel piano Pro.",
 };
 
 const nl: AdminStrings = {
@@ -675,6 +702,15 @@ const nl: AdminStrings = {
   "bil.switchTo": "Overstappen naar {plan}",
   "bil.start": "{plan} starten",
   "bil.unknown": "Onbekend abonnement",
+  "dash.free.title": "Herroepingsfunctie niet actief",
+  "dash.free.body": "U gebruikt het gratis Label-abonnement: de kennisgeving wettelijke garantie en het GARAN-label werken. De herroepingsknop en de ontvangstbevestigingen vereisen het Basic- of Pro-abonnement (14 dagen gratis proberen).",
+  "dash.free.link": "Abonnement kiezen",
+  "wd.exportPro": "CSV exporteren (Pro)",
+  "bil.free": "gratis",
+  "bil.switchFree": "Overstappen naar het gratis Label-abonnement",
+  "bil.cancelNote": "Overstappen naar Label beëindigt het betaalde abonnement; de herroepingsknop wordt dan in uw shop verborgen.",
+  "bil.upgradeWithdrawal": "De herroepingsfunctie vereist het Basic- of Pro-abonnement. Beide beginnen met 14 dagen gratis proberen.",
+  "bil.upgradeExport": "CSV-export is inbegrepen in het Pro-abonnement.",
 };
 
 const pl: AdminStrings = {
@@ -844,6 +880,15 @@ const pl: AdminStrings = {
   "bil.switchTo": "Przejdź na {plan}",
   "bil.start": "Rozpocznij {plan}",
   "bil.unknown": "Nieznany plan",
+  "dash.free.title": "Funkcja odstąpienia nieaktywna",
+  "dash.free.body": "Korzystasz z bezpłatnego planu Label: informacja o gwarancji prawnej i etykieta GARAN działają. Przycisk odstąpienia i potwierdzenia odbioru wymagają planu Basic lub Pro (14 dni bezpłatnego testu).",
+  "dash.free.link": "Wybierz plan",
+  "wd.exportPro": "Eksport CSV (Pro)",
+  "bil.free": "bezpłatnie",
+  "bil.switchFree": "Przejdź na bezpłatny plan Label",
+  "bil.cancelNote": "Przejście na Label anuluje płatny abonament; przycisk odstąpienia zostanie wtedy ukryty w sklepie.",
+  "bil.upgradeWithdrawal": "Funkcja odstąpienia wymaga planu Basic lub Pro. Oba zaczynają się od 14-dniowego bezpłatnego testu.",
+  "bil.upgradeExport": "Eksport CSV jest dostępny w planie Pro.",
 };
 
 const pt: AdminStrings = {
@@ -1013,6 +1058,15 @@ const pt: AdminStrings = {
   "bil.switchTo": "Mudar para {plan}",
   "bil.start": "Iniciar {plan}",
   "bil.unknown": "Plano desconhecido",
+  "dash.free.title": "Função de retratação inativa",
+  "dash.free.body": "Está a usar o plano gratuito Label: o aviso de garantia legal e o rótulo GARAN funcionam. O botão de retratação e os acuses de receção requerem o plano Basic ou Pro (14 dias de teste gratuito).",
+  "dash.free.link": "Escolher plano",
+  "wd.exportPro": "Exportar CSV (Pro)",
+  "bil.free": "gratuito",
+  "bil.switchFree": "Mudar para o plano gratuito Label",
+  "bil.cancelNote": "Mudar para Label cancela a subscrição paga; o botão de retratação é então ocultado na sua loja.",
+  "bil.upgradeWithdrawal": "A função de retratação requer o plano Basic ou Pro. Ambos começam com 14 dias de teste gratuito.",
+  "bil.upgradeExport": "A exportação CSV está incluída no plano Pro.",
 };
 
 const sv: AdminStrings = {
@@ -1182,6 +1236,15 @@ const sv: AdminStrings = {
   "bil.switchTo": "Byt till {plan}",
   "bil.start": "Starta {plan}",
   "bil.unknown": "Okänd plan",
+  "dash.free.title": "Ångerfunktionen är inte aktiv",
+  "dash.free.body": "Du använder den kostnadsfria planen Label: meddelandet om rättslig garanti och GARAN-märkningen fungerar. Ångerknappen och mottagningsbekräftelserna kräver planen Basic eller Pro (14 dagars gratis provperiod).",
+  "dash.free.link": "Välj plan",
+  "wd.exportPro": "Exportera CSV (Pro)",
+  "bil.free": "gratis",
+  "bil.switchFree": "Byt till den kostnadsfria planen Label",
+  "bil.cancelNote": "Byte till Label avslutar den betalda prenumerationen; ångerknappen döljs då i din butik.",
+  "bil.upgradeWithdrawal": "Ångerfunktionen kräver planen Basic eller Pro. Båda börjar med 14 dagars gratis provperiod.",
+  "bil.upgradeExport": "CSV-export ingår i Pro-planen.",
 };
 
 const da: AdminStrings = {
@@ -1351,6 +1414,15 @@ const da: AdminStrings = {
   "bil.switchTo": "Skift til {plan}",
   "bil.start": "Start {plan}",
   "bil.unknown": "Ukendt abonnement",
+  "dash.free.title": "Fortrydelsesfunktionen er ikke aktiv",
+  "dash.free.body": "Du bruger det gratis Label-abonnement: meddelelsen om lovbestemt garanti og GARAN-mærket virker. Fortrydelsesknappen og kvitteringerne kræver Basic- eller Pro-abonnementet (14 dages gratis prøveperiode).",
+  "dash.free.link": "Vælg abonnement",
+  "wd.exportPro": "Eksportér CSV (Pro)",
+  "bil.free": "gratis",
+  "bil.switchFree": "Skift til det gratis Label-abonnement",
+  "bil.cancelNote": "Skift til Label opsiger det betalte abonnement; fortrydelsesknappen skjules derefter i din shop.",
+  "bil.upgradeWithdrawal": "Fortrydelsesfunktionen kræver Basic- eller Pro-abonnementet. Begge starter med 14 dages gratis prøveperiode.",
+  "bil.upgradeExport": "CSV-eksport er inkluderet i Pro-abonnementet.",
 };
 
 export const MORE_ADMIN_STRINGS = { fr, es, it, nl, pl, pt, sv, da };

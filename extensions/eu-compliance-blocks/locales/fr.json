@@ -26,7 +26,8 @@
     "error_rate": "Trop de demandes. Veuillez réessayer dans quelques minutes.",
     "close": "Fermer",
     "print": "Imprimer",
-    "privacy": "Vos données ne seront utilisées que pour le traitement de la rétractation."
+    "privacy": "Vos données ne seront utilisées que pour le traitement de la rétractation.",
+    "plan_required": "Fonction de rétractation inactive : le bouton de rétractation est inclus dans les forfaits Basic et Pro d’EU Compliance Suite. Cette note n’apparaît que dans l’éditeur de thème."
   },
   "guarantee": {
     "notice_alt": "Garantie légale – avis harmonisé sur la garantie légale de conformité (au moins deux ans)",

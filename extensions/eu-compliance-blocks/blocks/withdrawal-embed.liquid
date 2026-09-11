@@ -2,6 +2,10 @@
   App embed: withdrawal function available on every storefront page (continuously available,
   prominently displayed, easily accessible – Art. 11a(1) CRD / § 356a Abs. 1 BGB).
 {%- endcomment -%}
+{%- assign eu_plan = app.metafields.billing.plan.value | default: '' | downcase -%}
+{%- if eu_plan == 'free' -%}
+  {%- if request.design_mode -%}<div class="eu-wd-plan-note" {{ block.shopify_attributes }}>{{ 'withdrawal.plan_required' | t }}</div>{%- endif -%}
+{%- else -%}
 {%- assign uid = 'embed' -%}
 {%- assign withdraw_label = 'withdrawal.button' | t -%}
 {%- if block.settings.label_override != blank -%}{%- assign withdraw_label = block.settings.label_override -%}{%- endif -%}
@@ -11,6 +15,7 @@
   </button>
   {%- render 'eu-withdrawal-dialog', uid: uid, label_override: block.settings.label_override, confirm_override: block.settings.confirm_override, proxy_path: block.settings.proxy_path -%}
 </div>
+{%- endif -%}
 
 {% schema %}
 {

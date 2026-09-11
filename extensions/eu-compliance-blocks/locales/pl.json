@@ -26,7 +26,8 @@
     "error_rate": "Zbyt wiele żądań. Prosimy spróbować ponownie za kilka minut.",
     "close": "Zamknij",
     "print": "Drukuj",
-    "privacy": "Dane zostaną wykorzystane wyłącznie do obsługi odstąpienia od umowy."
+    "privacy": "Dane zostaną wykorzystane wyłącznie do obsługi odstąpienia od umowy.",
+    "plan_required": "Funkcja odstąpienia nieaktywna: przycisk odstąpienia jest dostępny w planach Basic i Pro EU Compliance Suite. Ta uwaga jest widoczna tylko w edytorze motywu."
   },
   "guarantee": {
     "notice_alt": "Gwarancja prawna – zharmonizowana informacja o ustawowej gwarancji zgodności (co najmniej dwa lata)",

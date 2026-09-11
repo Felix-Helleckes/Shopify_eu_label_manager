@@ -7,8 +7,9 @@ import {
 } from "@shopify/shopify-app-react-router/server";
 import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
 import prisma from "./db.server";
-import { PLAN_BASIC, PLAN_DETAILS, PLAN_PRO, TRIAL_DAYS } from "./lib/plans";
+import { PLAN_BASIC, PLAN_DETAILS, PLAN_FREE, PLAN_PRO, TRIAL_DAYS } from "./lib/plans";
 import { syncShopFromAdmin } from "./lib/shop.server";
+import { syncPlanToShop } from "./lib/billing.server";
 
 export const apiVersion = ApiVersion.July26;
 
@@ -46,7 +47,9 @@ const shopify = shopifyApp({
   hooks: {
     afterAuth: async ({ session, admin }) => {
       try {
-        await syncShopFromAdmin(admin, session.shop);
+        const shop = await syncShopFromAdmin(admin, session.shop);
+        // Fresh installs start on the free Label plan; the real plan is synced on the first admin request.
+        if (!shop.plan) await syncPlanToShop(admin, shop, PLAN_FREE);
       } catch (error) {
         console.error(`[afterAuth] could not sync shop ${session.shop}`, error);
       }

@@ -1,6 +1,10 @@
 {%- comment -%}
   App block: withdrawal function button for sections/pages (Art. 11a CRD / § 356a BGB).
 {%- endcomment -%}
+{%- assign eu_plan = app.metafields.billing.plan.value | default: '' | downcase -%}
+{%- if eu_plan == 'free' -%}
+  {%- if request.design_mode -%}<div class="eu-wd-plan-note" {{ block.shopify_attributes }}>{{ 'withdrawal.plan_required' | t }}</div>{%- endif -%}
+{%- else -%}
 {%- assign uid = block.id | remove: '-' | slice: 0, 12 -%}
 {%- assign withdraw_label = 'withdrawal.button' | t -%}
 {%- if block.settings.label_override != blank -%}{%- assign withdraw_label = block.settings.label_override -%}{%- endif -%}
@@ -10,6 +14,7 @@
   <button type="button" class="eu-wd-trigger eu-wd-trigger--{{ block.settings.style }}" data-eu-withdrawal-open="eu-wd-{{ uid }}">{{ withdraw_label }}</button>
   {%- render 'eu-withdrawal-dialog', uid: uid, label_override: block.settings.label_override, confirm_override: block.settings.confirm_override, proxy_path: block.settings.proxy_path -%}
 </div>
+{%- endif -%}
 
 {% schema %}
 {

@@ -2,7 +2,8 @@ import type { Shop } from "@prisma/client";
 import db from "../db.server";
 import { authenticate } from "../shopify.server";
 import { getOrCreateShop, syncShopFromAdmin } from "./shop.server";
-import { requireActivePlan } from "./billing.server";
+import { activePlan, syncPlanToShop } from "./billing.server";
+import type { PlanName } from "./plans";
 import {
   ADMIN_LOCALE_TAGS,
   normalizeAdminLocale,
@@ -38,13 +39,18 @@ export async function resolveAdminLocale(request: Request, shop: Shop): Promise<
 
 export type ShopContext = Awaited<ReturnType<typeof authenticate.admin>> & {
   shop: Shop;
-  plan: string | null;
+  /** Resolved plan ("Free", "Basic", "Pro"); null when billing was skipped. */
+  plan: PlanName | null;
   locale: AdminLocale;
   localeTag: string;
   t: Translator;
 };
 
-/** Authenticates an embedded admin request, loads the Shop row, resolves the UI language and (optionally) enforces billing. */
+/**
+ * Authenticates an embedded admin request, loads the Shop row, resolves the UI language and – unless
+ * `billing: false` – the plan (which is mirrored into the DB and a shop metafield). The free plan never redirects;
+ * routes that need the withdrawal function call requireWithdrawalPlan().
+ */
 export async function requireShop(request: Request, options: { billing?: boolean } = {}): Promise<ShopContext> {
   const ctx = await authenticate.admin(request);
   let shop = await getOrCreateShop(ctx.session.shop);
@@ -58,7 +64,11 @@ export async function requireShop(request: Request, options: { billing?: boolean
   }
   const resolved = await resolveAdminLocale(request, shop);
   shop = resolved.shop;
-  const plan = options.billing === false ? null : await requireActivePlan(ctx.billing, request);
+  let plan: PlanName | null = null;
+  if (options.billing !== false) {
+    plan = await activePlan(ctx.billing);
+    shop = await syncPlanToShop(ctx.admin, shop, plan);
+  }
   return {
     ...ctx,
     shop,

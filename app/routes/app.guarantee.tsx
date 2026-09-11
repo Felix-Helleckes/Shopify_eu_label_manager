@@ -4,13 +4,12 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import db from "../db.server";
 import { requireShop, themeEditorLinks } from "../lib/admin.server";
 import { ensureProductDefinitions, listProductDefinitions, PRODUCT_DEFINITIONS } from "../lib/metafields.server";
-import { PLAN_PRO } from "../lib/plans";
 import { en, type AdminKey } from "../lib/admin-i18n";
 
 const KEYS = Object.keys(en).filter((k) => k.startsWith("gu.")) as AdminKey[];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { shop, plan, admin, t } = await requireShop(request);
+  const { shop, admin, t } = await requireShop(request);
   let definedKeys: string[] = [];
   try {
     definedKeys = await listProductDefinitions(admin);
@@ -21,7 +20,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
     s,
     save: t("common.save"),
-    isPro: plan === PLAN_PRO,
     settings: {
       guaranteeNoticeEnabled: shop.guaranteeNoticeEnabled,
       durabilityLabelEnabled: shop.durabilityLabelEnabled,
@@ -61,7 +59,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Guarantee() {
-  const { s, save, isPro, settings, definitions, links } = useLoaderData<typeof loader>();
+  const { s, save, settings, definitions, links } = useLoaderData<typeof loader>();
   const result = useActionData<typeof action>();
   const nav = useNavigation();
   const busy = nav.state !== "idle";
@@ -73,14 +71,6 @@ export default function Guarantee() {
           <s-paragraph>{result.message}</s-paragraph>
         </s-banner>
       )}
-      {!isPro && (
-        <s-banner heading={s["gu.pro.title"]} tone="info">
-          <s-paragraph>
-            {s["gu.pro.body"]} <s-link href="/app/billing">{s["gu.pro.link"]}</s-link>
-          </s-paragraph>
-        </s-banner>
-      )}
-
       <s-section heading={s["gu.s1.title"]}>
         <s-paragraph>{s["gu.s1.body"]}</s-paragraph>
         <s-paragraph>

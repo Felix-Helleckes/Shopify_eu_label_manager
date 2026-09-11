@@ -52,7 +52,7 @@ const T = {
     kicker: "Shopify app · EU consumer law 2026",
     h1: "The withdrawal button and the new EU guarantee labels – one app, all 24 EU languages.",
     lead:
-      "Since 19 June 2026 every EU online shop must offer a withdrawal button (Art. 11a Consumer Rights Directive). From 27 September 2026 the harmonised legal-guarantee notice and the GARAN label become mandatory (Regulation (EU) 2025/1960). EU Compliance Suite adds all three as theme app blocks – no theme code, official artwork and wording, automatically in your customer's language.",
+      "Since 19 June 2026 every EU online shop must offer a withdrawal button (Art. 11a Consumer Rights Directive). From 27 September 2026 the harmonised legal-guarantee notice and the GARAN label become mandatory (Regulation (EU) 2025/1960). EU Compliance Suite adds all three as theme app blocks – no theme code, official artwork and wording, automatically in your customer's language. The notice and label blocks are free; the withdrawal function starts at 6.99 USD per month.",
     ctaStore: "Install from the Shopify App Store",
     ctaForm: "Install on your store",
     ctaVideo: "Watch the 90-second demo",
@@ -71,11 +71,13 @@ const T = {
     p4: "Storefront blocks in all 24 EU languages, acknowledgement e-mails in 10 languages, admin in English, German, French, Spanish, Italian, Dutch, Polish, Portuguese, Swedish and Danish – following your Shopify admin language.",
     screens: "Screenshots",
     pricing: "Pricing",
+    free: "Label – free",
+    freeF: ["Legal-guarantee notice block (24 EU languages)", "GARAN label per product", "Right-to-repair notice", "No subscription, no time limit"],
     basic: "Basic – 6.99 USD / month",
-    basicF: ["Withdrawal button in 24 EU languages", "Time-stamped acknowledgement of receipt", "Withdrawal log and CSV export", "Matching to the order"],
+    basicF: ["Everything in Label", "Withdrawal button in 24 EU languages", "Two-step confirmation and time-stamped acknowledgement", "Withdrawal log with order matching", "E-mail notification for every withdrawal"],
     pro: "Pro – 12.99 USD / month",
-    proF: ["Everything in Basic", "Legal-guarantee notice", "GARAN label per product", "Repair notice, order tagging, priority support"],
-    trial: "14-day free trial on both plans, cancel monthly via Shopify Billing.",
+    proF: ["Everything in Basic", "Automatic order tagging and withdrawal metafield", "CSV export of the withdrawal log", "Priority support"],
+    trial: "14-day free trial on Basic and Pro, cancel monthly via Shopify Billing. Label stays free.",
     faq: "Questions",
     q1: "Does the button meet the legal wording?",
     a1: "Yes. The app uses the wording prescribed by the directive in each EU language (e.g. “Withdraw from contract here” / “Confirm withdrawal”, in German “Vertrag widerrufen” / “Widerruf bestätigen”).",
@@ -97,7 +99,7 @@ const T = {
     kicker: "Shopify-App · EU-Verbraucherrecht 2026",
     h1: "Widerrufsbutton und die neuen EU-Garantielabels – eine App, alle 24 EU-Sprachen.",
     lead:
-      "Seit dem 19. Juni 2026 muss jeder Onlineshop in der EU einen Widerrufsbutton anbieten (Art. 11a Verbraucherrechte-Richtlinie, § 356a BGB). Ab dem 27. September 2026 kommen der amtliche Gewährleistungshinweis und die GARAN-Kennzeichnung hinzu (Verordnung (EU) 2025/1960). Die EU Compliance Suite liefert alle drei Pflichten als Theme-App-Blöcke – ohne Theme-Code, mit amtlichen Grafiken und Beschriftungen, automatisch in der Sprache Ihres Kunden.",
+      "Seit dem 19. Juni 2026 muss jeder Onlineshop in der EU einen Widerrufsbutton anbieten (Art. 11a Verbraucherrechte-Richtlinie, § 356a BGB). Ab dem 27. September 2026 kommen der amtliche Gewährleistungshinweis und die GARAN-Kennzeichnung hinzu (Verordnung (EU) 2025/1960). Die EU Compliance Suite liefert alle drei Pflichten als Theme-App-Blöcke – ohne Theme-Code, mit amtlichen Grafiken und Beschriftungen, automatisch in der Sprache Ihres Kunden. Hinweis- und Label-Blöcke sind kostenlos, die Widerrufsfunktion gibt es ab 6,99 USD im Monat.",
     ctaStore: "Im Shopify App Store installieren",
     ctaForm: "In Ihrem Shop installieren",
     ctaVideo: "90-Sekunden-Demo ansehen",
@@ -116,11 +118,13 @@ const T = {
     p4: "Shop-Blöcke in allen 24 EU-Sprachen, Eingangsbestätigungen in 10 Sprachen, Admin auf Englisch, Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Schwedisch und Dänisch – passend zur Sprache Ihres Shopify-Admins.",
     screens: "Screenshots",
     pricing: "Preise",
+    free: "Label – kostenlos",
+    freeF: ["Block „Gesetzlicher Gewährleistungshinweis“ (24 EU-Sprachen)", "GARAN-Kennzeichnung pro Produkt", "Hinweis zum Recht auf Reparatur", "Kein Abo, keine zeitliche Begrenzung"],
     basic: "Basic – 6,99 USD / Monat",
-    basicF: ["Widerrufsbutton in 24 EU-Sprachen", "Eingangsbestätigung mit Zeitstempel", "Widerrufsprotokoll und CSV-Export", "Zuordnung zur Bestellung"],
+    basicF: ["Alles aus Label", "Widerrufsbutton in 24 EU-Sprachen", "Zweistufige Bestätigung und Eingangsbestätigung mit Zeitstempel", "Widerrufsprotokoll mit Bestellzuordnung", "E-Mail-Benachrichtigung bei jedem Widerruf"],
     pro: "Pro – 12,99 USD / Monat",
-    proF: ["Alles aus Basic", "Gesetzlicher Gewährleistungshinweis", "GARAN-Kennzeichnung pro Produkt", "Reparaturhinweis, Tagging, Prioritäts-Support"],
-    trial: "14 Tage kostenlos testen, monatlich über Shopify Billing kündbar.",
+    proF: ["Alles aus Basic", "Bestellung automatisch taggen + Widerrufs-Metafeld", "CSV-Export des Widerrufsprotokolls", "Prioritäts-Support"],
+    trial: "Basic und Pro 14 Tage kostenlos testen, monatlich über Shopify Billing kündbar. Label bleibt kostenlos.",
     faq: "Fragen",
     q1: "Entspricht der Button der gesetzlichen Beschriftung?",
     a1: "Ja. Die App verwendet die in der Richtlinie vorgegebene Beschriftung in jeder EU-Sprache („Vertrag widerrufen“ / „Widerruf bestätigen“, englisch „Withdraw from contract here“ / „Confirm withdrawal“).",
@@ -220,6 +224,10 @@ export default function Index() {
 
       <h2 style={styles.h2}>{t.pricing}</h2>
       <div style={styles.grid}>
+        <div style={styles.card}>
+          <h3 style={{ marginTop: 0 }}>{t.free}</h3>
+          <ul style={{ paddingLeft: 18, marginBottom: 0 }}>{t.freeF.map((f) => <li key={f}>{f}</li>)}</ul>
+        </div>
         <div style={styles.card}>
           <h3 style={{ marginTop: 0 }}>{t.basic}</h3>
           <ul style={{ paddingLeft: 18, marginBottom: 0 }}>{t.basicF.map((f) => <li key={f}>{f}</li>)}</ul>

@@ -23,7 +23,7 @@ Markt ist offen. Fast alle haben einen kostenlosen Einstieg. Unser Unterschied:
 4. Admin in 10 Sprachen, folgt der Sprache des Händler-Admins.
 5. Hosting Frankfurt, keine Cookies, DSGVO-Text fertig.
 
-Empfehlung (offen): kostenloser Einstiegstarif „Label“ (Gewährleistungshinweis + GARAN gratis, Widerruf ab Basic).
+Umgesetzt am 11.09.2026 (Freigabe Felix): kostenloser Einstiegstarif „Label“ (Gewährleistungshinweis + GARAN gratis, Widerruf ab Basic).
 Grund: alle Wettbewerber haben ein Free-Tier; vor dem 27.09. suchen tausende Händler nach dem Label. Ein
 Free-Tier bringt Installationen und Bewertungen, der Widerrufsbutton ist dann das Upsell. Umsetzung: Freischaltung der
 Label-Blöcke ohne Abo, Widerrufsseiten und App-Proxy nur mit Basic/Pro (ca. 2 Stunden Arbeit + Listing-Preise).

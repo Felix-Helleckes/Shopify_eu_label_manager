@@ -219,6 +219,15 @@ export const en = {
   "bil.switchTo": "Switch to {plan}",
   "bil.start": "Start {plan}",
   "bil.unknown": "Unknown plan",
+  "dash.free.title": "Withdrawal function not active",
+  "dash.free.body": "You are on the free Label plan: the legal-guarantee notice and the GARAN label work. The withdrawal button and the acknowledgements of receipt require the Basic or Pro plan (14-day free trial).",
+  "dash.free.link": "Choose a plan",
+  "wd.exportPro": "CSV export (Pro)",
+  "bil.free": "free",
+  "bil.switchFree": "Switch to the free Label plan",
+  "bil.cancelNote": "Switching to Label cancels the paid subscription; the withdrawal button is then hidden in your shop.",
+  "bil.upgradeWithdrawal": "The withdrawal function requires the Basic or Pro plan. Both start with a 14-day free trial.",
+  "bil.upgradeExport": "CSV export is included in the Pro plan.",
 } as const;
 
 export type AdminKey = keyof typeof en;
@@ -400,6 +409,15 @@ export const de: AdminStrings = {
   "bil.switchTo": "Zu {plan} wechseln",
   "bil.start": "{plan} starten",
   "bil.unknown": "Unbekannter Tarif",
+  "dash.free.title": "Widerrufsfunktion nicht aktiv",
+  "dash.free.body": "Sie nutzen den kostenlosen Label-Tarif: Gewährleistungshinweis und GARAN-Kennzeichnung funktionieren. Widerrufsbutton und Eingangsbestätigungen erfordern den Basic- oder Pro-Tarif (14 Tage kostenlos testen).",
+  "dash.free.link": "Tarif wählen",
+  "wd.exportPro": "CSV-Export (Pro)",
+  "bil.free": "kostenlos",
+  "bil.switchFree": "Zum kostenlosen Label-Tarif wechseln",
+  "bil.cancelNote": "Der Wechsel zu Label beendet das kostenpflichtige Abo; der Widerrufsbutton wird dann im Shop ausgeblendet.",
+  "bil.upgradeWithdrawal": "Die Widerrufsfunktion erfordert den Basic- oder Pro-Tarif. Beide beginnen mit 14 Tagen kostenloser Testphase.",
+  "bil.upgradeExport": "Der CSV-Export ist im Pro-Tarif enthalten.",
 };
 
 const DICTS: Record<AdminLocale, AdminStrings> = { en, de, ...MORE_ADMIN_STRINGS };
