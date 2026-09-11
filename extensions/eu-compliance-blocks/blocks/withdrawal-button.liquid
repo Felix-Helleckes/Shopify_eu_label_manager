@@ -1,7 +1,9 @@
 {%- comment -%}
   App block: withdrawal function button for sections/pages (Art. 11a CRD / § 356a BGB).
 {%- endcomment -%}
-{%- assign eu_plan = app.metafields.billing.plan.value | default: '' | downcase -%}
+{%- comment -%} Plan mirrored by the app into the app-owned shop metafield $app:billing.plan ('free' | 'basic' | 'pro'). {%- endcomment -%}
+{%- assign eu_plan_mf = shop.metafields['$app:billing'].plan -%}
+{%- assign eu_plan = eu_plan_mf.value | default: eu_plan_mf | default: '' | downcase -%}
 {%- if eu_plan == 'free' -%}
   {%- if request.design_mode -%}<div class="eu-wd-plan-note" {{ block.shopify_attributes }}>{{ 'withdrawal.plan_required' | t }}</div>{%- endif -%}
 {%- else -%}

@@ -2,7 +2,9 @@
   App embed: withdrawal function available on every storefront page (continuously available,
   prominently displayed, easily accessible – Art. 11a(1) CRD / § 356a Abs. 1 BGB).
 {%- endcomment -%}
-{%- assign eu_plan = app.metafields.billing.plan.value | default: '' | downcase -%}
+{%- comment -%} Plan mirrored by the app into the app-owned shop metafield $app:billing.plan ('free' | 'basic' | 'pro'). {%- endcomment -%}
+{%- assign eu_plan_mf = shop.metafields['$app:billing'].plan -%}
+{%- assign eu_plan = eu_plan_mf.value | default: eu_plan_mf | default: '' | downcase -%}
 {%- if eu_plan == 'free' -%}
   {%- if request.design_mode -%}<div class="eu-wd-plan-note" {{ block.shopify_attributes }}>{{ 'withdrawal.plan_required' | t }}</div>{%- endif -%}
 {%- else -%}
