@@ -15,6 +15,7 @@ const fr: AdminStrings = {
   "common.invalidLanguage": "Langue non valide",
   "common.noAddress": "– aucune adresse définie –",
   "common.anonymized": "[anonymisé]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envoi d’e-mails non configuré",
   "dash.mail.body":
     "Les accusés de réception ne peuvent pas être envoyés pour le moment. Les déclarations de rétractation sont néanmoins enregistrées. Veuillez ajouter les identifiants SMTP à la configuration du serveur (voir README).",
@@ -193,6 +194,7 @@ const es: AdminStrings = {
   "common.invalidLanguage": "Idioma no válido",
   "common.noAddress": "– sin dirección –",
   "common.anonymized": "[anonimizado]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envío de correo no configurado",
   "dash.mail.body":
     "Ahora mismo no se pueden enviar acuses de recibo. Las declaraciones de desistimiento se guardan igualmente. Añada las credenciales SMTP a la configuración del servidor (véase README).",
@@ -371,6 +373,7 @@ const it: AdminStrings = {
   "common.invalidLanguage": "Lingua non valida",
   "common.noAddress": "– nessun indirizzo impostato –",
   "common.anonymized": "[anonimizzato]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Invio e-mail non configurato",
   "dash.mail.body":
     "Al momento non è possibile inviare le conferme di ricezione. Le dichiarazioni di recesso vengono comunque salvate. Aggiungi le credenziali SMTP alla configurazione del server (vedi README).",
@@ -549,6 +552,7 @@ const nl: AdminStrings = {
   "common.invalidLanguage": "Ongeldige taal",
   "common.noAddress": "– geen adres ingesteld –",
   "common.anonymized": "[geanonimiseerd]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-mailverzending niet geconfigureerd",
   "dash.mail.body":
     "Ontvangstbevestigingen kunnen momenteel niet worden verzonden. Herroepingsverklaringen worden wel opgeslagen. Voeg de SMTP-gegevens toe aan de serverconfiguratie (zie README).",
@@ -727,6 +731,7 @@ const pl: AdminStrings = {
   "common.invalidLanguage": "Nieprawidłowy język",
   "common.noAddress": "– brak adresu –",
   "common.anonymized": "[zanonimizowano]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Wysyłka e-maili nie jest skonfigurowana",
   "dash.mail.body":
     "Potwierdzenia odbioru nie mogą być obecnie wysyłane. Oświadczenia o odstąpieniu są mimo to zapisywane. Dodaj dane SMTP do konfiguracji serwera (zob. README).",
@@ -905,6 +910,7 @@ const pt: AdminStrings = {
   "common.invalidLanguage": "Idioma inválido",
   "common.noAddress": "– nenhum endereço definido –",
   "common.anonymized": "[anonimizado]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envio de e-mail não configurado",
   "dash.mail.body":
     "De momento não é possível enviar acuses de receção. As declarações de retratação são guardadas na mesma. Adicione as credenciais SMTP à configuração do servidor (ver README).",
@@ -1083,6 +1089,7 @@ const sv: AdminStrings = {
   "common.invalidLanguage": "Ogiltigt språk",
   "common.noAddress": "– ingen adress angiven –",
   "common.anonymized": "[anonymiserad]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-postutskick är inte konfigurerat",
   "dash.mail.body":
     "Mottagningsbekräftelser kan inte skickas just nu. Ångermeddelandena sparas ändå. Lägg till SMTP-uppgifterna i serverkonfigurationen (se README).",
@@ -1261,6 +1268,7 @@ const da: AdminStrings = {
   "common.invalidLanguage": "Ugyldigt sprog",
   "common.noAddress": "– ingen adresse angivet –",
   "common.anonymized": "[anonymiseret]",
+  "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-mailafsendelse er ikke konfigureret",
   "dash.mail.body":
     "Kvitteringer for modtagelse kan ikke sendes i øjeblikket. Fortrydelseserklæringerne gemmes alligevel. Tilføj SMTP-oplysningerne i serverkonfigurationen (se README).",
