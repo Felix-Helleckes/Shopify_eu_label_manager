@@ -53,7 +53,19 @@ Admin-Sprachen darauf hin, nach dem Einfügen eines Blocks im Theme-Editor auf �
 
 Veröffentlicht als App-Version `eu-compliance-suite-11`.
 
-## Offen
+## Erledigt am 11.09.2026
 
-Die Rückmeldung muss im Partner-Dashboard beantwortet und die Einreichung über „Submit fixes“ erneut
-eingereicht werden. Antworttext siehe `docs/APP-REVIEW-134896-reply.md`.
+Das Rückmeldeformular kennt kein Freitextfeld für eine Antwort, sondern verlangt unter „Show resolved
+state“ eine **URL, die den behobenen Zustand zeigt**. Dafür gibt es jetzt die öffentliche Seite
+<https://eu-compliance-suite.fly.dev/proof/134896> (Route `app/routes/proof.134896.tsx`): Sie nennt
+die vier Änderungen, beschreibt die Prüfung am Live-Warenkorb und rendert die Ausgabe der beiden
+Hinweis-Blöcke mit genau dem Stylesheet und der Grafik, die die Theme-Extension über
+`cdn.shopify.com/extensions/…/eu-compliance-suite-11/assets` ausliefert.
+
+Ablauf im Dashboard: Punkt als gelöst markiert (1/1, „Complete“), danach „Korrekturen einreichen“.
+Status jetzt wieder **„Wird überprüft“**, Sichtbarkeit weiterhin voll. Der ausformulierte
+Antworttext in `docs/APP-REVIEW-134896-reply.md` wurde nicht gebraucht und bleibt als Vorlage für
+eine etwaige Rückfrage stehen.
+
+Nebenbei erledigt: Das Warenkorb-Template des Entwicklungsshops enthält jetzt dauerhaft die Blöcke
+`repair-info` und `legal-guarantee-notice` (`templates/cart.json`, Abschnitt `apps`).
