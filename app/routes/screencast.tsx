@@ -9,8 +9,8 @@ export default function ScreencastPage() {
     <main style={{ fontFamily: "Inter, system-ui, sans-serif", maxWidth: 1100, margin: "0 auto", padding: 32, lineHeight: 1.6 }}>
       <h1 style={{ fontSize: 28 }}>{operator.appName} – Screencast</h1>
       <p>
-        Demo der Shop-Ansicht (Widerrufsbutton, GARAN-Kennzeichnung, Gewährleistungshinweis) und des
-        Admin-Bereichs. Ohne Ton.
+        Demo of the storefront (withdrawal button, GARAN label, legal-guarantee notice) followed by the admin. No audio,
+        about 90 seconds. / Demo der Shop-Ansicht und des Admin-Bereichs, ohne Ton.
       </p>
       <video
         src="/screencast.mp4"
@@ -22,8 +22,8 @@ export default function ScreencastPage() {
         <a href="/screencast.mp4">screencast.mp4</a>
       </video>
       <p style={{ color: "#666", fontSize: 14 }}>
-        <a href="/screencast.mp4">Direkter Link zur Videodatei (MP4)</a> · <a href="/support">Support</a> ·{" "}
-        <a href="/privacy">Datenschutz</a>
+        <a href="/screencast.mp4">Direct link to the video file (MP4)</a> · <a href="/">Home</a> · <a href="/support">Support</a> ·{" "}
+        <a href="/privacy">Privacy</a>
       </p>
     </main>
   );
