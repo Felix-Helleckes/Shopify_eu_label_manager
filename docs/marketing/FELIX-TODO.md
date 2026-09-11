@@ -4,13 +4,10 @@ Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brau
 
 ## Heute (zusammen 30 Minuten)
 
-1. **Fly.io einrichten** (5 Min): im Terminal `cd ~ && export PATH="$HOME/.fly/bin:$PATH" && fly auth login`,
-   im Browser Konto anlegen und unter Billing eine Zahlungsmethode hinterlegen (ca. 3,30 USD/Monat). Danach mir
-   Bescheid geben – ich deploye nach Frankfurt und stelle alle URLs um. Details: `docs/FLY-MIGRATION.md`.
-   Eine eigene Domain ist dafür **nicht** nötig, `eu-compliance-suite.fly.dev` ist inklusive.
-2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, wir weisen deiner Einreichung einen Prüfer
-   zu“. Sichtbarkeit steht auf „in Suche und Empfehlungen“. Rückmeldungen von Shopify kommen per E-Mail an
-   florian.helleckes@gmail.com — **bitte täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
+1. ~~**Fly.io einrichten**~~ — **erledigt am 11.09.2026.** Die App läuft in Frankfurt unter
+   https://eu-compliance-suite.fly.dev, Kosten ca. 3,30 USD/Monat. Eine eigene Domain ist nicht nötig.
+2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, Prüfer wird zugewiesen“. Rückmeldungen
+   kommen per E-Mail an florian.helleckes@gmail.com — **täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
 3. **Agenturen anschreiben** (20 Min): 18 fertige Nachrichten in `outreach-messages.md`, je Kontaktformular oder
    LinkedIn. Reihenfolge ist Priorität; die ersten 8 reichen für heute.
 

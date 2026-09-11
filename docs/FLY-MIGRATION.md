@@ -1,4 +1,7 @@
-# Umzug nach Fly.io Frankfurt
+# Umzug nach Fly.io Frankfurt – erledigt am 11.09.2026
+
+> Status: abgeschlossen. Die App läuft unter https://eu-compliance-suite.fly.dev (Region fra),
+> `/healthcheck` meldet `host.region: "fra"`. Netlify bleibt als Rückfallebene bestehen.
 
 Ziel: Die Anwendung läuft in Frankfurt statt in Ohio. Damit stimmt die Aussage „Verarbeitung in der EU“ wieder,
 und die Latenz zur Datenbank (Supabase, eu-central-1) sinkt deutlich.
