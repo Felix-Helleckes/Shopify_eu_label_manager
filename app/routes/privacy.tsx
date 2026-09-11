@@ -56,10 +56,26 @@ export default function PrivacyPage() {
       </p>
 
       <h2 style={s.h2}>5. Hosting und Speicherort</h2>
-      <p>
-        Die App wird auf Servern in der Europäischen Union (Region Frankfurt) betrieben. Daten werden nicht in Drittländer
-        übermittelt, soweit dies nicht durch Shopify selbst erfolgt (siehe Datenschutzerklärung von Shopify).
-      </p>
+      <ul>
+        <li>
+          <strong>Speicherung:</strong> Alle Widerrufserklärungen, Shop-Stammdaten und Einstellungen liegen in einer
+          Datenbank in Frankfurt am Main, Deutschland (Supabase, Region eu-central-1), im Ruhezustand verschlüsselt.
+        </li>
+        <li>
+          <strong>Verarbeitung:</strong> Die Anwendung selbst läuft derzeit bei unserem Hosting-Dienstleister Netlify in
+          den Vereinigten Staaten (Region us-east-2). Für die Dauer eines Aufrufs werden die betroffenen Daten dort
+          verarbeitet. Grundlage dieser Übermittlung sind die Standardvertragsklauseln der EU-Kommission im Rahmen des
+          Auftragsverarbeitungsvertrags mit Netlify. Die aktuelle Region ist unter{" "}
+          <a href="/healthcheck">/healthcheck</a> im Feld <code>host.region</code> jederzeit nachprüfbar.
+        </li>
+        <li>
+          <strong>E-Mail-Versand:</strong> über Brevo (Sendinblue SAS, Frankreich).
+        </li>
+        <li>
+          Weitere Übermittlungen in Drittländer finden nicht statt, soweit sie nicht durch Shopify selbst erfolgen (siehe
+          Datenschutzerklärung von Shopify).
+        </li>
+      </ul>
 
       <h2 style={s.h2}>5a. Technische und organisatorische Maßnahmen</h2>
       <ul>
@@ -92,9 +108,12 @@ export default function PrivacyPage() {
         withdrawal statements (name, order reference, e-mail address, optional details, timestamp, hashed IP address),
         shop master data and merchant settings. Purposes: providing the statutory withdrawal function and acknowledgement
         of receipt (Art. 11a Directive 2011/83/EU), evidence of timely withdrawal, abuse prevention. E-mails are sent
-        through an SMTP provider under a data-processing agreement. Hosting is in the EU (Frankfurt). Customer
-        redaction requests anonymise personal fields immediately; all shop data is deleted 48 hours after uninstall. No
-        cookies or tracking are used. Data subjects can exercise their GDPR rights through the merchant.
+        through an SMTP provider (Brevo, France) under a data-processing agreement. All data is stored in a database in
+        Frankfurt, Germany (eu-central-1); the application itself currently runs on Netlify servers in the United States
+        (us-east-2) under the EU Standard Contractual Clauses – the live region is verifiable at{" "}
+        <a href="/healthcheck">/healthcheck</a>. Customer redaction requests anonymise personal fields immediately; all
+        shop data is deleted 48 hours after uninstall. No cookies or tracking are used. Data subjects can exercise their
+        GDPR rights through the merchant.
       </p>
     </main>
   );
