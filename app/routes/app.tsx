@@ -18,6 +18,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   };
 };
 
+// Shopify's embedded-app checks look for this meta tag in addition to the App Bridge script tag.
+export const meta = ({ data }: { data?: { apiKey: string } }) => [{ name: "shopify-api-key", content: data?.apiKey ?? "" }];
+
 export default function App() {
   const { apiKey, nav } = useLoaderData<typeof loader>();
 
