@@ -257,6 +257,86 @@ const merchant: Record<string, MerchantStrings> = {
     ackSent: "Acknowledgement of receipt was sent to the consumer",
     ackFailed: "WARNING: The acknowledgement of receipt could not be sent. Please confirm receipt to the consumer manually.",
   },
+  fr: {
+    subject: "Nouvelle rétractation : {contract} ({receiptNo})",
+    heading: "Nouvelle déclaration de rétractation reçue",
+    intro: "Une nouvelle déclaration de rétractation a été envoyée via la fonction de rétractation de votre boutique {shop}.",
+    open: "Ouvrir dans l’interface Shopify",
+    orderMatched: "Commande trouvée et associée",
+    orderNotMatched: "Aucune commande correspondante – veuillez vérifier manuellement",
+    ackSent: "L’accusé de réception a été envoyé au consommateur",
+    ackFailed: "ATTENTION : l’accusé de réception n’a pas pu être envoyé. Veuillez confirmer la réception au consommateur manuellement.",
+  },
+  es: {
+    subject: "Nuevo desistimiento: {contract} ({receiptNo})",
+    heading: "Nueva declaración de desistimiento recibida",
+    intro: "Se ha presentado una nueva declaración de desistimiento a través de la función de desistimiento de su tienda {shop}.",
+    open: "Abrir en el panel de Shopify",
+    orderMatched: "Pedido encontrado y asignado",
+    orderNotMatched: "No se encontró ningún pedido coincidente – compruébelo manualmente",
+    ackSent: "El acuse de recibo se envió al consumidor",
+    ackFailed: "ATENCIÓN: no se pudo enviar el acuse de recibo. Confirme la recepción al consumidor manualmente.",
+  },
+  it: {
+    subject: "Nuovo recesso: {contract} ({receiptNo})",
+    heading: "Nuova dichiarazione di recesso ricevuta",
+    intro: "È stata inviata una nuova dichiarazione di recesso tramite la funzione di recesso del tuo negozio {shop}.",
+    open: "Apri nel pannello Shopify",
+    orderMatched: "Ordine trovato e abbinato",
+    orderNotMatched: "Nessun ordine corrispondente – verifica manualmente",
+    ackSent: "La conferma di ricezione è stata inviata al consumatore",
+    ackFailed: "ATTENZIONE: la conferma di ricezione non è stata inviata. Conferma la ricezione al consumatore manualmente.",
+  },
+  nl: {
+    subject: "Nieuwe herroeping: {contract} ({receiptNo})",
+    heading: "Nieuwe herroepingsverklaring ontvangen",
+    intro: "Via de herroepingsfunctie van uw shop {shop} is een nieuwe herroepingsverklaring ingediend.",
+    open: "Openen in Shopify-beheer",
+    orderMatched: "Bestelling gevonden en gekoppeld",
+    orderNotMatched: "Geen passende bestelling gevonden – controleer handmatig",
+    ackSent: "De ontvangstbevestiging is naar de consument verzonden",
+    ackFailed: "LET OP: de ontvangstbevestiging kon niet worden verzonden. Bevestig de ontvangst handmatig aan de consument.",
+  },
+  pl: {
+    subject: "Nowe odstąpienie: {contract} ({receiptNo})",
+    heading: "Otrzymano nowe oświadczenie o odstąpieniu",
+    intro: "Za pomocą funkcji odstąpienia w Twoim sklepie {shop} złożono nowe oświadczenie o odstąpieniu.",
+    open: "Otwórz w panelu Shopify",
+    orderMatched: "Zamówienie znalezione i przypisane",
+    orderNotMatched: "Nie znaleziono pasującego zamówienia – sprawdź ręcznie",
+    ackSent: "Potwierdzenie odbioru zostało wysłane do konsumenta",
+    ackFailed: "UWAGA: nie udało się wysłać potwierdzenia odbioru. Potwierdź konsumentowi odbiór ręcznie.",
+  },
+  pt: {
+    subject: "Nova retratação: {contract} ({receiptNo})",
+    heading: "Nova declaração de retratação recebida",
+    intro: "Foi apresentada uma nova declaração de retratação através da função de retratação da sua loja {shop}.",
+    open: "Abrir no painel Shopify",
+    orderMatched: "Encomenda encontrada e associada",
+    orderNotMatched: "Nenhuma encomenda correspondente – verifique manualmente",
+    ackSent: "O acuse de receção foi enviado ao consumidor",
+    ackFailed: "ATENÇÃO: não foi possível enviar o acuse de receção. Confirme a receção ao consumidor manualmente.",
+  },
+  sv: {
+    subject: "Nytt ångerärende: {contract} ({receiptNo})",
+    heading: "Nytt ångermeddelande mottaget",
+    intro: "Ett nytt ångermeddelande har skickats via ångerfunktionen i din butik {shop}.",
+    open: "Öppna i Shopify-admin",
+    orderMatched: "Order hittad och kopplad",
+    orderNotMatched: "Ingen matchande order hittades – kontrollera manuellt",
+    ackSent: "Mottagningsbekräftelsen har skickats till konsumenten",
+    ackFailed: "OBS: mottagningsbekräftelsen kunde inte skickas. Bekräfta mottagandet manuellt till konsumenten.",
+  },
+  da: {
+    subject: "Ny fortrydelse: {contract} ({receiptNo})",
+    heading: "Ny fortrydelseserklæring modtaget",
+    intro: "Der er indsendt en ny fortrydelseserklæring via fortrydelsesfunktionen i din shop {shop}.",
+    open: "Åbn i Shopify-administrator",
+    orderMatched: "Ordre fundet og matchet",
+    orderNotMatched: "Ingen matchende ordre fundet – kontrollér manuelt",
+    ackSent: "Kvitteringen er sendt til forbrugeren",
+    ackFailed: "BEMÆRK: kvitteringen kunne ikke sendes. Bekræft modtagelsen manuelt over for forbrugeren.",
+  },
 };
 
 export const SUPPORTED_ACK_LOCALES = Object.keys(ack);
@@ -276,8 +356,8 @@ export function ackStrings(locale: string): AckStrings {
 }
 
 export function merchantStrings(locale: string | null | undefined): MerchantStrings {
-  const key = (locale || "de").toLowerCase().split(/[-_]/)[0];
-  return merchant[key] ?? merchant.de;
+  const key = (locale || "en").toLowerCase().split(/[-_]/)[0];
+  return merchant[key] ?? merchant.en;
 }
 
 export function fill(template: string, values: Record<string, string>): string {

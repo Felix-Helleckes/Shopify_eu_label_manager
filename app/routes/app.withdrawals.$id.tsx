@@ -3,34 +3,70 @@ import { Form, useActionData, useLoaderData, useNavigation } from "react-router"
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import db from "../db.server";
 import { requireShop } from "../lib/admin.server";
-import { STATUS_LABELS } from "../lib/status";
+import { statusLabels } from "../lib/admin-i18n";
+import { STATUS_KEYS } from "../lib/status";
 import { formatTimestamp, resendAcknowledgement } from "../lib/withdrawal.server";
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  const { shop } = await requireShop(request);
+  const { shop, t, localeTag } = await requireShop(request);
   const w = await db.withdrawal.findFirst({ where: { id: params.id, shop: shop.domain } });
   if (!w) throw new Response("Not found", { status: 404 });
   const store = shop.domain.replace(".myshopify.com", "");
   const orderAdminUrl = w.orderId
     ? `https://admin.shopify.com/store/${store}/orders/${w.orderId.split("/").pop()}`
     : null;
+  const fmt = (d: Date | null) => (d ? formatTimestamp(d, localeTag, shop.timezone) : null);
   return {
     w: {
       ...w,
       submittedAt: w.submittedAt.toISOString(),
-      submittedAtLocal: formatTimestamp(w.submittedAt, "de-DE", shop.timezone),
-      ackSentAt: w.ackSentAt?.toISOString() ?? null,
-      merchantNotifiedAt: w.merchantNotifiedAt?.toISOString() ?? null,
+      submittedAtLocal: formatTimestamp(w.submittedAt, localeTag, shop.timezone),
+      ackSentAt: fmt(w.ackSentAt),
+      merchantNotifiedAt: fmt(w.merchantNotifiedAt),
       orderTaggedAt: w.orderTaggedAt?.toISOString() ?? null,
       orderCreatedAt: w.orderCreatedAt?.toISOString() ?? null,
-      anonymizedAt: w.anonymizedAt?.toISOString() ?? null,
+      anonymizedAt: fmt(w.anonymizedAt),
     },
     orderAdminUrl,
+    statuses: statusLabels(t),
+    s: {
+      title: t("det.title", { ref: w.receiptNo }),
+      breadcrumb: t("nav.withdrawals"),
+      anonymizedTitle: t("det.anonymized.title"),
+      anonymizedBody: t("det.anonymized.body", { date: fmt(w.anonymizedAt) ?? "" }),
+      content: t("det.content"),
+      rows: [
+        [t("det.received"), `${formatTimestamp(w.submittedAt, localeTag, shop.timezone)} – ${w.submittedAt.toISOString()}`],
+        [t("det.receiptNo"), w.receiptNo],
+        [t("det.name"), w.consumerName],
+        [t("det.contract"), w.contractRef],
+        [t("det.email"), w.contactEmail],
+        [t("det.orderDate"), w.orderDate ?? "–"],
+        [t("det.details"), w.details ?? "–"],
+        [t("det.language"), w.locale],
+        [t("det.hash"), w.contentHash],
+      ] as [string, string][],
+      matching: t("det.matching"),
+      order: t("det.order"),
+      openInAdmin: t("det.openInAdmin"),
+      tagged: t("det.tagged"),
+      noOrder: t("det.noOrder"),
+      ackToCustomer: t("det.ackToCustomer"),
+      sentAt: w.ackSentAt ? t("det.sentAt", { date: fmt(w.ackSentAt) ?? "" }) : "",
+      notDelivered: t("det.notDelivered"),
+      merchantNotification: t("det.merchantNotification"),
+      merchantSent: w.merchantNotifiedAt ? t("det.sentAt", { date: fmt(w.merchantNotifiedAt) ?? "" }) : t("det.notSent"),
+      resend: t("det.resend"),
+      processing: t("det.processing"),
+      status: t("common.status"),
+      note: t("det.note"),
+      save: t("common.save"),
+    },
   };
 };
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
-  const { shop } = await requireShop(request);
+  const { shop, t } = await requireShop(request);
   const form = await request.formData();
   const intent = String(form.get("intent") || "save");
   const existing = await db.withdrawal.findFirst({ where: { id: params.id, shop: shop.domain } });
@@ -38,52 +74,40 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 
   if (intent === "resend") {
     const ok = await resendAcknowledgement(shop, existing.id);
-    return { ok, message: ok ? "Eingangsbestätigung wurde erneut versendet." : "Versand fehlgeschlagen – bitte SMTP-Konfiguration prüfen." };
+    return { ok, message: ok ? t("det.resent") : t("det.resendFailed") };
   }
 
   const status = String(form.get("status") || existing.status);
-  if (!Object.keys(STATUS_LABELS).includes(status)) return { ok: false, message: "Ungültiger Status." };
+  if (!(STATUS_KEYS as readonly string[]).includes(status)) return { ok: false, message: t("det.invalidStatus") };
   const merchantNote = String(form.get("merchantNote") || "").slice(0, 2000) || null;
   await db.withdrawal.update({ where: { id: existing.id }, data: { status, merchantNote } });
-  return { ok: true, message: "Gespeichert." };
+  return { ok: true, message: t("det.saved") };
 };
 
 export default function WithdrawalDetail() {
-  const { w, orderAdminUrl } = useLoaderData<typeof loader>();
+  const { w, orderAdminUrl, statuses, s } = useLoaderData<typeof loader>();
   const result = useActionData<typeof action>();
   const nav = useNavigation();
   const busy = nav.state !== "idle";
 
-  const rows: [string, string][] = [
-    ["Eingang", `${w.submittedAtLocal} – ${w.submittedAt}`],
-    ["Vorgangsnummer", w.receiptNo],
-    ["Name", w.consumerName],
-    ["Vertrag / Bestellung (Angabe des Kunden)", w.contractRef],
-    ["E-Mail-Adresse", w.contactEmail],
-    ["Bestell-/Lieferdatum (Angabe des Kunden)", w.orderDate ?? "–"],
-    ["Weitere Angaben", w.details ?? "–"],
-    ["Sprache der Bestätigung", w.locale],
-    ["Prüfsumme (SHA-256)", w.contentHash],
-  ];
-
   return (
-    <s-page heading={`Widerruf ${w.receiptNo}`}>
-      <s-link slot="breadcrumb" href="/app/withdrawals">Widerrufe</s-link>
+    <s-page heading={s.title}>
+      <s-link slot="breadcrumb" href="/app/withdrawals">{s.breadcrumb}</s-link>
       {result && (
         <s-banner tone={result.ok ? "success" : "critical"}>
           <s-paragraph>{result.message}</s-paragraph>
         </s-banner>
       )}
       {w.anonymizedAt && (
-        <s-banner heading="Anonymisiert" tone="info">
-          <s-paragraph>Die personenbezogenen Daten wurden auf Kundenwunsch am {w.anonymizedAt} anonymisiert.</s-paragraph>
+        <s-banner heading={s.anonymizedTitle} tone="info">
+          <s-paragraph>{s.anonymizedBody}</s-paragraph>
         </s-banner>
       )}
 
-      <s-section heading="Inhalt der Widerrufserklärung">
+      <s-section heading={s.content}>
         <s-table>
           <s-table-body>
-            {rows.map(([k, v]) => (
+            {s.rows.map(([k, v]) => (
               <s-table-row key={k}>
                 <s-table-cell>
                   <s-text type="strong">{k}</s-text>
@@ -95,55 +119,63 @@ export default function WithdrawalDetail() {
         </s-table>
       </s-section>
 
-      <s-section heading="Zuordnung und Zustellung">
+      <s-section heading={s.matching}>
         <s-unordered-list>
           <s-list-item>
-            Bestellung:{" "}
+            {s.order}{" "}
             {w.orderMatched && w.orderName ? (
               <>
                 <s-badge tone="success">{w.orderName}</s-badge>{" "}
                 {orderAdminUrl && (
                   <s-link href={orderAdminUrl} target="_blank">
-                    im Shopify-Admin öffnen
+                    {s.openInAdmin}
                   </s-link>
                 )}
-                
-                {w.orderTaggedAt ? " – getaggt" : ""}
+                {w.orderTaggedAt ? ` ${s.tagged}` : ""}
               </>
             ) : (
-              <s-badge tone="warning">keine passende Bestellung gefunden – bitte manuell prüfen</s-badge>
+              <s-badge tone="warning">{s.noOrder}</s-badge>
             )}
           </s-list-item>
           <s-list-item>
-            Eingangsbestätigung an den Kunden:{" "}
-            {w.ackSentAt ? <s-badge tone="success">gesendet {w.ackSentAt}</s-badge> : <s-badge tone="critical">nicht zugestellt{w.ackError ? ` (${w.ackError})` : ""}</s-badge>}
+            {s.ackToCustomer}{" "}
+            {w.ackSentAt ? (
+              <s-badge tone="success">{s.sentAt}</s-badge>
+            ) : (
+              <s-badge tone="critical">
+                {s.notDelivered}
+                {w.ackError ? ` (${w.ackError})` : ""}
+              </s-badge>
+            )}
           </s-list-item>
-          <s-list-item>Händlerbenachrichtigung: {w.merchantNotifiedAt ? `gesendet ${w.merchantNotifiedAt}` : "nicht gesendet"}</s-list-item>
+          <s-list-item>
+            {s.merchantNotification} {s.merchantSent}
+          </s-list-item>
         </s-unordered-list>
         {!w.anonymizedAt && (
           <Form method="post">
             <input type="hidden" name="intent" value="resend" />
             <s-button type="submit" {...(busy ? { disabled: true } : {})}>
-              Eingangsbestätigung erneut senden
+              {s.resend}
             </s-button>
           </Form>
         )}
       </s-section>
 
-      <s-section heading="Bearbeitung">
+      <s-section heading={s.processing}>
         <Form method="post">
           <input type="hidden" name="intent" value="save" />
           <s-stack direction="block" gap="base">
-            <s-select label="Status" name="status" value={w.status}>
-              {Object.entries(STATUS_LABELS).map(([value, label]) => (
+            <s-select label={s.status} name="status" value={w.status}>
+              {Object.entries(statuses).map(([value, label]) => (
                 <s-option key={value} value={value}>
                   {label}
                 </s-option>
               ))}
             </s-select>
-            <s-text-area label="Interne Notiz" name="merchantNote" value={w.merchantNote ?? ""} rows={4} />
+            <s-text-area label={s.note} name="merchantNote" value={w.merchantNote ?? ""} rows={4} />
             <s-button type="submit" variant="primary" {...(busy ? { loading: true } : {})}>
-              Speichern
+              {s.save}
             </s-button>
           </s-stack>
         </Form>

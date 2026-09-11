@@ -416,9 +416,11 @@ export function adminWithdrawalUrl(shopDomain: string, withdrawalId: string): st
 }
 
 export function buildMerchantNotification(shop: Shop, w: Withdrawal, opts: { ackSent: boolean }) {
-  const t = merchantStrings(shop.shopLocale);
+  // The merchant notification follows the merchant's admin language, not the consumer's storefront language.
+  const merchantLocale = shop.adminLocale || shop.detectedLocale || shop.shopLocale || "en";
+  const t = merchantStrings(merchantLocale);
   const shopName = shop.name || shop.domain;
-  const when = formatTimestamp(w.submittedAt, shop.shopLocale || "de", shop.timezone);
+  const when = formatTimestamp(w.submittedAt, merchantLocale, shop.timezone);
   const lines = [
     t.heading,
     "",
@@ -427,7 +429,7 @@ export function buildMerchantNotification(shop: Shop, w: Withdrawal, opts: { ack
     `${w.receiptNo} – ${when}`,
     `${w.consumerName} <${w.contactEmail}>`,
     `${w.contractRef}${w.orderName ? ` -> ${w.orderName}` : ""}`,
-    w.orderDate ? `Datum: ${w.orderDate}` : "",
+    w.orderDate ? `${w.orderDate}` : "",
     w.details ? `Details: ${w.details}` : "",
     "",
     w.orderMatched ? t.orderMatched : t.orderNotMatched,

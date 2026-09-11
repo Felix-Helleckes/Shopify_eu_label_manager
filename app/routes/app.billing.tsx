@@ -1,26 +1,38 @@
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { Form, useLoaderData, useNavigation, useSubmit } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
-import { authenticate } from "../shopify.server";
+import { requireShop } from "../lib/admin.server";
 import { activePlan, isTestBilling } from "../lib/billing.server";
-import { ALL_PLANS, PLAN_DETAILS, TRIAL_DAYS, type PlanName } from "../lib/plans";
+import { ALL_PLANS, PLAN_DETAILS, planFeatures, TRIAL_DAYS, type PlanName } from "../lib/plans";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { billing } = await authenticate.admin(request);
+  const { billing, locale, t } = await requireShop(request, { billing: false });
   const plan = await activePlan(billing);
   return {
     current: plan,
-    trialDays: TRIAL_DAYS,
     isTest: isTestBilling(),
-    plans: ALL_PLANS.map((name) => ({ name, ...PLAN_DETAILS[name] })),
+    plans: ALL_PLANS.map((name) => ({
+      name,
+      price: PLAN_DETAILS[name].price,
+      currency: PLAN_DETAILS[name].currency,
+      features: planFeatures(name, locale),
+      cta: plan ? t("bil.switchTo", { plan: name }) : t("bil.start", { plan: name }),
+    })),
+    s: {
+      title: t("bil.title"),
+      test: t("bil.test"),
+      intro: t("bil.intro", { days: TRIAL_DAYS }),
+      perMonth: t("bil.perMonth"),
+      current: t("bil.current"),
+    },
   };
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { billing, session } = await authenticate.admin(request);
+  const { billing, session, t } = await requireShop(request, { billing: false });
   const form = await request.formData();
   const plan = String(form.get("plan") || "") as PlanName;
-  if (!ALL_PLANS.includes(plan)) return { error: "Unbekannter Tarif" };
+  if (!ALL_PLANS.includes(plan)) return { error: t("bil.unknown") };
   const store = session.shop.replace(".myshopify.com", "");
   const handle = process.env.SHOPIFY_APP_HANDLE || "eu-compliance-suite";
   await billing.request({
@@ -32,36 +44,33 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Billing() {
-  const { current, plans, trialDays, isTest } = useLoaderData<typeof loader>();
+  const { current, plans, isTest, s } = useLoaderData<typeof loader>();
   const nav = useNavigation();
   const submit = useSubmit();
 
   return (
-    <s-page heading="Tarif">
+    <s-page heading={s.title}>
       {isTest && (
         <s-banner tone="info">
-          <s-paragraph>Testmodus: Es werden keine echten Gebühren berechnet.</s-paragraph>
+          <s-paragraph>{s.test}</s-paragraph>
         </s-banner>
       )}
-      <s-paragraph>
-        Alle Tarife beginnen mit {String(trialDays)} Tagen kostenloser Testphase und sind monatlich über Shopify Billing
-        kündbar.
-      </s-paragraph>
+      <s-paragraph>{s.intro}</s-paragraph>
       <s-stack direction="inline" gap="large">
         {plans.map((p) => (
           <s-section key={p.name} heading={p.name}>
             <s-heading>
-              {p.price.toFixed(2)} {p.currency} / Monat
+              {p.price.toFixed(2)} {p.currency} {s.perMonth}
             </s-heading>
             <s-unordered-list>
-              {p.features.de.map((f) => (
+              {p.features.map((f) => (
                 <s-list-item key={f}>{f}</s-list-item>
               ))}
             </s-unordered-list>
             <Form method="post">
               <input type="hidden" name="plan" value={p.name} />
               {current === p.name ? (
-                <s-badge tone="success">Aktueller Tarif</s-badge>
+                <s-badge tone="success">{s.current}</s-badge>
               ) : (
                 <s-button
                   type="submit"
@@ -72,7 +81,7 @@ export default function Billing() {
                   }}
                   {...(nav.state !== "idle" ? { loading: true } : {})}
                 >
-                  {current ? `Zu ${p.name} wechseln` : `${p.name} starten`}
+                  {p.cta}
                 </s-button>
               )}
             </Form>

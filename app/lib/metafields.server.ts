@@ -5,27 +5,27 @@ export const METAFIELD_NAMESPACE = "eu_compliance";
 export const PRODUCT_DEFINITIONS = [
   {
     key: "guarantee_years",
-    name: "Herstellergarantie: Dauer in Jahren (GARAN)",
+    name: "Producer guarantee: duration in years (GARAN)",
     type: "number_integer",
-    description: "Dauer der gewerblichen Haltbarkeitsgarantie des Herstellers in Jahren. Nur bei mehr als 2 Jahren wird die GARAN-Kennzeichnung angezeigt.",
+    description: "Duration of the producer's commercial guarantee of durability in years. The GARAN label is shown only for more than 2 years.",
   },
   {
     key: "guarantee_producer",
-    name: "Herstellergarantie: Hersteller / Marke (GARAN)",
+    name: "Producer guarantee: producer / brand (GARAN)",
     type: "single_line_text_field",
-    description: "Name des Herstellers, der die Haltbarkeitsgarantie gewährt (Feld „Brand/Trademark“ der Kennzeichnung).",
+    description: "Name of the producer granting the durability guarantee (field 'Brand/Trademark' of the label).",
   },
   {
     key: "guarantee_model",
-    name: "Herstellergarantie: Modellkennung (GARAN)",
+    name: "Producer guarantee: model identifier (GARAN)",
     type: "single_line_text_field",
-    description: "Modellkennung, für die die Garantie gilt (Feld „Model identifier“ der Kennzeichnung).",
+    description: "Model identifier the guarantee applies to (field 'Model identifier' of the label).",
   },
   {
     key: "guarantee_terms_url",
-    name: "Herstellergarantie: Link zu den Garantiebedingungen",
+    name: "Producer guarantee: link to the guarantee terms",
     type: "url",
-    description: "Optional: Link zu den vollständigen Garantiebedingungen des Herstellers.",
+    description: "Optional: link to the producer's full guarantee terms.",
   },
 ] as const;
 

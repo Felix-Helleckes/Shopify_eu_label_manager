@@ -2,24 +2,33 @@ import type { HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { Outlet, useLoaderData, useRouteError } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { AppProvider } from "@shopify/shopify-app-react-router/react";
-import { authenticate } from "../shopify.server";
+import { requireShop } from "../lib/admin.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  await authenticate.admin(request);
-  return { apiKey: process.env.SHOPIFY_API_KEY || "" };
+  const { t } = await requireShop(request, { billing: false });
+  return {
+    apiKey: process.env.SHOPIFY_API_KEY || "",
+    nav: {
+      overview: t("nav.overview"),
+      withdrawals: t("nav.withdrawals"),
+      guarantee: t("nav.guarantee"),
+      settings: t("nav.settings"),
+      billing: t("nav.billing"),
+    },
+  };
 };
 
 export default function App() {
-  const { apiKey } = useLoaderData<typeof loader>();
+  const { apiKey, nav } = useLoaderData<typeof loader>();
 
   return (
     <AppProvider apiKey={apiKey}>
       <s-app-nav>
-        <s-link href="/app">Übersicht</s-link>
-        <s-link href="/app/withdrawals">Widerrufe</s-link>
-        <s-link href="/app/guarantee">Gewährleistung</s-link>
-        <s-link href="/app/settings">Einstellungen</s-link>
-        <s-link href="/app/billing">Tarif</s-link>
+        <s-link href="/app">{nav.overview}</s-link>
+        <s-link href="/app/withdrawals">{nav.withdrawals}</s-link>
+        <s-link href="/app/guarantee">{nav.guarantee}</s-link>
+        <s-link href="/app/settings">{nav.settings}</s-link>
+        <s-link href="/app/billing">{nav.billing}</s-link>
       </s-app-nav>
       <Outlet />
     </AppProvider>

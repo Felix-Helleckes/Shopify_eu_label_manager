@@ -48,6 +48,8 @@ model Shop {
   installedAt         DateTime  @default(now())
   uninstalledAt       DateTime?
   plan                String?
+  adminLocale         String?   // merchant override for the app UI language (null = automatic)
+  detectedLocale      String?   // last admin language reported by Shopify (locale param)
 
   // Withdrawal settings
   notifyMerchant      Boolean   @default(true)
