@@ -7,8 +7,9 @@ Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brau
 1. **Domain kaufen** (5 Min): `eu-compliance-suite.com` bei Porkbun (porkbun.com) oder INWX (inwx.de), ohne Zusatzpakete.
    Danach mir Bescheid geben – ich richte Netlify (Landingpage unter der Domain), Brevo (Absender `noreply@`), und die
    Weiterleitung `support@` → dein Gmail ein. Du trägst dann nur die 4–5 DNS-Einträge ein, die ich dir aufliste.
-2. **Einreichung** (1 Klick): falls ich nicht mehr online bin, sobald „Eingebettete App-Checks“ grün sind:
-   https://partners.shopify.com/1971036/apps/391922778113/distribution/app-store → „Zur Prüfung einreichen“.
+2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, wir weisen deiner Einreichung einen Prüfer
+   zu“. Sichtbarkeit steht auf „in Suche und Empfehlungen“. Rückmeldungen von Shopify kommen per E-Mail an
+   florian.helleckes@gmail.com — **bitte täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
 3. **Agenturen anschreiben** (20 Min): 18 fertige Nachrichten in `outreach-messages.md`, je Kontaktformular oder
    LinkedIn. Reihenfolge ist Priorität; die ersten 8 reichen für heute.
 
