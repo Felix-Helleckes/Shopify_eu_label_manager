@@ -266,9 +266,9 @@ export default function Index() {
     ["↶", t.f1t, t.f1],
     ["✓", t.f2t, t.f2],
     ["★", t.f3t, t.f3],
-    ["🌐", t.f4t, t.f4],
+    ["⊕", t.f4t, t.f4],
     ["⚙", t.f5t, t.f5],
-    ["🔒", t.f6t, t.f6],
+    ["⊘", t.f6t, t.f6],
   ];
 
   const faq: [string, string][] = [
