@@ -15,6 +15,7 @@ const fr: AdminStrings = {
   "common.invalidLanguage": "Langue non valide",
   "common.noAddress": "– aucune adresse définie –",
   "common.anonymized": "[anonymisé]",
+  "common.saveInEditor": "Cliquez ensuite sur « Enregistrer » en haut à droite de l’éditeur de thème : sans cela, le bloc n’existe que dans l’aperçu.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envoi d’e-mails non configuré",
   "dash.mail.body":
@@ -194,6 +195,7 @@ const es: AdminStrings = {
   "common.invalidLanguage": "Idioma no válido",
   "common.noAddress": "– sin dirección –",
   "common.anonymized": "[anonimizado]",
+  "common.saveInEditor": "Después haga clic en «Guardar» en la parte superior derecha del editor de temas; sin guardar, el bloque solo existe en la vista previa.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envío de correo no configurado",
   "dash.mail.body":
@@ -373,6 +375,7 @@ const it: AdminStrings = {
   "common.invalidLanguage": "Lingua non valida",
   "common.noAddress": "– nessun indirizzo impostato –",
   "common.anonymized": "[anonimizzato]",
+  "common.saveInEditor": "Poi fai clic su «Salva» in alto a destra nell’editor del tema: senza salvare, il blocco esiste solo nell’anteprima.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Invio e-mail non configurato",
   "dash.mail.body":
@@ -552,6 +555,7 @@ const nl: AdminStrings = {
   "common.invalidLanguage": "Ongeldige taal",
   "common.noAddress": "– geen adres ingesteld –",
   "common.anonymized": "[geanonimiseerd]",
+  "common.saveInEditor": "Klik daarna rechtsboven in de theme-editor op “Opslaan” – zonder opslaan bestaat het blok alleen in het voorbeeld.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-mailverzending niet geconfigureerd",
   "dash.mail.body":
@@ -731,6 +735,7 @@ const pl: AdminStrings = {
   "common.invalidLanguage": "Nieprawidłowy język",
   "common.noAddress": "– brak adresu –",
   "common.anonymized": "[zanonimizowano]",
+  "common.saveInEditor": "Następnie kliknij „Zapisz” w prawym górnym rogu edytora motywów – bez zapisania blok istnieje tylko w podglądzie.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Wysyłka e-maili nie jest skonfigurowana",
   "dash.mail.body":
@@ -910,6 +915,7 @@ const pt: AdminStrings = {
   "common.invalidLanguage": "Idioma inválido",
   "common.noAddress": "– nenhum endereço definido –",
   "common.anonymized": "[anonimizado]",
+  "common.saveInEditor": "Depois clique em “Guardar” no canto superior direito do editor de temas – sem guardar, o bloco existe apenas na pré-visualização.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "Envio de e-mail não configurado",
   "dash.mail.body":
@@ -1089,6 +1095,7 @@ const sv: AdminStrings = {
   "common.invalidLanguage": "Ogiltigt språk",
   "common.noAddress": "– ingen adress angiven –",
   "common.anonymized": "[anonymiserad]",
+  "common.saveInEditor": "Klicka sedan på ”Spara” uppe till höger i temaredigeraren – utan att spara finns blocket bara i förhandsvisningen.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-postutskick är inte konfigurerat",
   "dash.mail.body":
@@ -1268,6 +1275,7 @@ const da: AdminStrings = {
   "common.invalidLanguage": "Ugyldigt sprog",
   "common.noAddress": "– ingen adresse angivet –",
   "common.anonymized": "[anonymiseret]",
+  "common.saveInEditor": "Klik derefter på ”Gem” øverst til højre i temaeditoren – uden at gemme findes blokken kun i forhåndsvisningen.",
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-mailafsendelse er ikke konfigureret",
   "dash.mail.body":

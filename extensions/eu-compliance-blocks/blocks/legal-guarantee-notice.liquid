@@ -11,7 +11,7 @@
 {%- assign portal = 'https://europa.eu/youreurope/guarantees' -%}
 <div class="eu-guarantee-notice" style="--eu-notice-max: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
   {%- if block.settings.display == 'collapsible' -%}
-    <details class="eu-guarantee-notice__details" {% if request.design_mode %}open{% endif %}>
+    <details class="eu-guarantee-notice__details">
       <summary class="eu-guarantee-notice__summary">{{ 'guarantee.notice_toggle' | t }}</summary>
       <a href="{{ portal }}" target="_blank" rel="noopener" class="eu-guarantee-notice__link">
         <img class="eu-guarantee-notice__img" src="{{ file | asset_url }}" alt="{{ 'guarantee.notice_alt' | t | escape }}" loading="lazy" width="1100" height="1500">

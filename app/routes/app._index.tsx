@@ -96,7 +96,8 @@ export default function Dashboard() {
         <s-ordered-list>
           <s-list-item>
             <s-text type="strong">{s["dash.step1.title"]}</s-text> {fill(s["dash.step1.body"], { label: d.labels.withdraw })}{" "}
-            <s-link href={d.links.activateWithdrawalEmbed} target="_blank">{s["dash.step1.link"]}</s-link>. {s["dash.step1.alt"]}
+            <s-link href={d.links.activateWithdrawalEmbed} target="_blank">{s["dash.step1.link"]}</s-link>. {s["dash.step1.alt"]}{" "}
+            {s["common.saveInEditor"]}
           </s-list-item>
           <s-list-item>
             <s-text type="strong">{s["dash.step2.title"]}</s-text> {fill(s["dash.step2.body"], { label: d.labels.withdraw })}

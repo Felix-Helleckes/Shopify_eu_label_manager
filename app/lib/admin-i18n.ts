@@ -51,6 +51,7 @@ export const en = {
   "common.invalidLanguage": "Invalid language",
   "common.noAddress": "– no address set –",
   "common.anonymized": "[anonymised]",
+  "common.saveInEditor": "Then click Save at the top right of the theme editor – without saving, the block only exists in the preview.",
 
   // dashboard
   "dash.title": "EU Compliance Suite",
@@ -248,6 +249,7 @@ export const de: AdminStrings = {
   "common.invalidLanguage": "Ungültige Sprache",
   "common.noAddress": "– keine Adresse hinterlegt –",
   "common.anonymized": "[anonymisiert]",
+  "common.saveInEditor": "Danach im Theme-Editor oben rechts auf „Speichern“ klicken – ohne Speichern bleibt der Block nur in der Vorschau.",
 
   "dash.title": "EU Compliance Suite",
   "dash.mail.title": "E-Mail-Versand nicht konfiguriert",

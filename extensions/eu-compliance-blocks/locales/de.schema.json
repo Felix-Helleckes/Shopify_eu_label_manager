@@ -2,11 +2,11 @@
   "blocks": {
     "withdrawal_button": {
       "name": "EU-Widerrufsbutton",
-      "info": "Gesetzliche Widerrufsfunktion (Art. 11a Verbraucherrechte-Richtlinie, § 356a BGB, seit 19.06.2026). Die Beschriftung folgt der amtlichen Formulierung in der Shop-Sprache. Der Button muss hervorgehoben platziert und während der gesamten Widerrufsfrist erreichbar sein."
+      "info": "Gesetzliche Widerrufsfunktion (Art. 11a Verbraucherrechte-Richtlinie, § 356a BGB, seit 19.06.2026). Die Beschriftung folgt der amtlichen Formulierung in der Shop-Sprache. Der Button muss hervorgehoben platziert und während der gesamten Widerrufsfrist erreichbar sein. Die Widerrufsfunktion gehört zu den Tarifen Basic und Pro: Im kostenlosen Tarif „Label“ bleibt der Block leer – im Theme-Editor genauso wie im Shop."
     },
     "withdrawal_embed": {
       "name": "EU-Widerrufsbutton (alle Seiten)",
-      "info": "Zeigt den gesetzlichen Widerrufsbutton auf jeder Seite des Shops, wie von Art. 11a VRRL / § 356a BGB verlangt (ständig verfügbar, hervorgehoben, leicht zugänglich)."
+      "info": "Zeigt den gesetzlichen Widerrufsbutton auf jeder Seite des Shops, wie von Art. 11a VRRL / § 356a BGB verlangt (ständig verfügbar, hervorgehoben, leicht zugänglich). Die Widerrufsfunktion gehört zu den Tarifen Basic und Pro: Im kostenlosen Tarif „Label“ wird nichts angezeigt – im Theme-Editor genauso wie im Shop."
     },
     "guarantee_notice": {
       "name": "EU-Gewährleistungshinweis",
@@ -14,7 +14,7 @@
     },
     "durability_label": {
       "name": "GARAN-Kennzeichnung Haltbarkeitsgarantie",
-      "info": "Harmonisierte Kennzeichnung für eine gewerbliche Haltbarkeitsgarantie des Herstellers von mehr als zwei Jahren (Durchführungsverordnung (EU) 2025/1960). Liest die Produkt-Metafelder eu_compliance.guarantee_years, guarantee_producer und guarantee_model; legen Sie diese in der App unter „Gewährleistung“ an."
+      "info": "Harmonisierte Kennzeichnung für eine gewerbliche Haltbarkeitsgarantie des Herstellers von mehr als zwei Jahren (Durchführungsverordnung (EU) 2025/1960). Liest die Produkt-Metafelder eu_compliance.guarantee_years, guarantee_producer und guarantee_model; legen Sie diese in der App unter „Gewährleistung“ an. Ohne Garantie von mehr als zwei Jahren bleibt der Block leer – im Theme-Editor genauso wie im Shop, weil die Kennzeichnung dann nicht gezeigt werden darf."
     },
     "repair_info": {
       "name": "EU-Hinweis Recht auf Reparatur",

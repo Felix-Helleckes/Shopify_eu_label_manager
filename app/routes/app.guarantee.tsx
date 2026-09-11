@@ -6,7 +6,7 @@ import { requireShop, themeEditorLinks } from "../lib/admin.server";
 import { ensureProductDefinitions, listProductDefinitions, PRODUCT_DEFINITIONS } from "../lib/metafields.server";
 import { en, type AdminKey } from "../lib/admin-i18n";
 
-const KEYS = Object.keys(en).filter((k) => k.startsWith("gu.")) as AdminKey[];
+const KEYS = Object.keys(en).filter((k) => k.startsWith("gu.") || k.startsWith("common.")) as AdminKey[];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { shop, admin, t } = await requireShop(request);
@@ -76,6 +76,7 @@ export default function Guarantee() {
         <s-paragraph>
           {s["gu.s1.placement"]} <s-link href={links.addNoticeBlock} target="_blank">{s["gu.s1.link"]}</s-link>
         </s-paragraph>
+        <s-paragraph>{s["common.saveInEditor"]}</s-paragraph>
       </s-section>
 
       <s-section heading={s["gu.s2.title"]}>
@@ -97,7 +98,7 @@ export default function Guarantee() {
             <s-link href={links.addLabelBlock} target="_blank">{s["gu.s2.link"]}</s-link>
           </s-stack>
         </Form>
-        <s-paragraph>{s["gu.s2.after"]}</s-paragraph>
+        <s-paragraph>{s["gu.s2.after"]} {s["common.saveInEditor"]}</s-paragraph>
       </s-section>
 
       <Form method="post">
@@ -113,6 +114,7 @@ export default function Guarantee() {
               {save}
             </s-button>
             <s-link href={links.addRepairBlock} target="_blank">{s["gu.s3.link"]}</s-link>
+            <s-paragraph>{s["common.saveInEditor"]}</s-paragraph>
           </s-stack>
         </s-section>
       </Form>

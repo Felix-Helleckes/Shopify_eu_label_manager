@@ -3,6 +3,8 @@
   Annex II of Implementing Regulation (EU) 2025/1960. Shown only when the producer offers a
   guarantee of MORE than two years (Art. 6(1)(la) CRD). Fixed elements come from the official
   artwork; the editable fields (years, producer, model) are read from product metafields.
+  Without such a guarantee the block stays empty – in the theme editor exactly as in the storefront,
+  because the label may not be shown for guarantees of two years or less.
 {%- endcomment -%}
 {%- assign mf = product.metafields.eu_compliance -%}
 {%- assign years = mf.guarantee_years.value | default: mf.guarantee_years | plus: 0 -%}
@@ -29,8 +31,6 @@
       <a class="eu-garan__terms" href="{{ terms }}" target="_blank" rel="noopener">{{ 'guarantee.terms_link' | t }}</a>
     {%- endif -%}
   </div>
-{%- elsif request.design_mode -%}
-  <div class="eu-garan__placeholder" {{ block.shopify_attributes }}>{{ 'guarantee.editor_placeholder' | t }}</div>
 {%- endif -%}
 
 {% schema %}

@@ -5,9 +5,12 @@
 {%- comment -%} Plan mirrored by the app into the app-owned shop metafield $app:billing.plan ('free' | 'basic' | 'pro'). {%- endcomment -%}
 {%- assign eu_plan_mf = shop.metafields['$app:billing'].plan -%}
 {%- assign eu_plan = eu_plan_mf.value | default: eu_plan_mf | default: '' | downcase -%}
-{%- if eu_plan == 'free' -%}
-  {%- if request.design_mode -%}<div class="eu-wd-plan-note" {{ block.shopify_attributes }}>{{ 'withdrawal.plan_required' | t }}</div>{%- endif -%}
-{%- else -%}
+{%- comment -%}
+  On the free plan the block stays empty – in the theme editor exactly as in the storefront, so that
+  merchants never see something while editing that visitors do not get. Why the block is empty is
+  explained in the block's settings panel.
+{%- endcomment -%}
+{%- unless eu_plan == 'free' -%}
 {%- assign uid = 'embed' -%}
 {%- assign withdraw_label = 'withdrawal.button' | t -%}
 {%- if block.settings.label_override != blank -%}{%- assign withdraw_label = block.settings.label_override -%}{%- endif -%}
@@ -17,7 +20,7 @@
   </button>
   {%- render 'eu-withdrawal-dialog', uid: uid, label_override: block.settings.label_override, confirm_override: block.settings.confirm_override, proxy_path: block.settings.proxy_path -%}
 </div>
-{%- endif -%}
+{%- endunless -%}
 
 {% schema %}
 {

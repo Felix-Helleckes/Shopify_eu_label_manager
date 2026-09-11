@@ -2,11 +2,11 @@
   "blocks": {
     "withdrawal_button": {
       "name": "EU withdrawal button",
-      "info": "Statutory withdrawal function (Art. 11a Consumer Rights Directive, since 19 June 2026). The label uses the official wording of the storefront language. The button must be prominently displayed and available throughout the withdrawal period."
+      "info": "Statutory withdrawal function (Art. 11a Consumer Rights Directive, since 19 June 2026). The label uses the official wording of the storefront language. The button must be prominently displayed and available throughout the withdrawal period. The withdrawal function belongs to the Basic and Pro plans: on the free Label plan the block stays empty, in the theme editor as well as in the storefront."
     },
     "withdrawal_embed": {
       "name": "EU withdrawal button (all pages)",
-      "info": "Shows the statutory withdrawal button on every page of the storefront, as required by Art. 11a of the Consumer Rights Directive (continuously available, prominently displayed, easily accessible)."
+      "info": "Shows the statutory withdrawal button on every page of the storefront, as required by Art. 11a of the Consumer Rights Directive (continuously available, prominently displayed, easily accessible). The withdrawal function belongs to the Basic and Pro plans: on the free Label plan nothing is shown, in the theme editor as well as in the storefront."
     },
     "guarantee_notice": {
       "name": "EU legal guarantee notice",
@@ -14,7 +14,7 @@
     },
     "durability_label": {
       "name": "GARAN durability guarantee label",
-      "info": "Harmonised label for a producer's commercial guarantee of durability of more than two years (Implementing Regulation (EU) 2025/1960). Reads the product metafields eu_compliance.guarantee_years, guarantee_producer and guarantee_model; create them in the app under “Guarantee”."
+      "info": "Harmonised label for a producer's commercial guarantee of durability of more than two years (Implementing Regulation (EU) 2025/1960). Reads the product metafields eu_compliance.guarantee_years, guarantee_producer and guarantee_model; create them in the app under “Guarantee”. Without a guarantee of more than two years the block stays empty, in the theme editor as well as in the storefront, because the label may not be shown in that case."
     },
     "repair_info": {
       "name": "EU right to repair notice",
