@@ -3,7 +3,7 @@
 # Setup (once):
 #   fly auth login
 #   fly apps create eu-compliance-suite --org personal
-#   ./scripts/fly-secrets.sh          # reads .env / .env.netlify and pushes the secrets
+#   fly secrets set KEY=value ...     # siehe docs/SETUP.md
 #   fly deploy
 #
 # The database is Supabase (eu-central-1, Frankfurt) and the app runs in fra, so both storage

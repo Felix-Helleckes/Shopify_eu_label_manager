@@ -16,7 +16,7 @@ From 19 June 2026 every EU online shop needs a withdrawal button (Art. 11a Consu
 27 September 2026 the harmonised legal-guarantee notice and the GARAN label (Regulation (EU) 2025/1960). This video
 shows the full setup in Shopify with EU Compliance Suite: the label blocks are free, the withdrawal function starts at
 6.99 USD/month with a 14-day trial.
-App: [App-Store-Link] · Info: https://smtp--eu-compliance-suite.netlify.app
+App: [App-Store-Link] · Info: https://eu-compliance-suite.fly.dev
 0:00 What changes in 2026 · 0:45 Install · 1:15 Legal-guarantee notice block · 2:00 GARAN label from metafields ·
 3:00 Withdrawal button (app embed) · 4:00 Test a withdrawal, acknowledgement e-mail, evidence log · 5:00 Pricing
 

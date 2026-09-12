@@ -73,7 +73,7 @@ withdrawal button, right of withdrawal, legal guarantee, EU compliance, Verbrauc
 - App-Oberfläche: Englisch als Standard, folgt der Admin-Sprache (en, de, fr, es, it, nl, pl, pt, sv, da).
 - Kategorie: Store management › Security › Legal; Tags Compliance: Geschäftsbedingungen, Compliance-Berichte,
   Richtlinienverwaltung; Customization: Mehrere Sprachen, Popups, Farbe und Schriftart, Schaltflächen, Widget-Position.
-- Screencast: https://smtp--eu-compliance-suite.netlify.app/screencast (Shop-Ansicht EN + Admin EN, 1:27).
+- Screencast: https://eu-compliance-suite.fly.dev/screencast (Shop-Ansicht EN + Admin EN, 1:27).
 - Testanleitung: siehe Feld „Testing instructions“ im Listing (englisch, UI-Bezeichnungen der englischen Oberfläche).
 
 ### English listing texts (for the English translation after publication)

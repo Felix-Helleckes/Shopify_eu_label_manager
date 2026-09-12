@@ -2,7 +2,7 @@
 
 Reihenfolge = Priorität. Kanal: Kontaktformular der Website oder LinkedIn-Nachricht an den Inhaber. Betreff jeweils in der
 ersten Zeile. Bitte nur den Namen des Ansprechpartners ergänzen, wenn er auf der Seite steht. Links: App-Landingpage
-https://smtp--eu-compliance-suite.netlify.app (nach Freigabe: App-Store-Link), Demo https://smtp--eu-compliance-suite.netlify.app/screencast
+https://eu-compliance-suite.fly.dev (nach Freigabe: App-Store-Link), Demo https://eu-compliance-suite.fly.dev/screencast
 
 ## 1. commerce & code GmbH (Thomas Borowski, Eckernförde)
 
@@ -16,7 +16,7 @@ Ihr Beitrag „„Widerrufsbutton: So bindest du ihn in deinem Shopify Shop ein�
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 2. classymarketing.de
@@ -31,7 +31,7 @@ Ihr Beitrag „Widerrufsbutton für Shopify – Pflicht ab 19. Juni 2026“ geh�
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 3. TG-AI (tg-ai.de)
@@ -46,7 +46,7 @@ your article "§ 356a BGB – What Shopify merchants must do (EN)" is one of the
 
 For agencies I offer 30 % revenue share in the first year for referred stores or a free agency licence. If it helps, I set the app up together with you in one of your client stores – 20 minutes, then you know whether it fits.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Best regards, Felix Helleckes (EU Compliance Suite, Cologne)
 
 ## 4. Falke Consulting
@@ -61,7 +61,7 @@ Ihr Beitrag „Widerrufsbutton Pflicht: Shopify-Anleitung 2026“ gehört zu den
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 5. datrycs
@@ -76,7 +76,7 @@ Ihr Beitrag „Widerrufsbutton Pflicht 2026: Shopify & Shopware“ gehört zu de
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 6. apoio digital
@@ -91,7 +91,7 @@ Ihr Beitrag „Widerrufsbutton für Shopify: Pflicht seit 19. Juni 2026“ gehö
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 7. tante-e (Shopify-Agentur)
@@ -106,7 +106,7 @@ Ihr Beitrag „Widerruf-Button & Gewährleistungslabel: Pflicht ab 2026“ gehö
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 8. sayweb.de
@@ -121,7 +121,7 @@ Ihr Beitrag „Gewährleistungslabel und GARAN-Label in Shopify einbinden“ geh
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 9. ecommerce-agentur.net
@@ -136,7 +136,7 @@ Ihr Beitrag „Shopify: EU-Gewährleistungslabel & GARAN-Label Pflicht“ gehör
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 10. e-nitio
@@ -151,7 +151,7 @@ Ihr Beitrag „EU Gewährleistungs- und Garantie-Label für Shopware & Shopify�
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 11. XICTRON
@@ -166,7 +166,7 @@ Ihr Beitrag „Gewährleistungs- und Garantielabel: Pflicht ab 27.09.2026“ geh
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 12. SHOMUGO
@@ -181,7 +181,7 @@ Ihr Beitrag „GARAN-Label und EU-Gewährleistungshinweis: Pflicht-Check“ geh�
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 13. SEO-Küche
@@ -196,7 +196,7 @@ Ihr Beitrag „Gewährleistungs- und Garantielabel ab September 2026“ gehört 
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 14. SENSUS MEDIA
@@ -211,7 +211,7 @@ Ihr Beitrag „Gewährleistungslabel & GARAN-Label: Pflicht ab 27.09.2026“ geh
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 15. nuonic Digital
@@ -226,7 +226,7 @@ Ihr Beitrag „Gewährleistungslabel 2026 (Shopware) – Cross-Selling: Shopify-
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 16. viosys
@@ -241,7 +241,7 @@ Ihr Beitrag „Gewährleistungslabel & Garantielabel Pflicht“ gehört zu den w
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 17. csignity
@@ -256,7 +256,7 @@ Ihr Beitrag „Garantie- & Gewährleistungslabel 2026“ gehört zu den wenigen,
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)
 
 ## 18. onwalt (Akademie)
@@ -271,5 +271,5 @@ Ihr Beitrag „Neue EU-Labels 2026“ gehört zu den wenigen, die das Thema für
 
 Für Agenturen biete ich 30 % Umsatzbeteiligung im ersten Jahr für vermittelte Shops oder einen kostenlosen Agentur-Zugang. Wenn Sie möchten, richte ich die App zusammen mit Ihnen in einem Ihrer Kundenshops ein – 20 Minuten, danach wissen Sie, ob es passt.
 
-Demo: https://smtp--eu-compliance-suite.netlify.app/screencast
+Demo: https://eu-compliance-suite.fly.dev/screencast
 Beste Grüße, Felix Helleckes (EU Compliance Suite, Köln)

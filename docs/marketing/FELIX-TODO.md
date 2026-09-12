@@ -32,7 +32,6 @@ Vorlage Bewertungsbitte (DE):
 
 ## Optional, wenn Geld übrig ist
 
-9. Netlify Pro (19 $/Monat) – nur nötig, wenn du vor dem 23.09. die Haupt-URL statt der Alias-URL willst.
 10. Shopify App Store Ads, 5–10 €/Tag auf „GARAN“, „Gewährleistungslabel“, „withdrawal button“ in den zwei Wochen vor
     dem 27.09. Der einzige bezahlte Kanal, den ich empfehle.
 

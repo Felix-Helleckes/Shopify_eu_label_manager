@@ -34,5 +34,3 @@ pnpm-lock.yaml
 # Test/coverage
 coverage/
 
-# Netlify
-.netlify/

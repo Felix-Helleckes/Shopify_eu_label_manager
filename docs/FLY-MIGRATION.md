@@ -1,7 +1,7 @@
 # Umzug nach Fly.io Frankfurt – erledigt am 11.09.2026
 
 > Status: abgeschlossen. Die App läuft unter https://eu-compliance-suite.fly.dev (Region fra),
-> `/healthcheck` meldet `host.region: "fra"`. Netlify bleibt als Rückfallebene bestehen.
+> `/healthcheck` meldet `host.region: "fra"`. Netlify wurde abgeschaltet; Fly.io ist die einzige Umgebung.
 
 Ziel: Die Anwendung läuft in Frankfurt statt in Ohio. Damit stimmt die Aussage „Verarbeitung in der EU“ wieder,
 und die Latenz zur Datenbank (Supabase, eu-central-1) sinkt deutlich.
@@ -26,7 +26,7 @@ Danach Bescheid geben. Den Rest übernehme ich.
 
 ```bash
 fly apps create eu-compliance-suite --org personal
-./scripts/fly-secrets.sh                # überträgt die Konfiguration von Netlify nach Fly
+fly secrets set KEY=wert --app eu-compliance-suite   # Konfiguration setzen
 fly deploy
 curl -s https://eu-compliance-suite.fly.dev/healthcheck    # host.region muss "fra" sein
 ```
@@ -37,12 +37,12 @@ Danach:
    app_proxy url) und `shopify app deploy --allow-updates` ausführen.
 2. Datenschutzerklärung wieder auf „Speicherung und Verarbeitung in Frankfurt“ setzen (Abschnitt 5, DE und EN) und
    die FAQ-Antwort auf der Landingpage anpassen.
-3. Netlify-Seite als Weiterleitung stehen lassen oder abschalten.
+3. Netlify-Seite abgeschaltet (erledigt).
 
 ## Rollback
 
-Netlify bleibt unangetastet. Falls etwas klemmt: `shopify.app.toml` zurück auf
-`https://smtp--eu-compliance-suite.netlify.app`, `shopify app deploy --allow-updates`, fertig.
+Historisch, nicht mehr gueltig: Rückfall auf `shopify.app.toml` mit
+`https://eu-compliance-suite.fly.dev`, `shopify app deploy --allow-updates`, fertig.
 
 ## Warum nicht kostenlos
 

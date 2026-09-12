@@ -9,16 +9,13 @@ Alles, was nur mit deinen Accounts geht. Reihenfolge = Priorität. Texte liegen 
    https://partners.shopify.com/1971036/apps/391922778113/distribution/app-store → „Zur Prüfung einreichen“.
    Alles andere ist ausgefüllt und gespeichert. Falls der Button nach 2–4 Stunden noch grau ist: App im Dev-Store
    einmal öffnen (erzeugt Sitzungsdaten) und erneut warten.
-2. **Netlify**: Credits sind bis 23.09. aufgebraucht, die App läuft auf der Alias-URL
-   `https://smtp--eu-compliance-suite.netlify.app`. Entweder Pro-Plan buchen (19 $/Monat, dann sofort
-   `netlify deploy --prod` + `shopify app deploy`) oder bis 23.09. so lassen – funktioniert.
-3. **Absender-Domain**: eigene Domain (z. B. eu-compliance-suite.de) kaufen, bei Brevo verifizieren, `MAIL_FROM`
+2. **Absender-Domain**: eigene Domain (z. B. eu-compliance-suite.de) kaufen, bei Brevo verifizieren, `MAIL_FROM`
    umstellen. Bis dahin gehen Mails von `…@brevosend.com` raus (funktioniert, sieht aber weniger seriös aus).
 
 ## B. Tag der Einreichung (30 Minuten)
 
 4. LinkedIn-Post DE **und** EN (`posts.md`) mit dem Cover-Bild `store/listing/en/screenshot-cover.png` oder dem
-   Screencast-Link https://smtp--eu-compliance-suite.netlify.app/screencast.
+   Screencast-Link https://eu-compliance-suite.fly.dev/screencast.
 5. Shopify Community: Thread im deutschen Forum + im englischen Forum (Texte in `posts.md`), danach die Suche nach
    „Widerrufsbutton“, „withdrawal button“, „GARAN“, „Gewährleistungslabel“ – auf offene Fragen antworten, Link nur wenn
    passend.
@@ -39,7 +36,7 @@ Alles, was nur mit deinen Accounts geht. Reihenfolge = Priorität. Texte liegen 
 
 11. Englisches Listing anlegen (Partner-Dashboard → Listing → Sprache hinzufügen): Texte in `docs/LISTING.md`
     (Abschnitt „English listing texts“), Screenshots aus `store/listing/en/`.
-12. `APP_STORE_URL` in Netlify setzen (Listing-URL, vermutlich https://apps.shopify.com/eu-label-1), neu deployen –
+12. `APP_STORE_URL` per `fly secrets set` setzen (Listing-URL, vermutlich https://apps.shopify.com/eu-label-1), neu deployen –
     dann zeigt die Landingpage den App-Store-Button.
 13. Product Hunt Launch (Text in `posts.md`), zweiter LinkedIn-Post „jetzt im App Store“.
 14. Erste 5 Händler persönlich um eine Bewertung bitten (Bewertungen entscheiden das Ranking).

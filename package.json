@@ -26,7 +26,6 @@
     "vite": "vite"
   },
   "dependencies": {
-    "@netlify/vite-plugin-react-router": "^4.0.0",
     "@prisma/client": "^6.19.3",
     "@react-router/dev": "7.18.2",
     "@react-router/fs-routes": "7.18.2",
@@ -44,7 +43,6 @@
     "vite-tsconfig-paths": "^6.0.4"
   },
   "devDependencies": {
-    "@netlify/vite-plugin": "^3.0.1",
     "@shopify/app-bridge-types": "^0.7.2",
     "@shopify/cli": "^4.8.0",
     "@shopify/polaris-types": "1.0.1",
