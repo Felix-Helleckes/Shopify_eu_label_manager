@@ -50,6 +50,29 @@ export function meta({ data }: { data?: { lang: Lang } }) {
         ? "Widerrufsbutton nach Art. 11a VRRL / § 356a BGB, amtlicher Gewährleistungshinweis und GARAN-Kennzeichnung (VO (EU) 2025/1960) in einer Shopify-App – 24 EU-Sprachen, ohne Theme-Änderung, Label-Blöcke kostenlos."
         : "Withdrawal button (Art. 11a Consumer Rights Directive), harmonised legal-guarantee notice and GARAN label (Reg. (EU) 2025/1960) in one Shopify app – 24 EU languages, no theme code, label blocks free.",
     },
+    { name: "author", content: "Felix Helleckes" },
+    {
+      "script:ld+json": {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "EU Compliance Suite",
+        url: "https://eu-compliance-suite.netlify.app/",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        author: {
+          "@type": "Person",
+          "@id": "https://felix-helleckes.github.io/#person",
+          name: "Felix Helleckes",
+          url: "https://felix-helleckes.github.io/",
+          jobTitle: "QA & Test Automation Engineer",
+          sameAs: [
+            "https://github.com/Felix-Helleckes",
+            "https://www.linkedin.com/in/felix-helleckes-758529202/",
+            "https://stackoverflow.com/users/15774380/felix-helleckes",
+          ],
+        },
+      },
+    },
   ];
 }
 
@@ -464,7 +487,8 @@ export default function Index() {
 
       <footer className="wrap">
         <div>
-          {operator.name} · {operator.address} · <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
+          <a href="https://felix-helleckes.github.io/" rel="author">{operator.name}</a> ·{" "}
+          {operator.address} · <a href={`mailto:${supportEmail}`}>{supportEmail}</a>
         </div>
         <div className="foot-links">
           <a href="/privacy">{t.footPrivacy}</a>
