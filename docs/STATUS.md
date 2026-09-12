@@ -83,10 +83,27 @@ in `docs/marketing/targets.md`, Abschnitt 2a. Das Wichtigste:
   Screenshots dafür in sechs Sprachen; pl, pt, sv, da zeigen die englischen.
 - Listing-Übersetzungen FR, NL, ES, IT.
 
-## Reihenfolge, wenn die Zeit knapp ist
+## Reihenfolge – nicht als Kette lesen
 
-1. Freigabe verfolgen und Prüferfragen sofort beantworten.
-2. Domain kaufen und umziehen, **bevor** Links in die Welt gehen.
-3. LinkedIn-Anfragen senden.
-4. Nach der Freigabe: Listing-Sprachen anlegen, erste Installationen um Bewertungen bitten
+**Nur die Freigabe ist ein Blocker.** Domain und LinkedIn hängen nicht daran und laufen parallel.
+Wer wartet, bis das Listing live ist, verliert die Tage doppelt: Kontaktanfragen auf LinkedIn brauchen
+selbst Tage, bis sie angenommen werden, und eine Domain braucht Stunden für DNS und Zertifikat.
+
+**Sofort, unabhängig von der Freigabe (zusammen ca. 30 Minuten):**
+
+1. Domain kaufen. Zuerst, weil jeder Link, der danach entsteht, schon auf die endgültige Adresse zeigen
+   soll – ein Umzug später entwertet genau die Links, die die Ansprache erzeugt.
+2. Die 17 Kontaktanfragen auf LinkedIn senden. Das ist noch kein Pitch, sondern nur das Vernetzen; der
+   eigentliche Text geht nach der Annahme raus. Die Wartezeit auf die Freigabe deckt sich mit der
+   Wartezeit auf die Annahmen.
+
+**Währenddessen:**
+
+3. DNS setzen, `SITE_URL` in `app/lib/site.ts` umstellen, deployen, Search Console einrichten.
+4. Prüfer-Mails täglich prüfen, ab etwa 18.09. eskalieren.
+
+**Am Tag der Freigabe:**
+
+5. Folgenachricht an alle angenommenen Kontakte – dann mit App-Store-Link statt nur Demo.
+6. Englisches Listing anlegen, danach FR, NL, ES, IT; erste Installationen um Bewertungen bitten
    (Vorlage in `docs/marketing/FELIX-TODO.md`).
