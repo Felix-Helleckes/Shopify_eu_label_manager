@@ -78,6 +78,8 @@ export function meta({ data }: { data?: { lang: Lang } }) {
             "https://github.com/Felix-Helleckes",
             "https://www.linkedin.com/in/felix-helleckes/",
             "https://stackoverflow.com/users/15774380/felix-helleckes",
+            "https://apps.apple.com/de/developer/felix-helleckes/id6786716900",
+            "https://play.google.com/store/apps/developer?id=Felix+Helleckes",
           ],
         },
       },
