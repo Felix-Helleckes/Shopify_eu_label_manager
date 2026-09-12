@@ -10,7 +10,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:var(--eu)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
@@ -38,7 +38,7 @@ h1{font-size:clamp(30px,4.6vw,50px);line-height:1.1;letter-spacing:-1.1px;margin
 .btn-ghost{background:#fff;color:var(--eu);border:1.5px solid var(--line)}
 .btn-ghost:hover{border-color:var(--eu)}
 .note{font-size:14px;color:var(--muted);margin:14px 0 0}
-.hero-shot{margin:36px 0 0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.hero-shot{margin:36px 0 0;line-height:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 
 /* deadlines */
 .dl{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:56px;padding:40px 0}
@@ -64,10 +64,12 @@ h2{font-size:clamp(23px,2.6vw,32px);letter-spacing:-.6px;margin:0 0 10px}
   display:grid;place-items:center;font-size:18px;margin-bottom:14px}
 
 /* screenshots */
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 figure{margin:0}
-figure img{border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+figure img{width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
 figcaption{font-size:13.5px;color:var(--muted);margin-top:9px}
+
+@media (max-width:820px){ .shots{grid-template-columns:minmax(0,1fr)} }
 
 /* pricing */
 .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;align-items:start}
