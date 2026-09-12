@@ -8,8 +8,9 @@ Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brau
    https://eu-compliance-suite.fly.dev, Kosten ca. 3,30 USD/Monat. Eine eigene Domain ist nicht nötig.
 2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, Prüfer wird zugewiesen“. Rückmeldungen
    kommen per E-Mail an f.helleckes@proton.me — **täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
-3. **Agenturen anschreiben** (20 Min): 18 fertige Nachrichten in `outreach-messages.md`, je Kontaktformular oder
-   LinkedIn. Reihenfolge ist Priorität; die ersten 8 reichen für heute.
+3. **Agenturen auf LinkedIn vernetzen** (20 Min): 18 fertige Kontaktanfragen in `outreach-linkedin.md`, je unter
+   300 Zeichen, dazu die Folgenachricht nach Annahme. Reihenfolge ist Priorität; die ersten 8 reichen für heute.
+   Nicht per E-Mail oder Kontaktformular – das ist ohne Einwilligung nach § 7 UWG abmahnfähig.
 
 ## Am Tag der Freigabe (30 Minuten)
 
@@ -34,6 +35,16 @@ Vorlage Bewertungsbitte (DE):
 
 10. Shopify App Store Ads, 5–10 €/Tag auf „GARAN“, „Gewährleistungslabel“, „withdrawal button“ in den zwei Wochen vor
     dem 27.09. Der einzige bezahlte Kanal, den ich empfehle.
+
+## Erledigt am 12.09.2026 (von Claude)
+
+- Landingpage: Linkvorschau (og:image, Twitter-Card), hreflang DE/EN, `<html lang>` passend zur Seite, Sitemap mit
+  beiden Sprachfassungen. Vorher zeigte jeder geteilte Link nur nackten Text, und Google sah nur eine Sprache.
+- Neue Seiten `/leitfaden` und `/guide`: der Fachbeitrag mit Checkliste und FAQ, inklusive Article- und
+  FAQPage-Daten. Das ist die Seite, die für „Gewährleistungshinweis Pflicht“ oder „GARAN-Label Shopify“ ranken kann.
+- Screenshots der Landingpage neu aufgenommen (`scripts/screenshots/build.mjs`), Verzerrung im Stylesheet behoben.
+- Listing-Texte für FR, NL, ES, IT in `docs/LISTING-translations.md`, innerhalb der Zeichengrenzen und mit den
+  amtlichen Beschriftungen aus den Sprachdateien – anlegen, sobald das Listing veröffentlicht ist.
 
 ## Was ich weiter übernehme
 Domain-Einrichtung, englisches Listing, App-Store-Link einbauen, Support-Antworten vorbereiten, Bugfixes, Umstellung auf

@@ -1,5 +1,10 @@
 # Agentur-Anschreiben, fertig zum Einfügen (Stand 11.09.2026)
 
+> **Seit 12.09.2026: Für die 18 Agenturen gilt `outreach-linkedin.md`.** Die Texte hier sind für E-Mail und
+> Kontaktformular geschrieben; beides ist ohne vorherige Einwilligung nach § 7 UWG unverlangte Werbung und
+> abmahnfähig, auch zwischen Unternehmen. Die LinkedIn-Fassung hat dasselbe Angebot in 300-Zeichen-Notizen
+> plus Folgenachricht. Diese Datei bleibt als Vorlage für Agenturen, die von sich aus um Unterlagen bitten.
+
 Reihenfolge = Priorität. Kanal: Kontaktformular der Website oder LinkedIn-Nachricht an den Inhaber. Betreff jeweils in der
 ersten Zeile. Bitte nur den Namen des Ansprechpartners ergänzen, wenn er auf der Seite steht. Links: App-Landingpage
 https://eu-compliance-suite.fly.dev (nach Freigabe: App-Store-Link), Demo https://eu-compliance-suite.fly.dev/screencast
