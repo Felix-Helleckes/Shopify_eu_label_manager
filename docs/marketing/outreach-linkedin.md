@@ -75,13 +75,11 @@ das hebt die Antwortquote deutlich, weil die Agentur die App direkt installieren
 
 > Hallo, Ihr Beitrag zum Widerrufsbutton ab 19. Juni ist einer der wenigen, die das sauber erklären. Ich habe eine Shopify-App gebaut, die Widerruf, Gewährleistungshinweis und GARAN-Label abdeckt – Label-Blöcke dauerhaft kostenlos. Darf ich sie kurz zeigen? Felix
 
-### 3. TG-AI
+### 3. TG-AI – **gestrichen, nicht anschreiben**
 
-- Beitrag: https://www.tg-ai.de/en/blog/paragraph-356a-bgb-widerrufsbutton-shopify
-- LinkedIn: https://www.linkedin.com/search/results/companies/?keywords=TG-AI
-- Notiz (241/300 Zeichen):
-
-> Hi, your article on § 356a BGB for Shopify merchants is one of the few that gets it right. I built a Shopify app covering the withdrawal button plus the notice and GARAN label due on 27 Sept – label blocks free forever. May I show you? Felix
+TG-AI betreibt selbst „EU Warranty Label & GARAN" im App Store (seit 24.06.2026, 4,6 aus 9 Bewertungen)
+und ist damit direkter Wettbewerber, kein Multiplikator. Der Blogbeitrag zu § 356a BGB ist Werbung für
+die eigene App. Eine Partneranfrage dorthin verrät nur die eigene Position.
 
 ### 4. Falke Consulting
 

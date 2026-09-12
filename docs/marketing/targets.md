@@ -37,7 +37,7 @@ Sie haben Reichweite bei genau unserer Zielgruppe und brauchen eine Lösung, die
 | --- | --- | --- |
 | commerce & code GmbH (Thomas Borowski, Eckernförde) | „Widerrufsbutton: So bindest du ihn in deinem Shopify Shop ein“ – empfiehlt aktuell Apps von 4OI layers und fuxdev | https://commerceandcode.de/blogs/shopify/widerrufsbutton |
 | classymarketing.de | Widerrufsbutton für Shopify – Pflicht ab 19. Juni 2026 | https://www.classymarketing.de/blogs/widerrufsbutton-shopify-2026 |
-| TG-AI (tg-ai.de) | § 356a BGB – What Shopify merchants must do (EN) | https://www.tg-ai.de/en/blog/paragraph-356a-bgb-widerrufsbutton-shopify |
+| ~~TG-AI (tg-ai.de)~~ **NICHT ANSCHREIBEN – Wettbewerber** | Betreibt selbst die App „EU Warranty Label & GARAN" (seit 24.06.2026, 4,6 aus 9 Bewertungen, Gratis-Tarif). Der Blogbeitrag ist Werbung für die eigene App. | https://apps.shopify.com/eu-gewaehrleistungslabel |
 | Falke Consulting | Widerrufsbutton Pflicht: Shopify-Anleitung 2026 | https://falkeconsulting.com/blogs/blog/shopify-widerrufsbutton-pflicht-2026 |
 | datrycs | Widerrufsbutton Pflicht 2026: Shopify & Shopware | https://www.datrycs.com/blog/der-widerrufsbutton-wird-pflicht-was-online-hndler-bis-zum-19-juni-2026-umsetzen-mssen |
 | apoio digital | Widerrufsbutton für Shopify: Pflicht seit 19. Juni 2026 | https://www.apoio-digital.com/blog/widerrufsbutton-shopify-2026 |
@@ -57,6 +57,22 @@ Sie haben Reichweite bei genau unserer Zielgruppe und brauchen eine Lösung, die
 Größere Shopify-Plus-Agenturen (Partnerprogramm, Referral-Provision anbieten): TOWA Digital, best it GmbH,
 Shopfabrik Berlin, Blackbit (Göttingen), Better Sell Online (Hannover); Verzeichnisse: Dr. Web „Shopify Agentur
 Vergleich 2026“ (114 Anbieter), dasistweb.de, shopify-agentur.com.
+
+## 2a. Wettbewerber im App Store (Stand 12.09.2026, recherchiert)
+
+Alle fünf decken nur Verordnung (EU) 2025/1960 ab – Hinweis und GARAN-Label. **Keiner hat den
+Widerrufsbutton.** Das ist unsere Position: die einzige App, die beide Pflichten erledigt.
+
+| App | seit | Bewertungen | Preis | Anbieter | Sitz |
+| --- | --- | --- | --- | --- | --- |
+| EU Warranty Label & GARAN | 24.06.2026 | 4,6 aus 9 | Gratis-Tarif | TG-AI (tg-ai.de) | 53773 Hennef |
+| Warranto – EU Warranty Label | 21.05.2026 | – | Gratis-Tarif | eu-warranty-label.fly.dev | 47166 Duisburg |
+| EU Legal Guarantee & GARAN | 05.08.2026 | 5,0 aus 2 | 4,99 $/Monat | rotationsdesigner (GitHub Pages) | 99326 Stadtilm |
+| EU‑Label GARAN | 25.06.2026 | – | ab 3 $ | suited-technologies.com | 72227 Egenhausen |
+| EU Warranty Label GARAN | 22.07.2026 | – | Gratis-Tarif | Partner „monetais" | nicht ermittelbar |
+
+Der Marktführer nach Bewertungen ist damit ausgerechnet TG-AI – eine der Agenturen, die auf der
+Ansprache-Liste stand. Vor jeder weiteren Ansprache prüfen, ob das Gegenüber selbst eine App hat.
 
 ## 3. Rechtsportale und Institutionen (Gastbeitrag / Erwähnung)
 
