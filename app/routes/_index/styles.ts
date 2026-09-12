@@ -40,6 +40,14 @@ h1{font-size:clamp(30px,4.6vw,50px);line-height:1.1;letter-spacing:-1.1px;margin
 .note{font-size:14px;color:var(--muted);margin:14px 0 0}
 .hero-shot{margin:36px 0 0;line-height:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 
+/* Sprachauswahl im Kopf */
+.lang-form{display:flex;align-items:center;gap:6px;margin:0}
+.lang-form select{font:inherit;font-size:14px;color:var(--muted);background:#fff;border:1px solid var(--line);
+  border-radius:8px;padding:5px 8px;cursor:pointer}
+.lang-form select:hover{color:var(--ink);border-color:var(--eu)}
+.lang-label{display:flex;align-items:center;font-size:15px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
 /* deadlines */
 .dl{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:56px;padding:40px 0}
 .dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:20px}

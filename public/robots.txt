@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /app
-Disallow: /auth
-Disallow: /webhooks
-Disallow: /proxy
-
-Sitemap: https://eu-compliance-suite.fly.dev/sitemap.xml

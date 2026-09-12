@@ -5,7 +5,8 @@ import { login } from "../../shopify.server";
 import { operator } from "../../lib/operator";
 import { loginErrorMessage } from "./error.server";
 import { LANDING_CSS } from "./styles";
-import { pickLang, socialMeta, SITE_URL, type SiteLang } from "../../lib/site";
+import { pickLang, socialMeta, landingPath, SITE_LANGS, SITE_URL, type SiteLang } from "../../lib/site";
+import { LANDING_T, LANGUAGE_NAMES, shotLang } from "./i18n";
 
 type Lang = SiteLang;
 
@@ -31,34 +32,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export function meta({ data }: { data?: { lang: Lang } }) {
-  const de = data?.lang === "de";
+  const lang = data?.lang ?? "en";
+  const t = LANDING_T[lang];
   return [
-    {
-      title: de
-        ? "EU Compliance Suite – Widerrufsbutton, Gewährleistungshinweis & GARAN-Label für Shopify"
-        : "EU Compliance Suite – EU withdrawal button, legal-guarantee notice & GARAN label for Shopify",
-    },
-    {
-      name: "description",
-      content: de
-        ? "Widerrufsbutton nach Art. 11a VRRL / § 356a BGB, amtlicher Gewährleistungshinweis und GARAN-Kennzeichnung (VO (EU) 2025/1960) in einer Shopify-App – 24 EU-Sprachen, ohne Theme-Änderung, Label-Blöcke kostenlos."
-        : "Withdrawal button (Art. 11a Consumer Rights Directive), harmonised legal-guarantee notice and GARAN label (Reg. (EU) 2025/1960) in one Shopify app – 24 EU languages, no theme code, label blocks free.",
-    },
+    { title: t.metaTitle },
+    { name: "description", content: t.metaDescription },
     { name: "author", content: "Felix Helleckes" },
     ...socialMeta({
-      lang: de ? "de" : "en",
-      pathDe: "/?lang=de",
-      pathEn: "/?lang=en",
+      lang,
+      path: landingPath(lang),
+      alternates: SITE_LANGS.map((code) => [code, landingPath(code)] as const),
       pathDefault: "/",
-      title: de
-        ? "EU Compliance Suite – Widerrufsbutton, Gewährleistungshinweis & GARAN-Label für Shopify"
-        : "EU Compliance Suite – EU withdrawal button, legal-guarantee notice & GARAN label for Shopify",
-      description: de
-        ? "Die drei EU-Pflichten 2026 in einer Shopify-App: Widerrufsbutton, amtlicher Gewährleistungshinweis und GARAN-Label in 24 Sprachen. Label-Blöcke dauerhaft kostenlos."
-        : "The three 2026 EU duties in one Shopify app: withdrawal button, harmonised legal-guarantee notice and GARAN label in 24 languages. Label blocks free forever.",
-      imageAlt: de
-        ? "Shop mit Widerrufsbutton und amtlichem Gewährleistungshinweis"
-        : "Storefront with the withdrawal button and the official legal-guarantee notice",
+      title: t.metaTitle,
+      description: t.metaDescription,
+      imageAlt: t.heroAlt,
     }),
     {
       "script:ld+json": {
@@ -88,212 +75,6 @@ export function meta({ data }: { data?: { lang: Lang } }) {
   ];
 }
 
-const T = {
-  en: {
-    switchLabel: "Deutsch",
-    switchHref: "/?lang=de",
-    navFeatures: "Features",
-    navGuide: "Guide",
-    guideHref: "/guide",
-    navPricing: "Pricing",
-    navDemo: "Demo",
-    kicker: "Shopify app · EU consumer law 2026",
-    h1: "Two EU duties. One app. All 24 languages.",
-    lead:
-      "Since 19 June 2026 every EU online shop must offer a withdrawal button. From 27 September 2026 the harmonised legal-guarantee notice and the GARAN label become mandatory. EU Compliance Suite ships all of it as theme app blocks – official wording and artwork, automatically in your customer's language, without touching your theme.",
-    ctaStore: "View in the Shopify App Store",
-    ctaForm: "Install on your store",
-    ctaVideo: "Watch the 90-second demo",
-    heroNote: "Notice and GARAN label are free, forever. The withdrawal function starts at 6.99 USD per month.",
-    heroAlt: "Withdrawal button and dialog in a storefront",
-    deadlines: "The three deadlines",
-    dl1d: "19 June 2026",
-    dl1: "Withdrawal button with two-step confirmation and an acknowledgement of receipt (Directive (EU) 2023/2673, in Germany § 356a BGB).",
-    dl2d: "27 September 2026",
-    dl2: "Harmonised legal-guarantee notice before purchase, plus the GARAN label for producer guarantees longer than two years (Reg. (EU) 2025/1960).",
-    dl3d: "31 July 2026",
-    dl3: "Information on the right to repair for new sales contracts (Directive (EU) 2024/1799).",
-    live: "in force",
-    soon: "{n} days left",
-    featTitle: "What the app does",
-    featSub: "Everything a merchant needs to be compliant on both dates – and to prove it later.",
-    f1t: "Withdrawal function",
-    f1: "The button carries the official wording on every page, the confirmation is two-step exactly as the law requires, and the consumer gets a time-stamped acknowledgement by e-mail. Works without a customer account.",
-    f2t: "Evidence that holds up",
-    f2: "Every statement is stored with a reference number, a timestamp and a SHA-256 checksum, matched to the Shopify order, tagged, exportable as CSV and anonymised on request.",
-    f3t: "Official artwork",
-    f3: "The legal-guarantee notice and the GARAN label are the unaltered EU originals, in colour, automatically in the storefront language. The label reads its data from product metafields.",
-    f4t: "Multilingual by default",
-    f4: "Storefront blocks in all 24 EU languages, acknowledgement e-mails in all 24, and an admin in ten languages that follows your Shopify admin automatically.",
-    f5t: "No theme code",
-    f5: "Everything is added as theme app blocks and an app embed in the theme editor. Nothing is written into your theme files, so updates and theme changes stay safe.",
-    cookieText: "This website uses Google Analytics to understand how it is used. Allow analytics cookies?",
-    cookieAccept: "Accept",
-    cookieDecline: "Decline",
-    cookieMore: "Privacy policy",
-    f6t: "No cookies, no tracking in the app",
-    f6: "The app sets no cookies in your shop and tracks none of your customers. Storage and processing happen exclusively in Frankfurt, and the privacy policy plus a data-processing section are ready to hand to your lawyer. This marketing website measures visits with Google Analytics, but only after you agree to it.",
-    shotsTitle: "How it looks",
-    shotsSub: "Screenshots from a live shop. Your theme's fonts and colours are used automatically.",
-    s1: "Withdrawal button and dialog in the storefront",
-    s2: "The form asks only for the mandatory details",
-    s3: "Second step: review and confirm",
-    s4: "Receipt with reference number and timestamp",
-    s5: "GARAN label on the product page",
-    s6: "Legal-guarantee notice in the cart",
-    pricingTitle: "Pricing",
-    pricingSub: "Start free with the label blocks. Add the withdrawal function when you need it.",
-    free: "Label",
-    freeAmount: "Free",
-    freeUnit: "forever",
-    freeF: [
-      "Legal-guarantee notice block",
-      "GARAN label per product",
-      "Right-to-repair notice",
-      "All 24 EU languages",
-      "No subscription, no time limit",
-    ],
-    basic: "Basic",
-    basicUnit: "USD / month",
-    basicF: [
-      "Everything in Label",
-      "Withdrawal button, official wording",
-      "Two-step confirmation",
-      "Time-stamped acknowledgement",
-      "Withdrawal log with order matching",
-      "E-mail notification for every case",
-    ],
-    pro: "Pro",
-    proUnit: "USD / month",
-    proF: ["Everything in Basic", "Automatic order tagging", "Withdrawal metafield on the order", "CSV export of the log", "Priority support"],
-    best: "Most popular",
-    trial: "Basic and Pro start with a 14-day free trial and can be cancelled monthly through Shopify Billing.",
-    faqTitle: "Questions",
-    q1: "Is the button worded the way the law requires?",
-    a1: "Yes. The app uses the wording prescribed by the directive in each EU language, for example “Withdraw from contract here” and “Confirm withdrawal”, in German “Vertrag widerrufen” and “Widerruf bestätigen”. You can override it, but you do not have to.",
-    q2: "Where is the data stored?",
-    a2: "Everything stays in the EU: withdrawal statements, shop data and settings live in a database in Frankfurt, Germany, and the application runs on servers in Frankfurt too. The live region is shown at /healthcheck. The app sets no cookies and tracks nobody; this website measures visits only with your consent.",
-    q3: "Do I have to change my theme?",
-    a3: "No. Everything is added as theme app blocks and an app embed in the theme editor, so nothing is written into your theme files.",
-    q4: "What happens to a withdrawal that does not match an order?",
-    a4: "It is accepted and acknowledged anyway, because the law requires that, and it is flagged in the log so you can check it manually.",
-    q5: "Does this replace legal advice?",
-    a5: "No. The app implements the technical requirements and uses the official wording and artwork. Your own withdrawal information and terms remain your responsibility.",
-    installTitle: "Install the app",
-    installSub: "Enter your shop domain, approve the permissions, done in five minutes.",
-    shopDomain: "Shop domain",
-    next: "Continue",
-    footPrivacy: "Privacy",
-    footTerms: "Terms",
-    footSupport: "Support",
-    footDemo: "Screencast",
-  },
-  de: {
-    switchLabel: "English",
-    switchHref: "/?lang=en",
-    navFeatures: "Funktionen",
-    navGuide: "Leitfaden",
-    guideHref: "/leitfaden",
-    navPricing: "Preise",
-    navDemo: "Demo",
-    kicker: "Shopify-App · EU-Verbraucherrecht 2026",
-    h1: "Zwei EU-Pflichten. Eine App. Alle 24 Sprachen.",
-    lead:
-      "Seit dem 19. Juni 2026 muss jeder Onlineshop in der EU einen Widerrufsbutton anbieten. Ab dem 27. September 2026 kommen der amtliche Gewährleistungshinweis und das GARAN-Label dazu. Die EU Compliance Suite liefert alles als Theme-App-Blöcke – amtliche Beschriftungen und Grafiken, automatisch in der Sprache Ihres Kunden, ohne Eingriff ins Theme.",
-    ctaStore: "Im Shopify App Store ansehen",
-    ctaForm: "In Ihrem Shop installieren",
-    ctaVideo: "90-Sekunden-Demo ansehen",
-    heroNote: "Hinweis und GARAN-Label sind dauerhaft kostenlos. Die Widerrufsfunktion gibt es ab 6,99 USD im Monat.",
-    heroAlt: "Widerrufsbutton und Dialog in einem Shop",
-    deadlines: "Die drei Fristen",
-    dl1d: "19. Juni 2026",
-    dl1: "Widerrufsbutton mit zweistufiger Bestätigung und Eingangsbestätigung (RL (EU) 2023/2673, § 356a BGB).",
-    dl2d: "27. September 2026",
-    dl2: "Amtlicher Gewährleistungshinweis vor dem Kauf und GARAN-Label für Herstellergarantien über zwei Jahre (VO (EU) 2025/1960).",
-    dl3d: "31. Juli 2026",
-    dl3: "Hinweis zum Recht auf Reparatur für neue Kaufverträge (RL (EU) 2024/1799).",
-    live: "gilt bereits",
-    soon: "noch {n} Tage",
-    featTitle: "Was die App macht",
-    featSub: "Alles, was ein Shop für beide Stichtage braucht – und um es später nachweisen zu können.",
-    f1t: "Widerrufsfunktion",
-    f1: "Der Button trägt auf jeder Seite die amtliche Beschriftung, die Bestätigung ist zweistufig genau nach Gesetz, und der Kunde bekommt eine Eingangsbestätigung mit Zeitstempel per E-Mail. Funktioniert ohne Kundenkonto.",
-    f2t: "Nachweis, der trägt",
-    f2: "Jede Erklärung wird mit Vorgangsnummer, Zeitstempel und SHA-256-Prüfsumme gespeichert, der Bestellung zugeordnet, getaggt, als CSV exportiert und auf Wunsch anonymisiert.",
-    f3t: "Amtliche Grafiken",
-    f3: "Gewährleistungshinweis und GARAN-Label sind die unveränderten EU-Originale, farbig, automatisch in der Shop-Sprache. Das Label liest seine Daten aus Produkt-Metafeldern.",
-    f4t: "Mehrsprachig von Haus aus",
-    f4: "Shop-Blöcke in allen 24 EU-Sprachen, Eingangsbestätigungen in allen 24, und ein Admin in zehn Sprachen, der automatisch Ihrer Shopify-Sprache folgt.",
-    f5t: "Kein Theme-Code",
-    f5: "Alles wird als Theme-App-Block und App-Einbettung im Theme-Editor hinzugefügt. In Ihre Theme-Dateien wird nichts geschrieben, Updates und Theme-Wechsel bleiben unproblematisch.",
-    cookieText: "Diese Website nutzt Google Analytics, um die Nutzung zu verstehen. Analyse-Cookies zulassen?",
-    cookieAccept: "Akzeptieren",
-    cookieDecline: "Ablehnen",
-    cookieMore: "Datenschutz",
-    f6t: "Keine Cookies, kein Tracking in der App",
-    f6: "Die App setzt keine Cookies in Ihrem Shop und trackt keine Ihrer Kundinnen und Kunden. Speicherung und Verarbeitung finden ausschließlich in Frankfurt statt, Datenschutzerklärung und Angaben zur Auftragsverarbeitung liegen fertig bereit. Diese Website misst Besuche mit Google Analytics, aber erst nach Ihrer Zustimmung.",
-    shotsTitle: "So sieht es aus",
-    shotsSub: "Screenshots aus einem echten Shop. Schriften und Farben Ihres Themes werden automatisch übernommen.",
-    s1: "Widerrufsbutton und Dialog im Shop",
-    s2: "Das Formular fragt nur die Pflichtangaben ab",
-    s3: "Zweiter Schritt: prüfen und bestätigen",
-    s4: "Eingangsbestätigung mit Vorgangsnummer und Zeitstempel",
-    s5: "GARAN-Kennzeichnung auf der Produktseite",
-    s6: "Gewährleistungshinweis im Warenkorb",
-    pricingTitle: "Preise",
-    pricingSub: "Kostenlos mit den Label-Blöcken starten. Die Widerrufsfunktion dazunehmen, wenn Sie sie brauchen.",
-    free: "Label",
-    freeAmount: "kostenlos",
-    freeUnit: "dauerhaft",
-    freeF: [
-      "Block „Gesetzlicher Gewährleistungshinweis“",
-      "GARAN-Kennzeichnung pro Produkt",
-      "Hinweis zum Recht auf Reparatur",
-      "Alle 24 EU-Sprachen",
-      "Kein Abo, keine zeitliche Begrenzung",
-    ],
-    basic: "Basic",
-    basicUnit: "USD / Monat",
-    basicF: [
-      "Alles aus Label",
-      "Widerrufsbutton mit amtlicher Beschriftung",
-      "Zweistufige Bestätigung",
-      "Eingangsbestätigung mit Zeitstempel",
-      "Widerrufsprotokoll mit Bestellzuordnung",
-      "E-Mail-Benachrichtigung bei jedem Fall",
-    ],
-    pro: "Pro",
-    proUnit: "USD / Monat",
-    proF: [
-      "Alles aus Basic",
-      "Bestellung automatisch taggen",
-      "Widerrufs-Metafeld an der Bestellung",
-      "CSV-Export des Protokolls",
-      "Prioritäts-Support",
-    ],
-    best: "Am beliebtesten",
-    trial: "Basic und Pro starten mit 14 Tagen kostenloser Testphase und sind monatlich über Shopify Billing kündbar.",
-    faqTitle: "Fragen",
-    q1: "Entspricht der Button der gesetzlichen Beschriftung?",
-    a1: "Ja. Die App verwendet die in der Richtlinie vorgegebene Beschriftung in jeder EU-Sprache, auf Deutsch „Vertrag widerrufen“ und „Widerruf bestätigen“. Sie können den Text überschreiben, müssen es aber nicht.",
-    q2: "Wo liegen die Daten?",
-    a2: "Alles bleibt in der EU: Widerrufserklärungen, Shop-Daten und Einstellungen liegen in einer Datenbank in Frankfurt am Main, und die Anwendung läuft ebenfalls auf Servern in Frankfurt. Die aktuelle Region steht unter /healthcheck. Die App setzt keine Cookies und trackt niemanden; diese Website misst Besuche nur mit Ihrer Einwilligung.",
-    q3: "Muss ich mein Theme ändern?",
-    a3: "Nein. Alles wird als Theme-App-Block und App-Einbettung im Theme-Editor hinzugefügt, in Ihre Theme-Dateien wird nichts geschrieben.",
-    q4: "Was passiert mit einem Widerruf ohne passende Bestellung?",
-    a4: "Er wird trotzdem angenommen und bestätigt, weil das Gesetz das verlangt, und im Protokoll markiert, damit Sie ihn manuell prüfen können.",
-    q5: "Ersetzt das eine Rechtsberatung?",
-    a5: "Nein. Die App setzt die technischen Anforderungen um und verwendet die amtlichen Texte und Grafiken. Ihre eigene Widerrufsbelehrung und Ihre AGB bleiben Ihre Sache.",
-    installTitle: "App installieren",
-    installSub: "Shop-Domain eingeben, Berechtigungen bestätigen, in fünf Minuten fertig.",
-    shopDomain: "Shop-Domain",
-    next: "Weiter",
-    footPrivacy: "Datenschutz",
-    footTerms: "Nutzungsbedingungen",
-    footSupport: "Support",
-    footDemo: "Screencast",
-  },
-} as const;
 
 /* Analytics für DIESE Website (nicht für die eingebettete App). Consent Mode v2
  * setzt alles auf "denied"; gtag.js wird erst nach ausdruecklicher Zustimmung
@@ -352,7 +133,8 @@ export default function Index() {
   const { lang, showForm, supportEmail, appStoreUrl, daysLeft } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const errors = actionData?.errors ?? {};
-  const t = T[lang as Lang];
+  const t = LANDING_T[lang];
+  const img = shotLang(lang);
   const soon = t.soon.replace("{n}", String(Math.max(daysLeft, 0)));
 
   const shots: [string, string][] = [
@@ -396,7 +178,22 @@ export default function Index() {
             <a href="#pricing">{t.navPricing}</a>
             <a href={t.guideHref}>{t.navGuide}</a>
             <a href="/screencast">{t.navDemo}</a>
-            <a href={t.switchHref}>{t.switchLabel}</a>
+            <form method="get" className="lang-form">
+              <label className="lang-label" htmlFor="lang">
+                <span aria-hidden="true">🌐</span>
+                <span className="sr-only">Sprache / Language</span>
+              </label>
+              <select id="lang" name="lang" defaultValue={lang} onChange={(e) => e.currentTarget.form?.submit()}>
+                {SITE_LANGS.map((code) => (
+                  <option key={code} value={code}>
+                    {LANGUAGE_NAMES[code]}
+                  </option>
+                ))}
+              </select>
+              <noscript>
+                <button type="submit">OK</button>
+              </noscript>
+            </form>
           </div>
         </nav>
       </header>
@@ -425,7 +222,7 @@ export default function Index() {
           </div>
           <p className="note">{t.heroNote}</p>
           <div className="hero-shot">
-            <img src={`/img/${lang}/screenshot-form.png`} alt={t.heroAlt} width={1600} height={900} />
+            <img src={`/img/${img}/screenshot-form.png`} alt={t.heroAlt} width={1600} height={900} />
           </div>
         </div>
 
@@ -480,7 +277,7 @@ export default function Index() {
           <div className="shots">
             {shots.map(([file, caption]) => (
               <figure key={file}>
-                <img src={`/img/${lang}/${file}.png`} alt={caption} loading="lazy" width={1600} height={900} />
+                <img src={`/img/${img}/${file}.png`} alt={caption} loading="lazy" width={1600} height={900} />
                 <figcaption>{caption}</figcaption>
               </figure>
             ))}

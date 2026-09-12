@@ -11,7 +11,7 @@
  */
 import { LANDING_CSS } from "../routes/_index/styles";
 import { operator } from "./operator";
-import { SITE_URL, type SiteLang } from "./site";
+import { SITE_URL, type GuideLang } from "./site";
 
 export const GUIDE_PATH = { de: "/leitfaden", en: "/guide" } as const;
 
@@ -49,7 +49,7 @@ type GuideText = {
   disclaimer: string;
 };
 
-export const GUIDE: Record<SiteLang, GuideText> = {
+export const GUIDE: Record<GuideLang, GuideText> = {
   de: {
     htmlLang: "de",
     title: "Gewährleistungshinweis und GARAN-Label ab 27. September 2026: was Shopify-Händler jetzt tun müssen",
@@ -217,7 +217,7 @@ function withBold(text: string, key: string) {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) => (i % 2 === 1 ? <strong key={`${key}-${i}`}>{part}</strong> : part));
 }
 
-export function guideJsonLd(lang: SiteLang) {
+export function guideJsonLd(lang: GuideLang) {
   const t = GUIDE[lang];
   const url = `${SITE_URL}${GUIDE_PATH[lang]}`;
   return [
@@ -252,7 +252,7 @@ export function guideJsonLd(lang: SiteLang) {
   ];
 }
 
-export function GuidePage({ lang, appStoreUrl, supportEmail }: { lang: SiteLang; appStoreUrl: string; supportEmail: string }) {
+export function GuidePage({ lang, appStoreUrl, supportEmail }: { lang: GuideLang; appStoreUrl: string; supportEmail: string }) {
   const t = GUIDE[lang];
   const appHref = appStoreUrl || `/?lang=${lang}`;
 

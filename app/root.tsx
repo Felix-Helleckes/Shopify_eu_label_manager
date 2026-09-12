@@ -1,8 +1,12 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, redirect, useLoaderData } from "react-router";
 import type { LoaderFunctionArgs } from "react-router";
-import { htmlLang } from "./lib/site";
+import { canonicalRedirect, htmlLang } from "./lib/site";
 
-export const loader = ({ request }: LoaderFunctionArgs) => ({ lang: htmlLang(request) });
+export const loader = ({ request }: LoaderFunctionArgs) => {
+  const target = canonicalRedirect(request);
+  if (target) throw redirect(target, 301);
+  return { lang: htmlLang(request) };
+};
 
 export default function App() {
   const { lang } = useLoaderData<typeof loader>();

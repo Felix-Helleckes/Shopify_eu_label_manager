@@ -17,8 +17,12 @@ export function meta() {
     { name: "author", content: operator.name },
     ...socialMeta({
       lang: "en",
-      pathDe: GUIDE_PATH.de,
-      pathEn: GUIDE_PATH.en,
+      path: GUIDE_PATH.en,
+      alternates: [
+        ["de", GUIDE_PATH.de],
+        ["en", GUIDE_PATH.en],
+      ],
+      pathDefault: GUIDE_PATH.en,
       title: t.metaTitle,
       description: t.metaDescription,
       imageAlt: t.imageAlt,
