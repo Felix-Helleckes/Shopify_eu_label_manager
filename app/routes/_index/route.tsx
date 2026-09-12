@@ -291,7 +291,7 @@ const T = {
 /* Analytics für DIESE Website (nicht für die eingebettete App). Consent Mode v2
  * setzt alles auf "denied"; gtag.js wird erst nach ausdruecklicher Zustimmung
  * nachgeladen. Die App selbst im Shopify-Admin bindet nichts davon ein. */
-const GA_ID = "G-LDXG7250PQ";
+const GA_ID = "G-PQGTJ9J9B0";
 const CONSENT_KEY = "ecs_site_consent";
 
 function readConsent(): string | null {
