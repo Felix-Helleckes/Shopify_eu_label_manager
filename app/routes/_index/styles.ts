@@ -85,6 +85,22 @@ figcaption{font-size:13.5px;color:var(--muted);margin-top:9px}
 .plan li::before{content:"";position:absolute;left:0;top:7px;width:13px;height:7px;
   border-left:2px solid var(--eu);border-bottom:2px solid var(--eu);transform:rotate(-45deg)}
 
+/* Leitfaden (/leitfaden, /guide) */
+.article{padding:28px 0 64px;max-width:760px}
+.article h1{max-width:26ch;font-size:clamp(27px,3.6vw,40px);margin:16px 0 10px}
+.article section{padding:26px 0 0}
+.article h2{margin:0 0 12px}
+.article p{margin:0 0 16px;font-size:16.5px}
+.byline{color:var(--muted);font-size:14px;margin:0 0 18px}
+.prose-list{margin:0 0 18px;padding-left:22px}
+.prose-list li{margin-bottom:10px;font-size:16.5px}
+.callout{margin:34px 0 8px;padding:26px;border:1px solid var(--line);border-left:4px solid var(--eu);
+  border-radius:var(--radius);background:var(--bg-alt)}
+.callout h2{margin:0 0 10px;font-size:21px}
+.callout p{margin:0 0 18px}
+.callout .note{margin:14px 0 0}
+.disclaimer{margin:34px 0 0;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+
 /* faq */
 .faq{border-top:1px solid var(--line)}
 .qa{border-bottom:1px solid var(--line);padding:20px 0}

@@ -5,16 +5,9 @@ import { login } from "../../shopify.server";
 import { operator } from "../../lib/operator";
 import { loginErrorMessage } from "./error.server";
 import { LANDING_CSS } from "./styles";
+import { pickLang, socialMeta, SITE_URL, type SiteLang } from "../../lib/site";
 
-type Lang = "en" | "de";
-
-function pickLang(request: Request): Lang {
-  const url = new URL(request.url);
-  const q = url.searchParams.get("lang");
-  if (q === "de" || q === "en") return q;
-  const accept = (request.headers.get("accept-language") || "").toLowerCase();
-  return accept.startsWith("de") ? "de" : "en";
-}
+type Lang = SiteLang;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
@@ -52,20 +45,27 @@ export function meta({ data }: { data?: { lang: Lang } }) {
         : "Withdrawal button (Art. 11a Consumer Rights Directive), harmonised legal-guarantee notice and GARAN label (Reg. (EU) 2025/1960) in one Shopify app – 24 EU languages, no theme code, label blocks free.",
     },
     { name: "author", content: "Felix Helleckes" },
-    // Dieselbe URL liefert je nach ?lang= und Accept-Language verschiedene
-    // Sprachen, dazu haengen Shopify Parameter an. Ohne dies konkurrieren
-    // diese Varianten in der Suche miteinander.
-    {
-      tagName: "link",
-      rel: "canonical",
-      href: "https://eu-compliance-suite.fly.dev/",
-    },
+    ...socialMeta({
+      lang: de ? "de" : "en",
+      pathDe: "/?lang=de",
+      pathEn: "/?lang=en",
+      pathDefault: "/",
+      title: de
+        ? "EU Compliance Suite – Widerrufsbutton, Gewährleistungshinweis & GARAN-Label für Shopify"
+        : "EU Compliance Suite – EU withdrawal button, legal-guarantee notice & GARAN label for Shopify",
+      description: de
+        ? "Die drei EU-Pflichten 2026 in einer Shopify-App: Widerrufsbutton, amtlicher Gewährleistungshinweis und GARAN-Label in 24 Sprachen. Label-Blöcke dauerhaft kostenlos."
+        : "The three 2026 EU duties in one Shopify app: withdrawal button, harmonised legal-guarantee notice and GARAN label in 24 languages. Label blocks free forever.",
+      imageAlt: de
+        ? "Shop mit Widerrufsbutton und amtlichem Gewährleistungshinweis"
+        : "Storefront with the withdrawal button and the official legal-guarantee notice",
+    }),
     {
       "script:ld+json": {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         name: "EU Compliance Suite",
-        url: "https://eu-compliance-suite.fly.dev/",
+        url: `${SITE_URL}/`,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         author: {
@@ -80,6 +80,7 @@ export function meta({ data }: { data?: { lang: Lang } }) {
             "https://stackoverflow.com/users/15774380/felix-helleckes",
             "https://apps.apple.com/de/developer/felix-helleckes/id6786716900",
             "https://play.google.com/store/apps/developer?id=Felix+Helleckes",
+            "https://www.xing.com/profile/Felix_Helleckes",
           ],
         },
       },
@@ -92,6 +93,8 @@ const T = {
     switchLabel: "Deutsch",
     switchHref: "/?lang=de",
     navFeatures: "Features",
+    navGuide: "Guide",
+    guideHref: "/guide",
     navPricing: "Pricing",
     navDemo: "Demo",
     kicker: "Shopify app · EU consumer law 2026",
@@ -189,6 +192,8 @@ const T = {
     switchLabel: "English",
     switchHref: "/?lang=en",
     navFeatures: "Funktionen",
+    navGuide: "Leitfaden",
+    guideHref: "/leitfaden",
     navPricing: "Preise",
     navDemo: "Demo",
     kicker: "Shopify-App · EU-Verbraucherrecht 2026",
@@ -389,6 +394,7 @@ export default function Index() {
           <div className="nav-right">
             <a href="#features">{t.navFeatures}</a>
             <a href="#pricing">{t.navPricing}</a>
+            <a href={t.guideHref}>{t.navGuide}</a>
             <a href="/screencast">{t.navDemo}</a>
             <a href={t.switchHref}>{t.switchLabel}</a>
           </div>
