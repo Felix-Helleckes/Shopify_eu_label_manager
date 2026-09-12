@@ -56,7 +56,7 @@ export function meta({ data }: { data?: { lang: Lang } }) {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         name: "EU Compliance Suite",
-        url: "https://eu-compliance-suite.netlify.app/",
+        url: "https://eu-compliance-suite.fly.dev/",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         author: {
