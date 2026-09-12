@@ -1,5 +1,8 @@
 # Felix: deine Liste (Stand 11.09.2026)
 
+> **Übergabe und Gesamtstand: `docs/STATUS.md`.** Dort stehen die drei offenen Punkte
+> (Freigabe, Domain, LinkedIn) mit dem jeweils nächsten Schritt.
+
 Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brauchen. Alles andere mache ich.
 
 ## Heute (zusammen 30 Minuten)
