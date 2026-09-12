@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           Shop-Betreiber pflegt.
         </li>
       </ul>
-      <p>Die App setzt keine Cookies und verwendet keine Tracking- oder Analysedienste.</p>
+      <p>Die App selbst setzt keine Cookies und verwendet keine Tracking- oder Analysedienste. Auf dieser oeffentlichen Website nutzen wir Google Analytics 4, um Besuche auszuwerten – aber erst, nachdem Sie im Cookie-Hinweis ausdruecklich zugestimmt haben. Ohne Zustimmung wird kein Google-Skript geladen und kein Cookie gesetzt. Sie koennen Ihre Wahl jederzeit widerrufen, indem Sie die Website-Daten dieser Domain in Ihrem Browser loeschen. Die IP-Adresse wird gekuerzt (anonymize_ip).</p>
 
       <h2 style={s.h2}>3. Zwecke und Rechtsgrundlagen</h2>
       <ul>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
         Frankfurt, Germany (eu-central-1), and the application runs on servers in Frankfurt as well (Fly.io, region
         fra), so storage and processing both stay inside the EU – the live region is verifiable at{" "}
         <a href="/healthcheck">/healthcheck</a>. Customer redaction requests anonymise personal fields immediately; all
-        shop data is deleted 48 hours after uninstall. No cookies or tracking are used. Data subjects can exercise their
+        shop data is deleted 48 hours after uninstall. The app uses no cookies or tracking; this public website uses Google Analytics only after explicit consent. Data subjects can exercise their
         GDPR rights through the merchant.
       </p>
     </main>

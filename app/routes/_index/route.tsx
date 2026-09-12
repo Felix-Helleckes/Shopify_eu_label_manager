@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { Form, redirect, useActionData, useLoaderData } from "react-router";
 import { login } from "../../shopify.server";
@@ -113,8 +114,12 @@ const T = {
     f4: "Storefront blocks in all 24 EU languages, acknowledgement e-mails in all 24, and an admin in ten languages that follows your Shopify admin automatically.",
     f5t: "No theme code",
     f5: "Everything is added as theme app blocks and an app embed in the theme editor. Nothing is written into your theme files, so updates and theme changes stay safe.",
-    f6t: "No cookies, no tracking",
-    f6: "The app sets no cookies and tracks nobody. Storage and processing happen exclusively in Frankfurt, and the privacy policy plus a data-processing section are ready to hand to your lawyer.",
+    cookieText: "This website uses Google Analytics to understand how it is used. Allow analytics cookies?",
+    cookieAccept: "Accept",
+    cookieDecline: "Decline",
+    cookieMore: "Privacy policy",
+    f6t: "No cookies, no tracking in the app",
+    f6: "The app sets no cookies in your shop and tracks none of your customers. Storage and processing happen exclusively in Frankfurt, and the privacy policy plus a data-processing section are ready to hand to your lawyer. This marketing website measures visits with Google Analytics, but only after you agree to it.",
     shotsTitle: "How it looks",
     shotsSub: "Screenshots from a live shop. Your theme's fonts and colours are used automatically.",
     s1: "Withdrawal button and dialog in the storefront",
@@ -154,7 +159,7 @@ const T = {
     q1: "Is the button worded the way the law requires?",
     a1: "Yes. The app uses the wording prescribed by the directive in each EU language, for example “Withdraw from contract here” and “Confirm withdrawal”, in German “Vertrag widerrufen” and “Widerruf bestätigen”. You can override it, but you do not have to.",
     q2: "Where is the data stored?",
-    a2: "Everything stays in the EU: withdrawal statements, shop data and settings live in a database in Frankfurt, Germany, and the application runs on servers in Frankfurt too. The live region is shown at /healthcheck. No cookies, no tracking.",
+    a2: "Everything stays in the EU: withdrawal statements, shop data and settings live in a database in Frankfurt, Germany, and the application runs on servers in Frankfurt too. The live region is shown at /healthcheck. The app sets no cookies and tracks nobody; this website measures visits only with your consent.",
     q3: "Do I have to change my theme?",
     a3: "No. Everything is added as theme app blocks and an app embed in the theme editor, so nothing is written into your theme files.",
     q4: "What happens to a withdrawal that does not match an order?",
@@ -206,8 +211,12 @@ const T = {
     f4: "Shop-Blöcke in allen 24 EU-Sprachen, Eingangsbestätigungen in allen 24, und ein Admin in zehn Sprachen, der automatisch Ihrer Shopify-Sprache folgt.",
     f5t: "Kein Theme-Code",
     f5: "Alles wird als Theme-App-Block und App-Einbettung im Theme-Editor hinzugefügt. In Ihre Theme-Dateien wird nichts geschrieben, Updates und Theme-Wechsel bleiben unproblematisch.",
-    f6t: "Keine Cookies, kein Tracking",
-    f6: "Die App setzt keine Cookies und trackt niemanden. Speicherung und Verarbeitung finden ausschließlich in Frankfurt statt, Datenschutzerklärung und Angaben zur Auftragsverarbeitung liegen fertig bereit.",
+    cookieText: "Diese Website nutzt Google Analytics, um die Nutzung zu verstehen. Analyse-Cookies zulassen?",
+    cookieAccept: "Akzeptieren",
+    cookieDecline: "Ablehnen",
+    cookieMore: "Datenschutz",
+    f6t: "Keine Cookies, kein Tracking in der App",
+    f6: "Die App setzt keine Cookies in Ihrem Shop und trackt keine Ihrer Kundinnen und Kunden. Speicherung und Verarbeitung finden ausschließlich in Frankfurt statt, Datenschutzerklärung und Angaben zur Auftragsverarbeitung liegen fertig bereit. Diese Website misst Besuche mit Google Analytics, aber erst nach Ihrer Zustimmung.",
     shotsTitle: "So sieht es aus",
     shotsSub: "Screenshots aus einem echten Shop. Schriften und Farben Ihres Themes werden automatisch übernommen.",
     s1: "Widerrufsbutton und Dialog im Shop",
@@ -253,7 +262,7 @@ const T = {
     q1: "Entspricht der Button der gesetzlichen Beschriftung?",
     a1: "Ja. Die App verwendet die in der Richtlinie vorgegebene Beschriftung in jeder EU-Sprache, auf Deutsch „Vertrag widerrufen“ und „Widerruf bestätigen“. Sie können den Text überschreiben, müssen es aber nicht.",
     q2: "Wo liegen die Daten?",
-    a2: "Alles bleibt in der EU: Widerrufserklärungen, Shop-Daten und Einstellungen liegen in einer Datenbank in Frankfurt am Main, und die Anwendung läuft ebenfalls auf Servern in Frankfurt. Die aktuelle Region steht unter /healthcheck. Keine Cookies, kein Tracking.",
+    a2: "Alles bleibt in der EU: Widerrufserklärungen, Shop-Daten und Einstellungen liegen in einer Datenbank in Frankfurt am Main, und die Anwendung läuft ebenfalls auf Servern in Frankfurt. Die aktuelle Region steht unter /healthcheck. Die App setzt keine Cookies und trackt niemanden; diese Website misst Besuche nur mit Ihrer Einwilligung.",
     q3: "Muss ich mein Theme ändern?",
     a3: "Nein. Alles wird als Theme-App-Block und App-Einbettung im Theme-Editor hinzugefügt, in Ihre Theme-Dateien wird nichts geschrieben.",
     q4: "Was passiert mit einem Widerruf ohne passende Bestellung?",
@@ -270,6 +279,59 @@ const T = {
     footDemo: "Screencast",
   },
 } as const;
+
+/* Analytics für DIESE Website (nicht für die eingebettete App). Consent Mode v2
+ * setzt alles auf "denied"; gtag.js wird erst nach ausdruecklicher Zustimmung
+ * nachgeladen. Die App selbst im Shopify-Admin bindet nichts davon ein. */
+const GA_ID = "G-PQGTJ9J9B0";
+const CONSENT_KEY = "ecs_site_consent";
+
+function readConsent(): string | null {
+  try { return localStorage.getItem(CONSENT_KEY); } catch { return null; }
+}
+
+function loadGA() {
+  const w = window as unknown as { dataLayer?: unknown[]; __gaLoaded?: boolean };
+  if (w.__gaLoaded) return;
+  w.__gaLoaded = true;
+  w.dataLayer = w.dataLayer || [];
+  const gtag = (...args: unknown[]) => { w.dataLayer!.push(args); };
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(s);
+  gtag("consent", "update", { analytics_storage: "granted" });
+  gtag("js", new Date());
+  gtag("config", GA_ID, { anonymize_ip: true });
+}
+
+function ConsentBanner({ t }: { t: { cookieText: string; cookieAccept: string; cookieDecline: string; cookieMore: string } }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const choice = readConsent();
+    if (choice === "granted") loadGA();
+    else if (choice !== "denied") setVisible(true);
+  }, []);
+
+  const decide = (value: "granted" | "denied") => {
+    try { localStorage.setItem(CONSENT_KEY, value); } catch { /* Speicher gesperrt: Wahl gilt nur fuer diesen Aufruf */ }
+    setVisible(false);
+    if (value === "granted") loadGA();
+  };
+
+  if (!visible) return null;
+  return (
+    <div className="consent">
+      <p>{t.cookieText}</p>
+      <div className="consent-actions">
+        <button type="button" onClick={() => decide("denied")}>{t.cookieDecline}</button>
+        <button type="button" className="primary" onClick={() => decide("granted")}>{t.cookieAccept}</button>
+        <a href="/privacy">{t.cookieMore}</a>
+      </div>
+    </div>
+  );
+}
 
 export default function Index() {
   const { lang, showForm, supportEmail, appStoreUrl, daysLeft } = useLoaderData<typeof loader>();
@@ -484,6 +546,8 @@ export default function Index() {
           </section>
         )}
       </main>
+
+      <ConsentBanner t={t} />
 
       <footer className="wrap">
         <div>

@@ -101,4 +101,14 @@ footer{border-top:1px solid var(--line);padding:34px 0 48px;font-size:14px;color
 footer a{color:var(--muted)}
 .foot-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
 @media (max-width:640px){ section{padding:48px 0} .install{padding:24px} }
+
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 200;
+  max-width: 560px; margin: 0 auto; background: #101a2e; border: 1px solid #2a3a58;
+  border-radius: 14px; padding: 18px 20px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+.consent p { margin: 0 0 12px; font-size: 14px; color: #d6e0f5; }
+.consent-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.consent-actions button { font: inherit; font-size: 14px; padding: 9px 18px; border-radius: 999px;
+  cursor: pointer; border: 1px solid #2a3a58; background: transparent; color: #d6e0f5; }
+.consent-actions button.primary { background: #2f6df6; border-color: #2f6df6; color: #fff; }
+.consent-actions a { margin-left: auto; font-size: 13px; color: #7aa2ff; }
 `;
