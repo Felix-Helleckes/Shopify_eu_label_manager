@@ -68,7 +68,7 @@ export function meta({ data }: { data?: { lang: Lang } }) {
           jobTitle: "QA & Test Automation Engineer",
           sameAs: [
             "https://github.com/Felix-Helleckes",
-            "https://www.linkedin.com/in/felix-helleckes-758529202/",
+            "https://www.linkedin.com/in/felix-helleckes/",
             "https://stackoverflow.com/users/15774380/felix-helleckes",
           ],
         },
