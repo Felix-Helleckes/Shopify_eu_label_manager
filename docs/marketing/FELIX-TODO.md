@@ -7,7 +7,7 @@ Nur die Dinge, die wirklich deine Accounts, deine Zahlung oder deine Stimme brau
 1. ~~**Fly.io einrichten**~~ — **erledigt am 11.09.2026.** Die App läuft in Frankfurt unter
    https://eu-compliance-suite.fly.dev, Kosten ca. 3,30 USD/Monat. Eine eigene Domain ist nicht nötig.
 2. ~~**Einreichung**~~ — **erledigt am 11.09.2026.** Status: „Eingereicht, Prüfer wird zugewiesen“. Rückmeldungen
-   kommen per E-Mail an florian.helleckes@gmail.com — **täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
+   kommen per E-Mail an f.helleckes@proton.me — **täglich prüfen und sofort antworten**, sonst stoppt die Prüfung.
 3. **Agenturen anschreiben** (20 Min): 18 fertige Nachrichten in `outreach-messages.md`, je Kontaktformular oder
    LinkedIn. Reihenfolge ist Priorität; die ersten 8 reichen für heute.
 
