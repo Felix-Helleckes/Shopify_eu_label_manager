@@ -52,6 +52,14 @@ export function meta({ data }: { data?: { lang: Lang } }) {
         : "Withdrawal button (Art. 11a Consumer Rights Directive), harmonised legal-guarantee notice and GARAN label (Reg. (EU) 2025/1960) in one Shopify app – 24 EU languages, no theme code, label blocks free.",
     },
     { name: "author", content: "Felix Helleckes" },
+    // Dieselbe URL liefert je nach ?lang= und Accept-Language verschiedene
+    // Sprachen, dazu haengen Shopify Parameter an. Ohne dies konkurrieren
+    // diese Varianten in der Suche miteinander.
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: "https://eu-compliance-suite.fly.dev/",
+    },
     {
       "script:ld+json": {
         "@context": "https://schema.org",
